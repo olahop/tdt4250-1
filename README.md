@@ -1,2 +1,2 @@
-# tdt4250-1-temp
-Holding assignment 1. Public during evaluation period.
+# tdt4250-1
+Assignment 1 - modelling with EMF and Ecore
