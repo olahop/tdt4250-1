@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link studyplan.Semester#getOptionalCourseGroups <em>Optional Course Groups</em>}</li>
  *   <li>{@link studyplan.Semester#getProgram <em>Program</em>}</li>
  *   <li>{@link studyplan.Semester#getSpecialization <em>Specialization</em>}</li>
+ *   <li>{@link studyplan.Semester#getTotalCreditsValue <em>Total Credits Value</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getSemester()
@@ -128,5 +129,27 @@ public interface Semester extends EObject {
 	 * @generated
 	 */
 	void setSpecialization(Specialization value);
+
+	/**
+	 * Returns the value of the '<em><b>Total Credits Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Total Credits Value</em>' attribute.
+	 * @see #setTotalCreditsValue(double)
+	 * @see studyplan.StudyplanPackage#getSemester_TotalCreditsValue()
+	 * @model derived="true"
+	 * @generated
+	 */
+	double getTotalCreditsValue();
+
+	/**
+	 * Sets the value of the '{@link studyplan.Semester#getTotalCreditsValue <em>Total Credits Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Total Credits Value</em>' attribute.
+	 * @see #getTotalCreditsValue()
+	 * @generated
+	 */
+	void setTotalCreditsValue(double value);
 
 } // Semester

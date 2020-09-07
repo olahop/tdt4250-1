@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link studyplan.Program#getSpecializations <em>Specializations</em>}</li>
  *   <li>{@link studyplan.Program#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  *   <li>{@link studyplan.Program#getSemesters <em>Semesters</em>}</li>
+ *   <li>{@link studyplan.Program#getSemestersPreSpecialization <em>Semesters Pre Specialization</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getProgram()
@@ -101,6 +102,28 @@ public interface Program extends EObject {
 	 * @generated
 	 */
 	EList<Semester> getSemesters();
+
+	/**
+	 * Returns the value of the '<em><b>Semesters Pre Specialization</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Semesters Pre Specialization</em>' attribute.
+	 * @see #setSemestersPreSpecialization(int)
+	 * @see studyplan.StudyplanPackage#getProgram_SemestersPreSpecialization()
+	 * @model derived="true"
+	 * @generated
+	 */
+	int getSemestersPreSpecialization();
+
+	/**
+	 * Sets the value of the '{@link studyplan.Program#getSemestersPreSpecialization <em>Semesters Pre Specialization</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Semesters Pre Specialization</em>' attribute.
+	 * @see #getSemestersPreSpecialization()
+	 * @generated
+	 */
+	void setSemestersPreSpecialization(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

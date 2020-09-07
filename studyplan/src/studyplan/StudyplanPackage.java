@@ -113,13 +113,22 @@ public interface StudyplanPackage extends EPackage {
 	int PROGRAM__SEMESTERS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Semesters Pre Specialization</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROGRAM__SEMESTERS_PRE_SPECIALIZATION = 5;
+
+	/**
 	 * The number of structural features of the '<em>Program</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROGRAM_FEATURE_COUNT = 5;
+	int PROGRAM_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Program</em>' class.
@@ -396,13 +405,22 @@ public interface StudyplanPackage extends EPackage {
 	int SEMESTER__SPECIALIZATION = 4;
 
 	/**
+	 * The feature id for the '<em><b>Total Credits Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMESTER__TOTAL_CREDITS_VALUE = 5;
+
+	/**
 	 * The number of structural features of the '<em>Semester</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEMESTER_FEATURE_COUNT = 5;
+	int SEMESTER_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Semester</em>' class.
@@ -542,6 +560,17 @@ public interface StudyplanPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProgram_Semesters();
+
+	/**
+	 * Returns the meta object for the attribute '{@link studyplan.Program#getSemestersPreSpecialization <em>Semesters Pre Specialization</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Semesters Pre Specialization</em>'.
+	 * @see studyplan.Program#getSemestersPreSpecialization()
+	 * @see #getProgram()
+	 * @generated
+	 */
+	EAttribute getProgram_SemestersPreSpecialization();
 
 	/**
 	 * Returns the meta object for the attribute '{@link studyplan.Program#getName <em>Name</em>}'.
@@ -804,6 +833,17 @@ public interface StudyplanPackage extends EPackage {
 	EReference getSemester_Specialization();
 
 	/**
+	 * Returns the meta object for the attribute '{@link studyplan.Semester#getTotalCreditsValue <em>Total Credits Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Total Credits Value</em>'.
+	 * @see studyplan.Semester#getTotalCreditsValue()
+	 * @see #getSemester()
+	 * @generated
+	 */
+	EAttribute getSemester_TotalCreditsValue();
+
+	/**
 	 * Returns the meta object for class '{@link studyplan.SemesterOptionalCourseGroup <em>Semester Optional Course Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -930,6 +970,14 @@ public interface StudyplanPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROGRAM__SEMESTERS = eINSTANCE.getProgram_Semesters();
+
+		/**
+		 * The meta object literal for the '<em><b>Semesters Pre Specialization</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROGRAM__SEMESTERS_PRE_SPECIALIZATION = eINSTANCE.getProgram_SemestersPreSpecialization();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1130,6 +1178,14 @@ public interface StudyplanPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEMESTER__SPECIALIZATION = eINSTANCE.getSemester_Specialization();
+
+		/**
+		 * The meta object literal for the '<em><b>Total Credits Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEMESTER__TOTAL_CREDITS_VALUE = eINSTANCE.getSemester_TotalCreditsValue();
 
 		/**
 		 * The meta object literal for the '{@link studyplan.impl.SemesterOptionalCourseGroupImpl <em>Semester Optional Course Group</em>}' class.

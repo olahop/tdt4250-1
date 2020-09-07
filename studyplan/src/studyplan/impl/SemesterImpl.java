@@ -38,6 +38,7 @@ import studyplan.StudyplanPackage;
  *   <li>{@link studyplan.impl.SemesterImpl#getOptionalCourseGroups <em>Optional Course Groups</em>}</li>
  *   <li>{@link studyplan.impl.SemesterImpl#getProgram <em>Program</em>}</li>
  *   <li>{@link studyplan.impl.SemesterImpl#getSpecialization <em>Specialization</em>}</li>
+ *   <li>{@link studyplan.impl.SemesterImpl#getTotalCreditsValue <em>Total Credits Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,6 +93,26 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * @ordered
 	 */
 	protected Specialization specialization;
+
+	/**
+	 * The default value of the '{@link #getTotalCreditsValue() <em>Total Credits Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTotalCreditsValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double TOTAL_CREDITS_VALUE_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getTotalCreditsValue() <em>Total Credits Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTotalCreditsValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected double totalCreditsValue = TOTAL_CREDITS_VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -277,6 +298,29 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * @generated
 	 */
 	@Override
+	public double getTotalCreditsValue() {
+		return totalCreditsValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTotalCreditsValue(double newTotalCreditsValue) {
+		double oldTotalCreditsValue = totalCreditsValue;
+		totalCreditsValue = newTotalCreditsValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE, oldTotalCreditsValue, totalCreditsValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StudyplanPackage.SEMESTER__PROGRAM:
@@ -337,6 +381,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 			case StudyplanPackage.SEMESTER__SPECIALIZATION:
 				if (resolve) return getSpecialization();
 				return basicGetSpecialization();
+			case StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE:
+				return getTotalCreditsValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -366,6 +412,9 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 			case StudyplanPackage.SEMESTER__SPECIALIZATION:
 				setSpecialization((Specialization)newValue);
 				return;
+			case StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE:
+				setTotalCreditsValue((Double)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -393,6 +442,9 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 			case StudyplanPackage.SEMESTER__SPECIALIZATION:
 				setSpecialization((Specialization)null);
 				return;
+			case StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE:
+				setTotalCreditsValue(TOTAL_CREDITS_VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -415,6 +467,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 				return getProgram() != null;
 			case StudyplanPackage.SEMESTER__SPECIALIZATION:
 				return specialization != null;
+			case StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE:
+				return totalCreditsValue != TOTAL_CREDITS_VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -431,6 +485,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (ProgramsSemesterOrderNr: ");
 		result.append(programsSemesterOrderNr);
+		result.append(", totalCreditsValue: ");
+		result.append(totalCreditsValue);
 		result.append(')');
 		return result.toString();
 	}
