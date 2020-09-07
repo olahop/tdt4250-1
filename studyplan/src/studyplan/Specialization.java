@@ -24,7 +24,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getSpecialization()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='allSubspecsSimilarLength subspecsShorterThanParent semestersCoverMandatoryCourses'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='allSubspecsSimilarLength subspecsShorterThanParent mandatoryCoursesAreCovered'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 subspecsShorterThanParent='self.subSpecializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.durationInSemesters)' allMainSpecsSimilarDuration='self.subSpecializations-&gt;collect(subSpec | subSpec.durationInSemesters)-&gt;forAll(num | num = self.subSpecializations-&gt;first().durationInSemesters)'"
  * @generated
  */
 public interface Specialization extends EObject {
@@ -53,22 +54,22 @@ public interface Specialization extends EObject {
 	void setProgram(Program value);
 
 	/**
-	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' reference.
+	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mandatory Courses</em>' reference.
+	 * @return the value of the '<em>Mandatory Courses</em>' containment reference.
 	 * @see #setMandatoryCourses(CourseGroup)
 	 * @see studyplan.StudyplanPackage#getSpecialization_MandatoryCourses()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	CourseGroup getMandatoryCourses();
 
 	/**
-	 * Sets the value of the '{@link studyplan.Specialization#getMandatoryCourses <em>Mandatory Courses</em>}' reference.
+	 * Sets the value of the '{@link studyplan.Specialization#getMandatoryCourses <em>Mandatory Courses</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mandatory Courses</em>' reference.
+	 * @param value the new value of the '<em>Mandatory Courses</em>' containment reference.
 	 * @see #getMandatoryCourses()
 	 * @generated
 	 */
@@ -99,11 +100,13 @@ public interface Specialization extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Sub Specializations</b></em>' reference list.
 	 * The list contents are of type {@link studyplan.Specialization}.
+	 * It is bidirectional and its opposite is '{@link studyplan.Specialization#getParentSpecialization <em>Parent Specialization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sub Specializations</em>' reference list.
 	 * @see studyplan.StudyplanPackage#getSpecialization_SubSpecializations()
-	 * @model derived="true"
+	 * @see studyplan.Specialization#getParentSpecialization
+	 * @model opposite="parentSpecialization" derived="true"
 	 * @generated
 	 */
 	EList<Specialization> getSubSpecializations();
@@ -132,12 +135,14 @@ public interface Specialization extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Parent Specialization</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link studyplan.Specialization#getSubSpecializations <em>Sub Specializations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Specialization</em>' reference.
 	 * @see #setParentSpecialization(Specialization)
 	 * @see studyplan.StudyplanPackage#getSpecialization_ParentSpecialization()
-	 * @model
+	 * @see studyplan.Specialization#getSubSpecializations
+	 * @model opposite="subSpecializations"
 	 * @generated
 	 */
 	Specialization getParentSpecialization();

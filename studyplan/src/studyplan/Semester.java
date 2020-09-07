@@ -51,22 +51,22 @@ public interface Semester extends EObject {
 	void setProgramsSemesterOrderNr(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' reference.
+	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mandatory Courses</em>' reference.
+	 * @return the value of the '<em>Mandatory Courses</em>' containment reference.
 	 * @see #setMandatoryCourses(CourseGroup)
 	 * @see studyplan.StudyplanPackage#getSemester_MandatoryCourses()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	CourseGroup getMandatoryCourses();
 
 	/**
-	 * Sets the value of the '{@link studyplan.Semester#getMandatoryCourses <em>Mandatory Courses</em>}' reference.
+	 * Sets the value of the '{@link studyplan.Semester#getMandatoryCourses <em>Mandatory Courses</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mandatory Courses</em>' reference.
+	 * @param value the new value of the '<em>Mandatory Courses</em>' containment reference.
 	 * @see #getMandatoryCourses()
 	 * @generated
 	 */

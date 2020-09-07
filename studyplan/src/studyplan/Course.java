@@ -55,7 +55,7 @@ public interface Course extends EObject {
 	 * @return the value of the '<em>Code</em>' attribute.
 	 * @see #setCode(String)
 	 * @see studyplan.StudyplanPackage#getCourse_Code()
-	 * @model
+	 * @model dataType="studyplan.CourseCode"
 	 * @generated
 	 */
 	String getCode();

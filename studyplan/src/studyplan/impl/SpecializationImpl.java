@@ -14,8 +14,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import studyplan.CourseGroup;
 import studyplan.Program;
 import studyplan.Specialization;
@@ -41,7 +42,7 @@ import studyplan.StudyplanPackage;
  */
 public class SpecializationImpl extends MinimalEObjectImpl.Container implements Specialization {
 	/**
-	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' reference.
+	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMandatoryCourses()
@@ -179,14 +180,6 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	public CourseGroup getMandatoryCourses() {
-		if (mandatoryCourses != null && mandatoryCourses.eIsProxy()) {
-			InternalEObject oldMandatoryCourses = (InternalEObject)mandatoryCourses;
-			mandatoryCourses = (CourseGroup)eResolveProxy(oldMandatoryCourses);
-			if (mandatoryCourses != oldMandatoryCourses) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES, oldMandatoryCourses, mandatoryCourses));
-			}
-		}
 		return mandatoryCourses;
 	}
 
@@ -195,8 +188,14 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CourseGroup basicGetMandatoryCourses() {
-		return mandatoryCourses;
+	public NotificationChain basicSetMandatoryCourses(CourseGroup newMandatoryCourses, NotificationChain msgs) {
+		CourseGroup oldMandatoryCourses = mandatoryCourses;
+		mandatoryCourses = newMandatoryCourses;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES, oldMandatoryCourses, newMandatoryCourses);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -206,10 +205,17 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	public void setMandatoryCourses(CourseGroup newMandatoryCourses) {
-		CourseGroup oldMandatoryCourses = mandatoryCourses;
-		mandatoryCourses = newMandatoryCourses;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES, oldMandatoryCourses, mandatoryCourses));
+		if (newMandatoryCourses != mandatoryCourses) {
+			NotificationChain msgs = null;
+			if (mandatoryCourses != null)
+				msgs = ((InternalEObject)mandatoryCourses).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES, null, msgs);
+			if (newMandatoryCourses != null)
+				msgs = ((InternalEObject)newMandatoryCourses).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES, null, msgs);
+			msgs = basicSetMandatoryCourses(newMandatoryCourses, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES, newMandatoryCourses, newMandatoryCourses));
 	}
 
 	/**
@@ -243,7 +249,7 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public EList<Specialization> getSubSpecializations() {
 		if (subSpecializations == null) {
-			subSpecializations = new EObjectResolvingEList<Specialization>(Specialization.class, this, StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS);
+			subSpecializations = new EObjectWithInverseResolvingEList<Specialization>(Specialization.class, this, StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS, StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION);
 		}
 		return subSpecializations;
 	}
@@ -253,6 +259,7 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -260,6 +267,12 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetProgram((Program)otherEnd, msgs);
+			case StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION:
+				if (parentSpecialization != null)
+					msgs = ((InternalEObject)parentSpecialization).eInverseRemove(this, StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS, Specialization.class, msgs);
+				return basicSetParentSpecialization((Specialization)otherEnd, msgs);
+			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubSpecializations()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -319,12 +332,34 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setParentSpecialization(Specialization newParentSpecialization) {
+	public NotificationChain basicSetParentSpecialization(Specialization newParentSpecialization, NotificationChain msgs) {
 		Specialization oldParentSpecialization = parentSpecialization;
 		parentSpecialization = newParentSpecialization;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION, oldParentSpecialization, parentSpecialization));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION, oldParentSpecialization, newParentSpecialization);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setParentSpecialization(Specialization newParentSpecialization) {
+		if (newParentSpecialization != parentSpecialization) {
+			NotificationChain msgs = null;
+			if (parentSpecialization != null)
+				msgs = ((InternalEObject)parentSpecialization).eInverseRemove(this, StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS, Specialization.class, msgs);
+			if (newParentSpecialization != null)
+				msgs = ((InternalEObject)newParentSpecialization).eInverseAdd(this, StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS, Specialization.class, msgs);
+			msgs = basicSetParentSpecialization(newParentSpecialization, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION, newParentSpecialization, newParentSpecialization));
 	}
 
 	/**
@@ -337,6 +372,12 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 		switch (featureID) {
 			case StudyplanPackage.SPECIALIZATION__PROGRAM:
 				return basicSetProgram(null, msgs);
+			case StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES:
+				return basicSetMandatoryCourses(null, msgs);
+			case StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION:
+				return basicSetParentSpecialization(null, msgs);
+			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
+				return ((InternalEList<?>)getSubSpecializations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -366,8 +407,7 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 			case StudyplanPackage.SPECIALIZATION__PROGRAM:
 				return getProgram();
 			case StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES:
-				if (resolve) return getMandatoryCourses();
-				return basicGetMandatoryCourses();
+				return getMandatoryCourses();
 			case StudyplanPackage.SPECIALIZATION__NAME:
 				return getName();
 			case StudyplanPackage.SPECIALIZATION__DURATION_IN_SEMESTERS:

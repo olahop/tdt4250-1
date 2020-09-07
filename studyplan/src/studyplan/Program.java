@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getProgram()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered'"
  *        annotation="http://www.eclipse.org/acceleo/query/1.0 totalNrOfSemestersShouldMatchType='self.type.value = self.semesters-&gt;size()' allSpecsDurationShorterThanProgram='self.specializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.type.value)' allMainSpecsSimilarDuration='self.specializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num = self.specializations-&gt;first().durationInSemesters)'"
  * @generated
  */
@@ -69,22 +69,22 @@ public interface Program extends EObject {
 	EList<Specialization> getSpecializations();
 
 	/**
-	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' reference.
+	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mandatory Courses</em>' reference.
+	 * @return the value of the '<em>Mandatory Courses</em>' containment reference.
 	 * @see #setMandatoryCourses(CourseGroup)
 	 * @see studyplan.StudyplanPackage#getProgram_MandatoryCourses()
-	 * @model
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	CourseGroup getMandatoryCourses();
 
 	/**
-	 * Sets the value of the '{@link studyplan.Program#getMandatoryCourses <em>Mandatory Courses</em>}' reference.
+	 * Sets the value of the '{@link studyplan.Program#getMandatoryCourses <em>Mandatory Courses</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mandatory Courses</em>' reference.
+	 * @param value the new value of the '<em>Mandatory Courses</em>' containment reference.
 	 * @see #getMandatoryCourses()
 	 * @generated
 	 */

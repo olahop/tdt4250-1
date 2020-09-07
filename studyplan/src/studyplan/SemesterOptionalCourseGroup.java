@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see studyplan.StudyplanPackage#getSemesterOptionalCourseGroup()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nrOfOptionalMustBeLessThanSizeOfGroup'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 nrOfOptionalMustBeLessThanSizeOfGroup='self.courseGroup-&gt;size() &gt;= self.nrOfOptionalFromGroup'"
  * @generated
  */
 public interface SemesterOptionalCourseGroup extends EObject {

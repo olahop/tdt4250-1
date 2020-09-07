@@ -5,64 +5,59 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:studyplan="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore"
     xsi:schemaLocation="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore studyplan.ecore">
-  <courseGroups
-      description="mandatoryIntegratedMaster">
-    <courses
-        name="ITGK"
-        code="TDT1111"
-        credits="7.5"
-        taughtInAutumn="true"/>
-    <courses
-        name="Matte 3"
-        code="TMA1235"
-        credits="7.5"
-        taughtInAutumn="true"
-        taughtInSpring="true"/>
-    <courses
-        name="NAtte1"
-        code="MAT1235"
-        credits="7.5"
-        taughtInAutumn="true"/>
-  </courseGroups>
-  <courseGroups
-      description="mandatoryCS1Semester">
-    <courses/>
-  </courseGroups>
-  <courseGroups
-      description="mandatoryCS2Semester"/>
-  <courseGroups
-      description="mandatoryAI"/>
   <programs
-      name="Computer Science"
-      type="Master"
-      mandatoryCourses="//@courseGroups.0">
+      name="Datateknologi 5-årig"
+      type="IntegratedMaster">
     <specializations
-        mandatoryCourses="//@courseGroups.3"
         name="AI"
-        durationInSemesters="2"/>
+        durationInSemesters="4"
+        subSpecializations="//@programs.0/@specializations.1">
+      <mandatoryCourses/>
+    </specializations>
     <specializations
-        mandatoryCourses="//@courseGroups.3"
-        name="SoftEng"
-        durationInSemesters="2"/>
-    <semesters
-        mandatoryCourses="//@courseGroups.1">
+        name="AI2"
+        durationInSemesters="2"
+        parentSpecialization="//@programs.0/@specializations.0">
+      <mandatoryCourses
+          courses="//@courses.0"/>
+    </specializations>
+    <mandatoryCourses
+        courses="//@courses.0 //@courses.3"/>
+    <semesters>
+      <mandatoryCourses
+          courses="//@courses.0 //@courses.3 //@courses.1 //@courses.2"/>
       <optionalCourseGroups
           nrOfOptionalFromGroup="1"
           semester="//@programs.0/@semesters.0">
-        <courseGroup>
-          <courses
-              code="TDR"/>
-        </courseGroup>
+        <courseGroup
+            courses="//@courses.0"/>
       </optionalCourseGroups>
     </semesters>
-    <semesters
-        ProgramsSemesterOrderNr="1"
-        mandatoryCourses="//@courseGroups.1"/>
-    <semesters
-        ProgramsSemesterOrderNr="2"
-        mandatoryCourses="//@courseGroups.1"/>
-    <semesters
-        ProgramsSemesterOrderNr="3"
-        mandatoryCourses="//@courseGroups.2"/>
+    <semesters/>
+    <semesters/>
+    <semesters/>
+    <semesters/>
+    <semesters/>
+    <semesters/>
+    <semesters/>
+    <semesters/>
+    <semesters/>
   </programs>
+  <courses name="Informasjonsteknologi"
+      code="TDT4110"
+      credits="7.5"
+      taughtInAutumn="true"/>
+  <courses name="ExPhil"
+      code="EXPH0004"
+      credits="7.5"
+      taughtInAutumn="true"
+      taughtInSpring="true"/>
+  <courses name="Diskret matematikk"
+      code="TMA4140"
+      credits="7.5"
+      taughtInAutumn="true"/>
+  <courses name="Matematikk 1"
+      code="TMA4100"
+      credits="7.5"
+      taughtInAutumn="true"/>
 </studyplan:Studyplan>

@@ -65,7 +65,7 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	protected int programsSemesterOrderNr = PROGRAMS_SEMESTER_ORDER_NR_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' reference.
+	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMandatoryCourses()
@@ -163,14 +163,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 */
 	@Override
 	public CourseGroup getMandatoryCourses() {
-		if (mandatoryCourses != null && mandatoryCourses.eIsProxy()) {
-			InternalEObject oldMandatoryCourses = (InternalEObject)mandatoryCourses;
-			mandatoryCourses = (CourseGroup)eResolveProxy(oldMandatoryCourses);
-			if (mandatoryCourses != oldMandatoryCourses) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StudyplanPackage.SEMESTER__MANDATORY_COURSES, oldMandatoryCourses, mandatoryCourses));
-			}
-		}
 		return mandatoryCourses;
 	}
 
@@ -179,8 +171,14 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CourseGroup basicGetMandatoryCourses() {
-		return mandatoryCourses;
+	public NotificationChain basicSetMandatoryCourses(CourseGroup newMandatoryCourses, NotificationChain msgs) {
+		CourseGroup oldMandatoryCourses = mandatoryCourses;
+		mandatoryCourses = newMandatoryCourses;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER__MANDATORY_COURSES, oldMandatoryCourses, newMandatoryCourses);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -190,10 +188,17 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 */
 	@Override
 	public void setMandatoryCourses(CourseGroup newMandatoryCourses) {
-		CourseGroup oldMandatoryCourses = mandatoryCourses;
-		mandatoryCourses = newMandatoryCourses;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER__MANDATORY_COURSES, oldMandatoryCourses, mandatoryCourses));
+		if (newMandatoryCourses != mandatoryCourses) {
+			NotificationChain msgs = null;
+			if (mandatoryCourses != null)
+				msgs = ((InternalEObject)mandatoryCourses).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.SEMESTER__MANDATORY_COURSES, null, msgs);
+			if (newMandatoryCourses != null)
+				msgs = ((InternalEObject)newMandatoryCourses).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.SEMESTER__MANDATORY_COURSES, null, msgs);
+			msgs = basicSetMandatoryCourses(newMandatoryCourses, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER__MANDATORY_COURSES, newMandatoryCourses, newMandatoryCourses));
 	}
 
 	/**
@@ -339,6 +344,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case StudyplanPackage.SEMESTER__MANDATORY_COURSES:
+				return basicSetMandatoryCourses(null, msgs);
 			case StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS:
 				return ((InternalEList<?>)getOptionalCourseGroups()).basicRemove(otherEnd, msgs);
 			case StudyplanPackage.SEMESTER__PROGRAM:
@@ -372,8 +379,7 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 			case StudyplanPackage.SEMESTER__PROGRAMS_SEMESTER_ORDER_NR:
 				return getProgramsSemesterOrderNr();
 			case StudyplanPackage.SEMESTER__MANDATORY_COURSES:
-				if (resolve) return getMandatoryCourses();
-				return basicGetMandatoryCourses();
+				return getMandatoryCourses();
 			case StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS:
 				return getOptionalCourseGroups();
 			case StudyplanPackage.SEMESTER__PROGRAM:

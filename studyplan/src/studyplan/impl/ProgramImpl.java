@@ -93,7 +93,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	protected EList<Specialization> specializations;
 
 	/**
-	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' reference.
+	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMandatoryCourses()
@@ -194,14 +194,6 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	 */
 	@Override
 	public CourseGroup getMandatoryCourses() {
-		if (mandatoryCourses != null && mandatoryCourses.eIsProxy()) {
-			InternalEObject oldMandatoryCourses = (InternalEObject)mandatoryCourses;
-			mandatoryCourses = (CourseGroup)eResolveProxy(oldMandatoryCourses);
-			if (mandatoryCourses != oldMandatoryCourses) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StudyplanPackage.PROGRAM__MANDATORY_COURSES, oldMandatoryCourses, mandatoryCourses));
-			}
-		}
 		return mandatoryCourses;
 	}
 
@@ -210,8 +202,14 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CourseGroup basicGetMandatoryCourses() {
-		return mandatoryCourses;
+	public NotificationChain basicSetMandatoryCourses(CourseGroup newMandatoryCourses, NotificationChain msgs) {
+		CourseGroup oldMandatoryCourses = mandatoryCourses;
+		mandatoryCourses = newMandatoryCourses;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StudyplanPackage.PROGRAM__MANDATORY_COURSES, oldMandatoryCourses, newMandatoryCourses);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -221,10 +219,17 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	 */
 	@Override
 	public void setMandatoryCourses(CourseGroup newMandatoryCourses) {
-		CourseGroup oldMandatoryCourses = mandatoryCourses;
-		mandatoryCourses = newMandatoryCourses;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.PROGRAM__MANDATORY_COURSES, oldMandatoryCourses, mandatoryCourses));
+		if (newMandatoryCourses != mandatoryCourses) {
+			NotificationChain msgs = null;
+			if (mandatoryCourses != null)
+				msgs = ((InternalEObject)mandatoryCourses).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.PROGRAM__MANDATORY_COURSES, null, msgs);
+			if (newMandatoryCourses != null)
+				msgs = ((InternalEObject)newMandatoryCourses).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.PROGRAM__MANDATORY_COURSES, null, msgs);
+			msgs = basicSetMandatoryCourses(newMandatoryCourses, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.PROGRAM__MANDATORY_COURSES, newMandatoryCourses, newMandatoryCourses));
 	}
 
 	/**
@@ -300,6 +305,8 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 		switch (featureID) {
 			case StudyplanPackage.PROGRAM__SPECIALIZATIONS:
 				return ((InternalEList<?>)getSpecializations()).basicRemove(otherEnd, msgs);
+			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
+				return basicSetMandatoryCourses(null, msgs);
 			case StudyplanPackage.PROGRAM__SEMESTERS:
 				return ((InternalEList<?>)getSemesters()).basicRemove(otherEnd, msgs);
 		}
@@ -321,8 +328,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 			case StudyplanPackage.PROGRAM__SPECIALIZATIONS:
 				return getSpecializations();
 			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
-				if (resolve) return getMandatoryCourses();
-				return basicGetMandatoryCourses();
+				return getMandatoryCourses();
 			case StudyplanPackage.PROGRAM__SEMESTERS:
 				return getSemesters();
 			case StudyplanPackage.PROGRAM__DURATION_PRE_SPECIALIZATION:

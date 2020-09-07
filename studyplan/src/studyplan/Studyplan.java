@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link studyplan.Studyplan#getCourseGroups <em>Course Groups</em>}</li>
  *   <li>{@link studyplan.Studyplan#getPrograms <em>Programs</em>}</li>
+ *   <li>{@link studyplan.Studyplan#getCourses <em>Courses</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getStudyplan()
@@ -23,18 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Studyplan extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Course Groups</b></em>' containment reference list.
-	 * The list contents are of type {@link studyplan.CourseGroup}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Course Groups</em>' containment reference list.
-	 * @see studyplan.StudyplanPackage#getStudyplan_CourseGroups()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<CourseGroup> getCourseGroups();
-
 	/**
 	 * Returns the value of the '<em><b>Programs</b></em>' containment reference list.
 	 * The list contents are of type {@link studyplan.Program}.
@@ -46,5 +34,17 @@ public interface Studyplan extends EObject {
 	 * @generated
 	 */
 	EList<Program> getPrograms();
+
+	/**
+	 * Returns the value of the '<em><b>Courses</b></em>' containment reference list.
+	 * The list contents are of type {@link studyplan.Course}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Courses</em>' containment reference list.
+	 * @see studyplan.StudyplanPackage#getStudyplan_Courses()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Course> getCourses();
 
 } // Studyplan

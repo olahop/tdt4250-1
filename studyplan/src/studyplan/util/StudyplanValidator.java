@@ -104,6 +104,8 @@ public class StudyplanValidator extends EObjectValidator {
 				return validateProgramTypeAndDuration((ProgramTypeAndDuration)value, diagnostics, context);
 			case StudyplanPackage.COURSE_LEVEL:
 				return validateCourseLevel((CourseLevel)value, diagnostics, context);
+			case StudyplanPackage.COURSE_CODE:
+				return validateCourseCode((String)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -129,6 +131,7 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateProgram_masterLevelHasMaxLimitOfLevelThreeCoures(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_allSpecsDurationShorterThanProgram(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_allMainSpecsSimilarDuration(program, diagnostics, context);
+		if (result || diagnostics != null) result &= validateProgram_mandatoryCoursesCovered(program, diagnostics, context);
 		return result;
 	}
 
@@ -276,6 +279,34 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the mandatoryCoursesCovered constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateProgram_mandatoryCoursesCovered(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "mandatoryCoursesCovered", getObjectLabel(program, context) },
+						 new Object[] { program },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -406,7 +437,7 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(specialization, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSpecialization_allSubspecsSimilarLength(specialization, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSpecialization_subspecsShorterThanParent(specialization, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSpecialization_semestersCoverMandatoryCourses(specialization, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSpecialization_mandatoryCoursesAreCovered(specialization, diagnostics, context);
 		return result;
 	}
 
@@ -439,40 +470,41 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the subspecsShorterThanParent constraint of '<em>Specialization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SPECIALIZATION__SUBSPECS_SHORTER_THAN_PARENT__EEXPRESSION = "self.subSpecializations->collect(spec | spec.durationInSemesters)->forAll(num | num <= self.durationInSemesters)";
+
+	/**
 	 * Validates the subspecsShorterThanParent constraint of '<em>Specialization</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateSpecialization_subspecsShorterThanParent(Specialization specialization, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "subspecsShorterThanParent", getObjectLabel(specialization, context) },
-						 new Object[] { specialization },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.SPECIALIZATION,
+				 specialization,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "subspecsShorterThanParent",
+				 SPECIALIZATION__SUBSPECS_SHORTER_THAN_PARENT__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
-	 * Validates the semestersCoverMandatoryCourses constraint of '<em>Specialization</em>'.
+	 * Validates the mandatoryCoursesAreCovered constraint of '<em>Specialization</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSpecialization_semestersCoverMandatoryCourses(Specialization specialization, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSpecialization_mandatoryCoursesAreCovered(Specialization specialization, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -485,7 +517,7 @@ public class StudyplanValidator extends EObjectValidator {
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "semestersCoverMandatoryCourses", getObjectLabel(specialization, context) },
+						 new Object[] { "mandatoryCoursesAreCovered", getObjectLabel(specialization, context) },
 						 new Object[] { specialization },
 						 context));
 			}
@@ -590,31 +622,32 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the nrOfOptionalMustBeLessThanSizeOfGroup constraint of '<em>Semester Optional Course Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__NR_OF_OPTIONAL_MUST_BE_LESS_THAN_SIZE_OF_GROUP__EEXPRESSION = "self.courseGroup->size() >= self.nrOfOptionalFromGroup";
+
+	/**
 	 * Validates the nrOfOptionalMustBeLessThanSizeOfGroup constraint of '<em>Semester Optional Course Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateSemesterOptionalCourseGroup_nrOfOptionalMustBeLessThanSizeOfGroup(SemesterOptionalCourseGroup semesterOptionalCourseGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "nrOfOptionalMustBeLessThanSizeOfGroup", getObjectLabel(semesterOptionalCourseGroup, context) },
-						 new Object[] { semesterOptionalCourseGroup },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.SEMESTER_OPTIONAL_COURSE_GROUP,
+				 semesterOptionalCourseGroup,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "nrOfOptionalMustBeLessThanSizeOfGroup",
+				 SEMESTER_OPTIONAL_COURSE_GROUP__NR_OF_OPTIONAL_MUST_BE_LESS_THAN_SIZE_OF_GROUP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -641,6 +674,15 @@ public class StudyplanValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCourseLevel(CourseLevel courseLevel, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCourseCode(String courseCode, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

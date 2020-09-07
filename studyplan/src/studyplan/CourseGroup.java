@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link studyplan.CourseGroup#getCourses <em>Courses</em>}</li>
- *   <li>{@link studyplan.CourseGroup#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getCourseGroup()
@@ -25,37 +24,15 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface CourseGroup extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Courses</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Courses</b></em>' reference list.
 	 * The list contents are of type {@link studyplan.Course}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Courses</em>' containment reference list.
+	 * @return the value of the '<em>Courses</em>' reference list.
 	 * @see studyplan.StudyplanPackage#getCourseGroup_Courses()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Course> getCourses();
-
-	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' attribute.
-	 * @see #setDescription(String)
-	 * @see studyplan.StudyplanPackage#getCourseGroup_Description()
 	 * @model
 	 * @generated
 	 */
-	String getDescription();
-
-	/**
-	 * Sets the value of the '{@link studyplan.CourseGroup#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' attribute.
-	 * @see #getDescription()
-	 * @generated
-	 */
-	void setDescription(String value);
+	EList<Course> getCourses();
 
 } // CourseGroup

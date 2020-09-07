@@ -81,6 +81,8 @@ public class StudyplanFactoryImpl extends EFactoryImpl implements StudyplanFacto
 				return createProgramTypeAndDurationFromString(eDataType, initialValue);
 			case StudyplanPackage.COURSE_LEVEL:
 				return createCourseLevelFromString(eDataType, initialValue);
+			case StudyplanPackage.COURSE_CODE:
+				return createCourseCodeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -98,6 +100,8 @@ public class StudyplanFactoryImpl extends EFactoryImpl implements StudyplanFacto
 				return convertProgramTypeAndDurationToString(eDataType, instanceValue);
 			case StudyplanPackage.COURSE_LEVEL:
 				return convertCourseLevelToString(eDataType, instanceValue);
+			case StudyplanPackage.COURSE_CODE:
+				return convertCourseCodeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -218,6 +222,27 @@ public class StudyplanFactoryImpl extends EFactoryImpl implements StudyplanFacto
 	 */
 	public String convertCourseLevelToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String createCourseCodeFromString(EDataType eDataType, String initialValue) {
+		if(! initialValue.matches("[A-Z]+[0-9]+")) {
+			throw new IllegalArgumentException("Course code must have correct format");
+		}
+		return (String)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String convertCourseCodeToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**
