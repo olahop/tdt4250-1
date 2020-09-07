@@ -45,7 +45,16 @@
         name="SoftEng"
         durationInSemesters="2"/>
     <semesters
-        mandatoryCourses="//@courseGroups.1"/>
+        mandatoryCourses="//@courseGroups.1">
+      <optionalCourseGroups
+          nrOfOptionalFromGroup="1"
+          semester="//@programs.0/@semesters.0">
+        <courseGroup>
+          <courses
+              code="TDR"/>
+        </courseGroup>
+      </optionalCourseGroups>
+    </semesters>
     <semesters
         ProgramsSemesterOrderNr="1"
         mandatoryCourses="//@courseGroups.1"/>

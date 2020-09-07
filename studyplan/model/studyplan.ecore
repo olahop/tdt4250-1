@@ -7,7 +7,7 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration"/>
+      <details key="constraints" value="totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
       <details key="totalNrOfSemestersShouldMatchType" value="self.type.value = self.semesters->size()"/>
@@ -54,7 +54,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Specialization">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="allSubspecsSimilarLength subspecsShorterThanParent semestersCoverMandatoryCourses"/>
+      <details key="constraints" value="allSubspecsSimilarLength subspecsShorterThanParent"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
+      <details key="subspecsShorterThanParent" value="self.subSpecializations->collect(spec | spec.durationInSemesters)->forAll(num | num > self.durationInSemesters)"/>
+      <details key="allMainSpecsSimilarDuration" value="self.subSpecializations->collect(subSpec | subSpec.durationInSemesters)->forAll(num | num = self.subSpecializations->first().durationInSemesters)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="program" lowerBound="1"
         eType="#//Program" eOpposite="#//Program/specializations"/>
@@ -86,6 +90,9 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="nrOfOptionalMustBeLessThanSizeOfGroup"/>
     </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
+      <details key="nrOfOptionalMustBeLessThanSizeOfGroup" value="self.courseGroup->size() >= self.nrOfOptionalFromGroup"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrOfOptionalFromGroup"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="semester" lowerBound="1"
@@ -98,5 +105,7 @@
         eType="#//CourseGroup" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="programs" upperBound="-1"
         eType="#//Program" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="courses" upperBound="-1"
+        eType="#//Course" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>
