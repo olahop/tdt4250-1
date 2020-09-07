@@ -4,6 +4,7 @@ package studyplan.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -62,7 +63,7 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	protected Semester semester;
 
 	/**
-	 * The cached value of the '{@link #getCourseGroup() <em>Course Group</em>}' reference.
+	 * The cached value of the '{@link #getCourseGroup() <em>Course Group</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCourseGroup()
@@ -160,14 +161,6 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	 */
 	@Override
 	public CourseGroup getCourseGroup() {
-		if (courseGroup != null && courseGroup.eIsProxy()) {
-			InternalEObject oldCourseGroup = (InternalEObject)courseGroup;
-			courseGroup = (CourseGroup)eResolveProxy(oldCourseGroup);
-			if (courseGroup != oldCourseGroup) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, oldCourseGroup, courseGroup));
-			}
-		}
 		return courseGroup;
 	}
 
@@ -176,8 +169,14 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CourseGroup basicGetCourseGroup() {
-		return courseGroup;
+	public NotificationChain basicSetCourseGroup(CourseGroup newCourseGroup, NotificationChain msgs) {
+		CourseGroup oldCourseGroup = courseGroup;
+		courseGroup = newCourseGroup;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, oldCourseGroup, newCourseGroup);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -187,10 +186,31 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	 */
 	@Override
 	public void setCourseGroup(CourseGroup newCourseGroup) {
-		CourseGroup oldCourseGroup = courseGroup;
-		courseGroup = newCourseGroup;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, oldCourseGroup, courseGroup));
+		if (newCourseGroup != courseGroup) {
+			NotificationChain msgs = null;
+			if (courseGroup != null)
+				msgs = ((InternalEObject)courseGroup).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, null, msgs);
+			if (newCourseGroup != null)
+				msgs = ((InternalEObject)newCourseGroup).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, null, msgs);
+			msgs = basicSetCourseGroup(newCourseGroup, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, newCourseGroup, newCourseGroup));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
+				return basicSetCourseGroup(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -207,8 +227,7 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 				if (resolve) return getSemester();
 				return basicGetSemester();
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
-				if (resolve) return getCourseGroup();
-				return basicGetCourseGroup();
+				return getCourseGroup();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<studyplan:Studyplan
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:studyplan="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore"
+    xsi:schemaLocation="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore studyplan.ecore">
+  <courseGroups
+      description="mandatoryIntegratedMaster">
+    <courses
+        name="ITGK"
+        code="TDT1111"
+        credits="7.5"
+        taughtInAutumn="true"/>
+    <courses
+        name="Matte 3"
+        code="TMA1235"
+        credits="7.5"
+        taughtInAutumn="true"
+        taughtInSpring="true"/>
+    <courses
+        name="NAtte1"
+        code="MAT1235"
+        credits="7.5"
+        taughtInAutumn="true"/>
+  </courseGroups>
+  <courseGroups
+      description="mandatoryCS1Semester">
+    <courses/>
+  </courseGroups>
+  <courseGroups
+      description="mandatoryCS2Semester"/>
+  <courseGroups
+      description="mandatoryAI"/>
+  <programs
+      name="Computer Science"
+      type="Master"
+      mandatoryCourses="//@courseGroups.0">
+    <specializations
+        mandatoryCourses="//@courseGroups.3"
+        name="AI"
+        durationInSemesters="2"/>
+    <specializations
+        mandatoryCourses="//@courseGroups.3"
+        name="SoftEng"
+        durationInSemesters="2"/>
+    <semesters
+        mandatoryCourses="//@courseGroups.1"/>
+    <semesters
+        ProgramsSemesterOrderNr="1"
+        mandatoryCourses="//@courseGroups.1"/>
+    <semesters
+        ProgramsSemesterOrderNr="2"
+        mandatoryCourses="//@courseGroups.1"/>
+    <semesters
+        ProgramsSemesterOrderNr="3"
+        mandatoryCourses="//@courseGroups.2"/>
+  </programs>
+</studyplan:Studyplan>

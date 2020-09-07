@@ -98,6 +98,8 @@ public class StudyplanValidator extends EObjectValidator {
 				return validateSemester((Semester)value, diagnostics, context);
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP:
 				return validateSemesterOptionalCourseGroup((SemesterOptionalCourseGroup)value, diagnostics, context);
+			case StudyplanPackage.STUDYPLAN:
+				return validateStudyplan((Studyplan)value, diagnostics, context);
 			case StudyplanPackage.PROGRAM_TYPE_AND_DURATION:
 				return validateProgramTypeAndDuration((ProgramTypeAndDuration)value, diagnostics, context);
 			case StudyplanPackage.COURSE_LEVEL:
@@ -131,31 +133,32 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the totalNrOfSemestersShouldMatchType constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROGRAM__TOTAL_NR_OF_SEMESTERS_SHOULD_MATCH_TYPE__EEXPRESSION = "self.type.value = self.semesters->size()";
+
+	/**
 	 * Validates the totalNrOfSemestersShouldMatchType constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateProgram_totalNrOfSemestersShouldMatchType(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "totalNrOfSemestersShouldMatchType", getObjectLabel(program, context) },
-						 new Object[] { program },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.PROGRAM,
+				 program,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "totalNrOfSemestersShouldMatchType",
+				 PROGRAM__TOTAL_NR_OF_SEMESTERS_SHOULD_MATCH_TYPE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -215,32 +218,41 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the allSpecsDurationShorterThanProgram constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROGRAM__ALL_SPECS_DURATION_SHORTER_THAN_PROGRAM__EEXPRESSION = "self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num <= self.type.value)";
+
+	/**
 	 * Validates the allSpecsDurationShorterThanProgram constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateProgram_allSpecsDurationShorterThanProgram(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "allSpecsDurationShorterThanProgram", getObjectLabel(program, context) },
-						 new Object[] { program },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.PROGRAM,
+				 program,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "allSpecsDurationShorterThanProgram",
+				 PROGRAM__ALL_SPECS_DURATION_SHORTER_THAN_PROGRAM__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
+
+	/**
+	 * The cached validation expression for the allMainSpecsSimilarDuration constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROGRAM__ALL_MAIN_SPECS_SIMILAR_DURATION__EEXPRESSION = "self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)";
 
 	/**
 	 * Validates the allMainSpecsSimilarDuration constraint of '<em>Program</em>'.
@@ -249,25 +261,18 @@ public class StudyplanValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateProgram_allMainSpecsSimilarDuration(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "allMainSpecsSimilarDuration", getObjectLabel(program, context) },
-						 new Object[] { program },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.PROGRAM,
+				 program,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "allMainSpecsSimilarDuration",
+				 PROGRAM__ALL_MAIN_SPECS_SIMILAR_DURATION__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -610,6 +615,15 @@ public class StudyplanValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStudyplan(Studyplan studyplan, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(studyplan, diagnostics, context);
 	}
 
 	/**

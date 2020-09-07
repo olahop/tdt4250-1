@@ -63,6 +63,7 @@ public class StudyplanFactoryImpl extends EFactoryImpl implements StudyplanFacto
 			case StudyplanPackage.SPECIALIZATION: return createSpecialization();
 			case StudyplanPackage.SEMESTER: return createSemester();
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP: return createSemesterOptionalCourseGroup();
+			case StudyplanPackage.STUDYPLAN: return createStudyplan();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -166,6 +167,17 @@ public class StudyplanFactoryImpl extends EFactoryImpl implements StudyplanFacto
 	public SemesterOptionalCourseGroup createSemesterOptionalCourseGroup() {
 		SemesterOptionalCourseGroupImpl semesterOptionalCourseGroup = new SemesterOptionalCourseGroupImpl();
 		return semesterOptionalCourseGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Studyplan createStudyplan() {
+		StudyplanImpl studyplan = new StudyplanImpl();
+		return studyplan;
 	}
 
 	/**

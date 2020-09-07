@@ -2,20 +2,28 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="studyplan" nsURI="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore"
     nsPrefix="studyplan">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="validationDelegates" value="http://www.eclipse.org/acceleo/query/1.0"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
+      <details key="totalNrOfSemestersShouldMatchType" value="self.type.value = self.semesters->size()"/>
+      <details key="allSpecsDurationShorterThanProgram" value="self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num &lt;= self.type.value)"/>
+      <details key="allMainSpecsSimilarDuration" value="self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ProgramTypeAndDuration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="specializations" upperBound="-1"
         eType="#//Specialization" containment="true" eOpposite="#//Specialization/program"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mandatoryCourses" lowerBound="1"
-        eType="#//CourseGroup"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mandatoryCourses" eType="#//CourseGroup"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="semesters" lowerBound="4"
         upperBound="10" eType="#//Semester" containment="true" eOpposite="#//Semester/program"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="semestersPreSpecialization"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="durationPreSpecialization"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" changeable="false"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Course">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -83,6 +91,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="semester" lowerBound="1"
         eType="#//Semester"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="courseGroup" lowerBound="1"
-        eType="#//CourseGroup"/>
+        eType="#//CourseGroup" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Studyplan">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="courseGroups" upperBound="-1"
+        eType="#//CourseGroup" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="programs" upperBound="-1"
+        eType="#//Program" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

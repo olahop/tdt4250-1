@@ -76,6 +76,15 @@ public interface StudyplanFactory extends EFactory {
 	SemesterOptionalCourseGroup createSemesterOptionalCourseGroup();
 
 	/**
+	 * Returns a new object of class '<em>Studyplan</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Studyplan</em>'.
+	 * @generated
+	 */
+	Studyplan createStudyplan();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

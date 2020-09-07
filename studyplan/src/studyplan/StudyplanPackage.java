@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see studyplan.StudyplanFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='http://www.eclipse.org/acceleo/query/1.0'"
  * @generated
  */
 public interface StudyplanPackage extends EPackage {
@@ -113,13 +114,13 @@ public interface StudyplanPackage extends EPackage {
 	int PROGRAM__SEMESTERS = 4;
 
 	/**
-	 * The feature id for the '<em><b>Semesters Pre Specialization</b></em>' attribute.
+	 * The feature id for the '<em><b>Duration Pre Specialization</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROGRAM__SEMESTERS_PRE_SPECIALIZATION = 5;
+	int PROGRAM__DURATION_PRE_SPECIALIZATION = 5;
 
 	/**
 	 * The number of structural features of the '<em>Program</em>' class.
@@ -460,7 +461,7 @@ public interface StudyplanPackage extends EPackage {
 	int SEMESTER_OPTIONAL_COURSE_GROUP__SEMESTER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Course Group</b></em>' reference.
+	 * The feature id for the '<em><b>Course Group</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -487,6 +488,52 @@ public interface StudyplanPackage extends EPackage {
 	int SEMESTER_OPTIONAL_COURSE_GROUP_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link studyplan.impl.StudyplanImpl <em>Studyplan</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see studyplan.impl.StudyplanImpl
+	 * @see studyplan.impl.StudyplanPackageImpl#getStudyplan()
+	 * @generated
+	 */
+	int STUDYPLAN = 6;
+
+	/**
+	 * The feature id for the '<em><b>Course Groups</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUDYPLAN__COURSE_GROUPS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Programs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUDYPLAN__PROGRAMS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Studyplan</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUDYPLAN_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Studyplan</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STUDYPLAN_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link studyplan.ProgramTypeAndDuration <em>Program Type And Duration</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -494,7 +541,7 @@ public interface StudyplanPackage extends EPackage {
 	 * @see studyplan.impl.StudyplanPackageImpl#getProgramTypeAndDuration()
 	 * @generated
 	 */
-	int PROGRAM_TYPE_AND_DURATION = 6;
+	int PROGRAM_TYPE_AND_DURATION = 7;
 
 	/**
 	 * The meta object id for the '{@link studyplan.CourseLevel <em>Course Level</em>}' enum.
@@ -504,7 +551,7 @@ public interface StudyplanPackage extends EPackage {
 	 * @see studyplan.impl.StudyplanPackageImpl#getCourseLevel()
 	 * @generated
 	 */
-	int COURSE_LEVEL = 7;
+	int COURSE_LEVEL = 8;
 
 
 	/**
@@ -562,15 +609,15 @@ public interface StudyplanPackage extends EPackage {
 	EReference getProgram_Semesters();
 
 	/**
-	 * Returns the meta object for the attribute '{@link studyplan.Program#getSemestersPreSpecialization <em>Semesters Pre Specialization</em>}'.
+	 * Returns the meta object for the attribute '{@link studyplan.Program#getDurationPreSpecialization <em>Duration Pre Specialization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Semesters Pre Specialization</em>'.
-	 * @see studyplan.Program#getSemestersPreSpecialization()
+	 * @return the meta object for the attribute '<em>Duration Pre Specialization</em>'.
+	 * @see studyplan.Program#getDurationPreSpecialization()
 	 * @see #getProgram()
 	 * @generated
 	 */
-	EAttribute getProgram_SemestersPreSpecialization();
+	EAttribute getProgram_DurationPreSpecialization();
 
 	/**
 	 * Returns the meta object for the attribute '{@link studyplan.Program#getName <em>Name</em>}'.
@@ -876,15 +923,47 @@ public interface StudyplanPackage extends EPackage {
 	EReference getSemesterOptionalCourseGroup_Semester();
 
 	/**
-	 * Returns the meta object for the reference '{@link studyplan.SemesterOptionalCourseGroup#getCourseGroup <em>Course Group</em>}'.
+	 * Returns the meta object for the containment reference '{@link studyplan.SemesterOptionalCourseGroup#getCourseGroup <em>Course Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Course Group</em>'.
+	 * @return the meta object for the containment reference '<em>Course Group</em>'.
 	 * @see studyplan.SemesterOptionalCourseGroup#getCourseGroup()
 	 * @see #getSemesterOptionalCourseGroup()
 	 * @generated
 	 */
 	EReference getSemesterOptionalCourseGroup_CourseGroup();
+
+	/**
+	 * Returns the meta object for class '{@link studyplan.Studyplan <em>Studyplan</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Studyplan</em>'.
+	 * @see studyplan.Studyplan
+	 * @generated
+	 */
+	EClass getStudyplan();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link studyplan.Studyplan#getCourseGroups <em>Course Groups</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Course Groups</em>'.
+	 * @see studyplan.Studyplan#getCourseGroups()
+	 * @see #getStudyplan()
+	 * @generated
+	 */
+	EReference getStudyplan_CourseGroups();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link studyplan.Studyplan#getPrograms <em>Programs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Programs</em>'.
+	 * @see studyplan.Studyplan#getPrograms()
+	 * @see #getStudyplan()
+	 * @generated
+	 */
+	EReference getStudyplan_Programs();
 
 	/**
 	 * Returns the meta object for enum '{@link studyplan.ProgramTypeAndDuration <em>Program Type And Duration</em>}'.
@@ -972,12 +1051,12 @@ public interface StudyplanPackage extends EPackage {
 		EReference PROGRAM__SEMESTERS = eINSTANCE.getProgram_Semesters();
 
 		/**
-		 * The meta object literal for the '<em><b>Semesters Pre Specialization</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Duration Pre Specialization</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PROGRAM__SEMESTERS_PRE_SPECIALIZATION = eINSTANCE.getProgram_SemestersPreSpecialization();
+		EAttribute PROGRAM__DURATION_PRE_SPECIALIZATION = eINSTANCE.getProgram_DurationPreSpecialization();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1214,12 +1293,38 @@ public interface StudyplanPackage extends EPackage {
 		EReference SEMESTER_OPTIONAL_COURSE_GROUP__SEMESTER = eINSTANCE.getSemesterOptionalCourseGroup_Semester();
 
 		/**
-		 * The meta object literal for the '<em><b>Course Group</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Course Group</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP = eINSTANCE.getSemesterOptionalCourseGroup_CourseGroup();
+
+		/**
+		 * The meta object literal for the '{@link studyplan.impl.StudyplanImpl <em>Studyplan</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see studyplan.impl.StudyplanImpl
+		 * @see studyplan.impl.StudyplanPackageImpl#getStudyplan()
+		 * @generated
+		 */
+		EClass STUDYPLAN = eINSTANCE.getStudyplan();
+
+		/**
+		 * The meta object literal for the '<em><b>Course Groups</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STUDYPLAN__COURSE_GROUPS = eINSTANCE.getStudyplan_CourseGroups();
+
+		/**
+		 * The meta object literal for the '<em><b>Programs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STUDYPLAN__PROGRAMS = eINSTANCE.getStudyplan_Programs();
 
 		/**
 		 * The meta object literal for the '{@link studyplan.ProgramTypeAndDuration <em>Program Type And Duration</em>}' enum.
