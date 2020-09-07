@@ -22,6 +22,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference studyplan.ecore#//Program/specializations"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyplan.ecore#//Program/mandatoryCourses"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference studyplan.ecore#//Program/semesters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyplan.ecore#//Program/semestersPreSpecialization"/>
     </genClasses>
     <genClasses ecoreClass="studyplan.ecore#//Course">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyplan.ecore#//Course/name"/>
@@ -49,6 +50,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference studyplan.ecore#//Semester/optionalCourseGroups"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference studyplan.ecore#//Semester/program"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyplan.ecore#//Semester/specialization"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyplan.ecore#//Semester/totalCreditsValue"/>
     </genClasses>
     <genClasses ecoreClass="studyplan.ecore#//SemesterOptionalCourseGroup">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute studyplan.ecore#//SemesterOptionalCourseGroup/nrOfOptionalFromGroup"/>
