@@ -96,6 +96,8 @@ public class StudyplanValidator extends EObjectValidator {
 				return validateSpecialization((Specialization)value, diagnostics, context);
 			case StudyplanPackage.SEMESTER:
 				return validateSemester((Semester)value, diagnostics, context);
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP:
+				return validateSemesterOptionalCourseGroup((SemesterOptionalCourseGroup)value, diagnostics, context);
 			case StudyplanPackage.PROGRAM_TYPE_AND_DURATION:
 				return validateProgramTypeAndDuration((ProgramTypeAndDuration)value, diagnostics, context);
 			case StudyplanPackage.COURSE_LEVEL:
@@ -121,9 +123,10 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_totalNrOfSemestersShouldMatchType(program, diagnostics, context);
-		if (result || diagnostics != null) result &= validateProgram_allSpecsSimilarDuration(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_noDuplicateCourses(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_masterLevelHasMaxLimitOfLevelThreeCoures(program, diagnostics, context);
+		if (result || diagnostics != null) result &= validateProgram_allSpecsDurationShorterThanProgram(program, diagnostics, context);
+		if (result || diagnostics != null) result &= validateProgram_allMainSpecsSimilarDuration(program, diagnostics, context);
 		return result;
 	}
 
@@ -147,34 +150,6 @@ public class StudyplanValidator extends EObjectValidator {
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
 						 new Object[] { "totalNrOfSemestersShouldMatchType", getObjectLabel(program, context) },
-						 new Object[] { program },
-						 context));
-			}
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Validates the allSpecsSimilarDuration constraint of '<em>Program</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateProgram_allSpecsSimilarDuration(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "allSpecsSimilarDuration", getObjectLabel(program, context) },
 						 new Object[] { program },
 						 context));
 			}
@@ -231,6 +206,62 @@ public class StudyplanValidator extends EObjectValidator {
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
 						 new Object[] { "masterLevelHasMaxLimitOfLevelThreeCoures", getObjectLabel(program, context) },
+						 new Object[] { program },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the allSpecsDurationShorterThanProgram constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateProgram_allSpecsDurationShorterThanProgram(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "allSpecsDurationShorterThanProgram", getObjectLabel(program, context) },
+						 new Object[] { program },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the allMainSpecsSimilarDuration constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateProgram_allMainSpecsSimilarDuration(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "allMainSpecsSimilarDuration", getObjectLabel(program, context) },
 						 new Object[] { program },
 						 context));
 			}
@@ -370,7 +401,6 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(specialization, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSpecialization_allSubspecsSimilarLength(specialization, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSpecialization_subspecsShorterThanParent(specialization, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSpecialization_totalDurationShorterThanProgram(specialization, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSpecialization_semestersCoverMandatoryCourses(specialization, diagnostics, context);
 		return result;
 	}
@@ -423,34 +453,6 @@ public class StudyplanValidator extends EObjectValidator {
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
 						 new Object[] { "subspecsShorterThanParent", getObjectLabel(specialization, context) },
-						 new Object[] { specialization },
-						 context));
-			}
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Validates the totalDurationShorterThanProgram constraint of '<em>Specialization</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSpecialization_totalDurationShorterThanProgram(Specialization specialization, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "totalDurationShorterThanProgram", getObjectLabel(specialization, context) },
 						 new Object[] { specialization },
 						 context));
 			}
@@ -556,6 +558,53 @@ public class StudyplanValidator extends EObjectValidator {
 						 "_UI_GenericConstraint_diagnostic",
 						 new Object[] { "courseIsTaughtCurrentSemester", getObjectLabel(semester, context) },
 						 new Object[] { semester },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSemesterOptionalCourseGroup(SemesterOptionalCourseGroup semesterOptionalCourseGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(semesterOptionalCourseGroup, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSemesterOptionalCourseGroup_nrOfOptionalMustBeLessThanSizeOfGroup(semesterOptionalCourseGroup, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the nrOfOptionalMustBeLessThanSizeOfGroup constraint of '<em>Semester Optional Course Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSemesterOptionalCourseGroup_nrOfOptionalMustBeLessThanSizeOfGroup(SemesterOptionalCourseGroup semesterOptionalCourseGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "nrOfOptionalMustBeLessThanSizeOfGroup", getObjectLabel(semesterOptionalCourseGroup, context) },
+						 new Object[] { semesterOptionalCourseGroup },
 						 context));
 			}
 			return false;

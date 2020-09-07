@@ -1,0 +1,92 @@
+/**
+ */
+package studyplan;
+
+import org.eclipse.emf.ecore.EObject;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Semester Optional Course Group</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link studyplan.SemesterOptionalCourseGroup#getNrOfOptionalFromGroup <em>Nr Of Optional From Group</em>}</li>
+ *   <li>{@link studyplan.SemesterOptionalCourseGroup#getSemester <em>Semester</em>}</li>
+ *   <li>{@link studyplan.SemesterOptionalCourseGroup#getCourseGroup <em>Course Group</em>}</li>
+ * </ul>
+ *
+ * @see studyplan.StudyplanPackage#getSemesterOptionalCourseGroup()
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nrOfOptionalMustBeLessThanSizeOfGroup'"
+ * @generated
+ */
+public interface SemesterOptionalCourseGroup extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Nr Of Optional From Group</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Of Optional From Group</em>' attribute.
+	 * @see #setNrOfOptionalFromGroup(int)
+	 * @see studyplan.StudyplanPackage#getSemesterOptionalCourseGroup_NrOfOptionalFromGroup()
+	 * @model required="true"
+	 * @generated
+	 */
+	int getNrOfOptionalFromGroup();
+
+	/**
+	 * Sets the value of the '{@link studyplan.SemesterOptionalCourseGroup#getNrOfOptionalFromGroup <em>Nr Of Optional From Group</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Of Optional From Group</em>' attribute.
+	 * @see #getNrOfOptionalFromGroup()
+	 * @generated
+	 */
+	void setNrOfOptionalFromGroup(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Semester</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Semester</em>' reference.
+	 * @see #setSemester(Semester)
+	 * @see studyplan.StudyplanPackage#getSemesterOptionalCourseGroup_Semester()
+	 * @model required="true"
+	 * @generated
+	 */
+	Semester getSemester();
+
+	/**
+	 * Sets the value of the '{@link studyplan.SemesterOptionalCourseGroup#getSemester <em>Semester</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Semester</em>' reference.
+	 * @see #getSemester()
+	 * @generated
+	 */
+	void setSemester(Semester value);
+
+	/**
+	 * Returns the value of the '<em><b>Course Group</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Course Group</em>' reference.
+	 * @see #setCourseGroup(CourseGroup)
+	 * @see studyplan.StudyplanPackage#getSemesterOptionalCourseGroup_CourseGroup()
+	 * @model required="true"
+	 * @generated
+	 */
+	CourseGroup getCourseGroup();
+
+	/**
+	 * Sets the value of the '{@link studyplan.SemesterOptionalCourseGroup#getCourseGroup <em>Course Group</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Course Group</em>' reference.
+	 * @see #getCourseGroup()
+	 * @generated
+	 */
+	void setCourseGroup(CourseGroup value);
+
+} // SemesterOptionalCourseGroup

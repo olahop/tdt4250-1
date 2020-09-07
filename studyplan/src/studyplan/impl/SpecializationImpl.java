@@ -14,15 +14,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import studyplan.Course;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import studyplan.CourseGroup;
 import studyplan.Program;
-import studyplan.Semester;
 import studyplan.Specialization;
 import studyplan.StudyplanPackage;
 
@@ -37,34 +32,23 @@ import studyplan.StudyplanPackage;
  *   <li>{@link studyplan.impl.SpecializationImpl#getProgram <em>Program</em>}</li>
  *   <li>{@link studyplan.impl.SpecializationImpl#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  *   <li>{@link studyplan.impl.SpecializationImpl#getName <em>Name</em>}</li>
- *   <li>{@link studyplan.impl.SpecializationImpl#getCourses <em>Courses</em>}</li>
- *   <li>{@link studyplan.impl.SpecializationImpl#getSubSpecializations <em>Sub Specializations</em>}</li>
  *   <li>{@link studyplan.impl.SpecializationImpl#getDurationInSemesters <em>Duration In Semesters</em>}</li>
- *   <li>{@link studyplan.impl.SpecializationImpl#getSemesters <em>Semesters</em>}</li>
+ *   <li>{@link studyplan.impl.SpecializationImpl#getParentSpecialization <em>Parent Specialization</em>}</li>
+ *   <li>{@link studyplan.impl.SpecializationImpl#getSubSpecializations <em>Sub Specializations</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SpecializationImpl extends MinimalEObjectImpl.Container implements Specialization {
 	/**
-	 * The cached value of the '{@link #getProgram() <em>Program</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProgram()
-	 * @generated
-	 * @ordered
-	 */
-	protected Program program;
-
-	/**
-	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' reference list.
+	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMandatoryCourses()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<CourseGroup> mandatoryCourses;
+	protected CourseGroup mandatoryCourses;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -87,26 +71,6 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCourses() <em>Courses</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCourses()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Course> courses;
-
-	/**
-	 * The cached value of the '{@link #getSubSpecializations() <em>Sub Specializations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubSpecializations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Specialization> subSpecializations;
-
-	/**
 	 * The default value of the '{@link #getDurationInSemesters() <em>Duration In Semesters</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -127,14 +91,24 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	protected int durationInSemesters = DURATION_IN_SEMESTERS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSemesters() <em>Semesters</em>}' containment reference list.
+	 * The cached value of the '{@link #getParentSpecialization() <em>Parent Specialization</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSemesters()
+	 * @see #getParentSpecialization()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Semester> semesters;
+	protected Specialization parentSpecialization;
+
+	/**
+	 * The cached value of the '{@link #getSubSpecializations() <em>Sub Specializations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSubSpecializations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Specialization> subSpecializations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -162,15 +136,8 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	public Program getProgram() {
-		if (program != null && program.eIsProxy()) {
-			InternalEObject oldProgram = (InternalEObject)program;
-			program = (Program)eResolveProxy(oldProgram);
-			if (program != oldProgram) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StudyplanPackage.SPECIALIZATION__PROGRAM, oldProgram, program));
-			}
-		}
-		return program;
+		if (eContainerFeatureID() != StudyplanPackage.SPECIALIZATION__PROGRAM) return null;
+		return (Program)eInternalContainer();
 	}
 
 	/**
@@ -178,8 +145,9 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Program basicGetProgram() {
-		return program;
+	public NotificationChain basicSetProgram(Program newProgram, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newProgram, StudyplanPackage.SPECIALIZATION__PROGRAM, msgs);
+		return msgs;
 	}
 
 	/**
@@ -189,10 +157,19 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	public void setProgram(Program newProgram) {
-		Program oldProgram = program;
-		program = newProgram;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__PROGRAM, oldProgram, program));
+		if (newProgram != eInternalContainer() || (eContainerFeatureID() != StudyplanPackage.SPECIALIZATION__PROGRAM && newProgram != null)) {
+			if (EcoreUtil.isAncestor(this, newProgram))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newProgram != null)
+				msgs = ((InternalEObject)newProgram).eInverseAdd(this, StudyplanPackage.PROGRAM__SPECIALIZATIONS, Program.class, msgs);
+			msgs = basicSetProgram(newProgram, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__PROGRAM, newProgram, newProgram));
 	}
 
 	/**
@@ -201,11 +178,38 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public EList<CourseGroup> getMandatoryCourses() {
-		if (mandatoryCourses == null) {
-			mandatoryCourses = new EObjectResolvingEList<CourseGroup>(CourseGroup.class, this, StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES);
+	public CourseGroup getMandatoryCourses() {
+		if (mandatoryCourses != null && mandatoryCourses.eIsProxy()) {
+			InternalEObject oldMandatoryCourses = (InternalEObject)mandatoryCourses;
+			mandatoryCourses = (CourseGroup)eResolveProxy(oldMandatoryCourses);
+			if (mandatoryCourses != oldMandatoryCourses) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES, oldMandatoryCourses, mandatoryCourses));
+			}
 		}
 		return mandatoryCourses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CourseGroup basicGetMandatoryCourses() {
+		return mandatoryCourses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setMandatoryCourses(CourseGroup newMandatoryCourses) {
+		CourseGroup oldMandatoryCourses = mandatoryCourses;
+		mandatoryCourses = newMandatoryCourses;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES, oldMandatoryCourses, mandatoryCourses));
 	}
 
 	/**
@@ -237,11 +241,11 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public EList<Course> getCourses() {
-		if (courses == null) {
-			courses = new EObjectResolvingEList<Course>(Course.class, this, StudyplanPackage.SPECIALIZATION__COURSES);
+	public EList<Specialization> getSubSpecializations() {
+		if (subSpecializations == null) {
+			subSpecializations = new EObjectResolvingEList<Specialization>(Specialization.class, this, StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS);
 		}
-		return courses;
+		return subSpecializations;
 	}
 
 	/**
@@ -250,11 +254,14 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public EList<Specialization> getSubSpecializations() {
-		if (subSpecializations == null) {
-			subSpecializations = new EObjectContainmentEList<Specialization>(Specialization.class, this, StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS);
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case StudyplanPackage.SPECIALIZATION__PROGRAM:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetProgram((Program)otherEnd, msgs);
 		}
-		return subSpecializations;
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -286,11 +293,38 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	@Override
-	public EList<Semester> getSemesters() {
-		if (semesters == null) {
-			semesters = new EObjectContainmentEList<Semester>(Semester.class, this, StudyplanPackage.SPECIALIZATION__SEMESTERS);
+	public Specialization getParentSpecialization() {
+		if (parentSpecialization != null && parentSpecialization.eIsProxy()) {
+			InternalEObject oldParentSpecialization = (InternalEObject)parentSpecialization;
+			parentSpecialization = (Specialization)eResolveProxy(oldParentSpecialization);
+			if (parentSpecialization != oldParentSpecialization) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION, oldParentSpecialization, parentSpecialization));
+			}
 		}
-		return semesters;
+		return parentSpecialization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Specialization basicGetParentSpecialization() {
+		return parentSpecialization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setParentSpecialization(Specialization newParentSpecialization) {
+		Specialization oldParentSpecialization = parentSpecialization;
+		parentSpecialization = newParentSpecialization;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION, oldParentSpecialization, parentSpecialization));
 	}
 
 	/**
@@ -301,12 +335,24 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
-				return ((InternalEList<?>)getSubSpecializations()).basicRemove(otherEnd, msgs);
-			case StudyplanPackage.SPECIALIZATION__SEMESTERS:
-				return ((InternalEList<?>)getSemesters()).basicRemove(otherEnd, msgs);
+			case StudyplanPackage.SPECIALIZATION__PROGRAM:
+				return basicSetProgram(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case StudyplanPackage.SPECIALIZATION__PROGRAM:
+				return eInternalContainer().eInverseRemove(this, StudyplanPackage.PROGRAM__SPECIALIZATIONS, Program.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -318,20 +364,19 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StudyplanPackage.SPECIALIZATION__PROGRAM:
-				if (resolve) return getProgram();
-				return basicGetProgram();
+				return getProgram();
 			case StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES:
-				return getMandatoryCourses();
+				if (resolve) return getMandatoryCourses();
+				return basicGetMandatoryCourses();
 			case StudyplanPackage.SPECIALIZATION__NAME:
 				return getName();
-			case StudyplanPackage.SPECIALIZATION__COURSES:
-				return getCourses();
-			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
-				return getSubSpecializations();
 			case StudyplanPackage.SPECIALIZATION__DURATION_IN_SEMESTERS:
 				return getDurationInSemesters();
-			case StudyplanPackage.SPECIALIZATION__SEMESTERS:
-				return getSemesters();
+			case StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION:
+				if (resolve) return getParentSpecialization();
+				return basicGetParentSpecialization();
+			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
+				return getSubSpecializations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -349,26 +394,20 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 				setProgram((Program)newValue);
 				return;
 			case StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES:
-				getMandatoryCourses().clear();
-				getMandatoryCourses().addAll((Collection<? extends CourseGroup>)newValue);
+				setMandatoryCourses((CourseGroup)newValue);
 				return;
 			case StudyplanPackage.SPECIALIZATION__NAME:
 				setName((String)newValue);
 				return;
-			case StudyplanPackage.SPECIALIZATION__COURSES:
-				getCourses().clear();
-				getCourses().addAll((Collection<? extends Course>)newValue);
+			case StudyplanPackage.SPECIALIZATION__DURATION_IN_SEMESTERS:
+				setDurationInSemesters((Integer)newValue);
+				return;
+			case StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION:
+				setParentSpecialization((Specialization)newValue);
 				return;
 			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
 				getSubSpecializations().clear();
 				getSubSpecializations().addAll((Collection<? extends Specialization>)newValue);
-				return;
-			case StudyplanPackage.SPECIALIZATION__DURATION_IN_SEMESTERS:
-				setDurationInSemesters((Integer)newValue);
-				return;
-			case StudyplanPackage.SPECIALIZATION__SEMESTERS:
-				getSemesters().clear();
-				getSemesters().addAll((Collection<? extends Semester>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -386,22 +425,19 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 				setProgram((Program)null);
 				return;
 			case StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES:
-				getMandatoryCourses().clear();
+				setMandatoryCourses((CourseGroup)null);
 				return;
 			case StudyplanPackage.SPECIALIZATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case StudyplanPackage.SPECIALIZATION__COURSES:
-				getCourses().clear();
-				return;
-			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
-				getSubSpecializations().clear();
-				return;
 			case StudyplanPackage.SPECIALIZATION__DURATION_IN_SEMESTERS:
 				setDurationInSemesters(DURATION_IN_SEMESTERS_EDEFAULT);
 				return;
-			case StudyplanPackage.SPECIALIZATION__SEMESTERS:
-				getSemesters().clear();
+			case StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION:
+				setParentSpecialization((Specialization)null);
+				return;
+			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
+				getSubSpecializations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -416,19 +452,17 @@ public class SpecializationImpl extends MinimalEObjectImpl.Container implements 
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StudyplanPackage.SPECIALIZATION__PROGRAM:
-				return program != null;
+				return getProgram() != null;
 			case StudyplanPackage.SPECIALIZATION__MANDATORY_COURSES:
-				return mandatoryCourses != null && !mandatoryCourses.isEmpty();
+				return mandatoryCourses != null;
 			case StudyplanPackage.SPECIALIZATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case StudyplanPackage.SPECIALIZATION__COURSES:
-				return courses != null && !courses.isEmpty();
-			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
-				return subSpecializations != null && !subSpecializations.isEmpty();
 			case StudyplanPackage.SPECIALIZATION__DURATION_IN_SEMESTERS:
 				return durationInSemesters != DURATION_IN_SEMESTERS_EDEFAULT;
-			case StudyplanPackage.SPECIALIZATION__SEMESTERS:
-				return semesters != null && !semesters.isEmpty();
+			case StudyplanPackage.SPECIALIZATION__PARENT_SPECIALIZATION:
+				return parentSpecialization != null;
+			case StudyplanPackage.SPECIALIZATION__SUB_SPECIALIZATIONS:
+				return subSpecializations != null && !subSpecializations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

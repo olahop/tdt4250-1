@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated studyplan -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="studyplan.presentation.StudyplanModelWizardID"
+            name="%_UI_StudyplanModelWizard_label"
+            class="studyplan.presentation.StudyplanModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/StudyplanModelFile.gif">
+         <description>%_UI_StudyplanModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated studyplan -->
+      <editor
+            id="studyplan.presentation.StudyplanEditorID"
+            name="%_UI_StudyplanEditor_label"
+            icon="icons/full/obj16/StudyplanModelFile.gif"
+            extensions="studyplan"
+            class="studyplan.presentation.StudyplanEditor"
+            contributorClass="studyplan.presentation.StudyplanActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

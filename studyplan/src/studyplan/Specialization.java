@@ -18,50 +18,61 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link studyplan.Specialization#getProgram <em>Program</em>}</li>
  *   <li>{@link studyplan.Specialization#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  *   <li>{@link studyplan.Specialization#getName <em>Name</em>}</li>
- *   <li>{@link studyplan.Specialization#getCourses <em>Courses</em>}</li>
- *   <li>{@link studyplan.Specialization#getSubSpecializations <em>Sub Specializations</em>}</li>
  *   <li>{@link studyplan.Specialization#getDurationInSemesters <em>Duration In Semesters</em>}</li>
- *   <li>{@link studyplan.Specialization#getSemesters <em>Semesters</em>}</li>
+ *   <li>{@link studyplan.Specialization#getParentSpecialization <em>Parent Specialization</em>}</li>
+ *   <li>{@link studyplan.Specialization#getSubSpecializations <em>Sub Specializations</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getSpecialization()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='allSubspecsSimilarLength subspecsShorterThanParent totalDurationShorterThanProgram semestersCoverMandatoryCourses'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='allSubspecsSimilarLength subspecsShorterThanParent semestersCoverMandatoryCourses'"
  * @generated
  */
 public interface Specialization extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Program</b></em>' reference.
+	 * Returns the value of the '<em><b>Program</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link studyplan.Program#getSpecializations <em>Specializations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Program</em>' reference.
+	 * @return the value of the '<em>Program</em>' container reference.
 	 * @see #setProgram(Program)
 	 * @see studyplan.StudyplanPackage#getSpecialization_Program()
-	 * @model required="true"
+	 * @see studyplan.Program#getSpecializations
+	 * @model opposite="specializations" required="true" transient="false"
 	 * @generated
 	 */
 	Program getProgram();
 
 	/**
-	 * Sets the value of the '{@link studyplan.Specialization#getProgram <em>Program</em>}' reference.
+	 * Sets the value of the '{@link studyplan.Specialization#getProgram <em>Program</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Program</em>' reference.
+	 * @param value the new value of the '<em>Program</em>' container reference.
 	 * @see #getProgram()
 	 * @generated
 	 */
 	void setProgram(Program value);
 
 	/**
-	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' reference list.
-	 * The list contents are of type {@link studyplan.CourseGroup}.
+	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mandatory Courses</em>' reference list.
+	 * @return the value of the '<em>Mandatory Courses</em>' reference.
+	 * @see #setMandatoryCourses(CourseGroup)
 	 * @see studyplan.StudyplanPackage#getSpecialization_MandatoryCourses()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
-	EList<CourseGroup> getMandatoryCourses();
+	CourseGroup getMandatoryCourses();
+
+	/**
+	 * Sets the value of the '{@link studyplan.Specialization#getMandatoryCourses <em>Mandatory Courses</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mandatory Courses</em>' reference.
+	 * @see #getMandatoryCourses()
+	 * @generated
+	 */
+	void setMandatoryCourses(CourseGroup value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -86,25 +97,13 @@ public interface Specialization extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Courses</b></em>' reference list.
-	 * The list contents are of type {@link studyplan.Course}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Courses</em>' reference list.
-	 * @see studyplan.StudyplanPackage#getSpecialization_Courses()
-	 * @model
-	 * @generated
-	 */
-	EList<Course> getCourses();
-
-	/**
-	 * Returns the value of the '<em><b>Sub Specializations</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Sub Specializations</b></em>' reference list.
 	 * The list contents are of type {@link studyplan.Specialization}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Specializations</em>' containment reference list.
+	 * @return the value of the '<em>Sub Specializations</em>' reference list.
 	 * @see studyplan.StudyplanPackage#getSpecialization_SubSpecializations()
-	 * @model containment="true"
+	 * @model derived="true"
 	 * @generated
 	 */
 	EList<Specialization> getSubSpecializations();
@@ -132,15 +131,25 @@ public interface Specialization extends EObject {
 	void setDurationInSemesters(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Semesters</b></em>' containment reference list.
-	 * The list contents are of type {@link studyplan.Semester}.
+	 * Returns the value of the '<em><b>Parent Specialization</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semesters</em>' containment reference list.
-	 * @see studyplan.StudyplanPackage#getSpecialization_Semesters()
-	 * @model containment="true" required="true" upper="10"
+	 * @return the value of the '<em>Parent Specialization</em>' reference.
+	 * @see #setParentSpecialization(Specialization)
+	 * @see studyplan.StudyplanPackage#getSpecialization_ParentSpecialization()
+	 * @model
 	 * @generated
 	 */
-	EList<Semester> getSemesters();
+	Specialization getParentSpecialization();
+
+	/**
+	 * Sets the value of the '{@link studyplan.Specialization#getParentSpecialization <em>Parent Specialization</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parent Specialization</em>' reference.
+	 * @see #getParentSpecialization()
+	 * @generated
+	 */
+	void setParentSpecialization(Specialization value);
 
 } // Specialization
