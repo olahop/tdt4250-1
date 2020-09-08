@@ -7,7 +7,7 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered semestersHasUniqueOrderNr"/>
+      <details key="constraints" value="totalNrOfSemestersShouldMatchType masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered semestersHasUniqueOrderNr noDuplicateCourses"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
       <details key="totalNrOfSemestersShouldMatchType" value="self.type.value = self.semesters->size()"/>
@@ -91,10 +91,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SemesterOptionalCourseGroup">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nrOfOptionalMustBeLessThanSizeOfGroup"/>
+      <details key="constraints" value="nrOfOptionalMustBeLessThanSizeOfGroup currentlySelectedInOptions currentlySelectedCorrectSize"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
-      <details key="nrOfOptionalMustBeLessThanSizeOfGroup" value="self.courseGroup->size() >= self.nrOfOptionalFromGroup"/>
+      <details key="nrOfOptionalMustBeLessThanSizeOfGroup" value="self.courseGroup.courses->size() >= self.nrOfOptionalFromGroup"/>
+      <details key="currentlySelectedCorrectSize" value="self.currentlySelected->size() = self.nrOfOptionalFromGroup"/>
+      <details key="currentlySelectedInOptions" value="self.courseGroup.courses->includesAll(self.currentlySelected)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrOfOptionalFromGroup"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -102,6 +104,8 @@
         eType="#//Semester"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="courseGroup" lowerBound="1"
         eType="#//CourseGroup" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentlySelected" upperBound="-1"
+        eType="#//Course"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Studyplan">
     <eStructuralFeatures xsi:type="ecore:EReference" name="programs" upperBound="-1"
