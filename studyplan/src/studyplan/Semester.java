@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see studyplan.StudyplanPackage#getSemester()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='shouldContainEnoughCredits coursesTaughtCurrentSemester'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 shouldContainEnoughCredits='self.totalCreditsValue &gt;= 30.0'"
  * @generated
  */
 public interface Semester extends EObject {

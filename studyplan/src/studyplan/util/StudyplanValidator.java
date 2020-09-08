@@ -430,14 +430,18 @@ public class StudyplanValidator extends EObjectValidator {
 	 * Validates the hasValidCreditValue constraint of '<em>Course</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateCourse_hasValidCreditValue(Course course, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		List<Double> VALID_CREDIT_VALUES = new ArrayList<>();
+		VALID_CREDIT_VALUES.add(5.0);
+		VALID_CREDIT_VALUES.add(7.5);
+		VALID_CREDIT_VALUES.add(10.0);
+		VALID_CREDIT_VALUES.add(15.0);
+		VALID_CREDIT_VALUES.add(30.0);
+						
+		if (! VALID_CREDIT_VALUES.contains(course.getCredits())) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
@@ -455,32 +459,41 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the codeIsUnique constraint of '<em>Course</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COURSE__CODE_IS_UNIQUE__EEXPRESSION = "self.eContainer().courses->isUnique(course | course.code)";
+
+	/**
 	 * Validates the codeIsUnique constraint of '<em>Course</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateCourse_codeIsUnique(Course course, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "codeIsUnique", getObjectLabel(course, context) },
-						 new Object[] { course },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.COURSE,
+				 course,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "codeIsUnique",
+				 COURSE__CODE_IS_UNIQUE__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
+
+	/**
+	 * The cached validation expression for the taughtInAutumnOrSpring constraint of '<em>Course</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COURSE__TAUGHT_IN_AUTUMN_OR_SPRING__EEXPRESSION = " self.taughtInAutumn or self.taughtInSpring";
 
 	/**
 	 * Validates the taughtInAutumnOrSpring constraint of '<em>Course</em>'.
@@ -489,25 +502,18 @@ public class StudyplanValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCourse_taughtInAutumnOrSpring(Course course, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "taughtInAutumnOrSpring", getObjectLabel(course, context) },
-						 new Object[] { course },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.COURSE,
+				 course,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "taughtInAutumnOrSpring",
+				 COURSE__TAUGHT_IN_AUTUMN_OR_SPRING__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -541,31 +547,32 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the allSubspecsSimilarLength constraint of '<em>Specialization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SPECIALIZATION__ALL_SUBSPECS_SIMILAR_LENGTH__EEXPRESSION = "self.subSpecializations->forAll(subSpec | subSpec.size() = self.subSpecialization->first().durationInSemesters)";
+
+	/**
 	 * Validates the allSubspecsSimilarLength constraint of '<em>Specialization</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateSpecialization_allSubspecsSimilarLength(Specialization specialization, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "allSubspecsSimilarLength", getObjectLabel(specialization, context) },
-						 new Object[] { specialization },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.SPECIALIZATION,
+				 specialization,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "allSubspecsSimilarLength",
+				 SPECIALIZATION__ALL_SUBSPECS_SIMILAR_LENGTH__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -601,14 +608,28 @@ public class StudyplanValidator extends EObjectValidator {
 	 * Validates the mandatoryCoursesAreCovered constraint of '<em>Specialization</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateSpecialization_mandatoryCoursesAreCovered(Specialization specialization, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		List<Course> SPECIALIZATION_MANDATORY_COURSES = specialization.getMandatoryCourses().getCourses(); 
+		List<Course> allProgramCourses = new ArrayList<>();
+		
+		for (Semester semester: specialization.getProgram().getSemesters()) {
+			
+			List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
+			for (Course mandatoryCourse: mandatoryCourses) {
+				allProgramCourses.add(mandatoryCourse);
+			}
+			
+			for (SemesterOptionalCourseGroup optionalCourseGroup: semester.getOptionalCourseGroups()) {
+				for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
+					allProgramCourses.add(selectedCourse);
+				}
+			}
+		}			
+		
+		if (allProgramCourses.containsAll(SPECIALIZATION_MANDATORY_COURSES)) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
@@ -646,45 +667,66 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the shouldContainEnoughCredits constraint of '<em>Semester</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SEMESTER__SHOULD_CONTAIN_ENOUGH_CREDITS__EEXPRESSION = "self.totalCreditsValue >= 30.0";
+
+	/**
 	 * Validates the shouldContainEnoughCredits constraint of '<em>Semester</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateSemester_shouldContainEnoughCredits(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "shouldContainEnoughCredits", getObjectLabel(semester, context) },
-						 new Object[] { semester },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.SEMESTER,
+				 semester,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "shouldContainEnoughCredits",
+				 SEMESTER__SHOULD_CONTAIN_ENOUGH_CREDITS__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
 	 * Validates the coursesTaughtCurrentSemester constraint of '<em>Semester</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateSemester_coursesTaughtCurrentSemester(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		boolean isSpringSemester = semester.getProgramsSemesterOrderNr() % 2 == 1;
+		boolean coursesNotTaughtCurrentSemester = false;
+		
+		List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
+		for (Course mandatoryCourse: mandatoryCourses) {
+			if (isSpringSemester && ! mandatoryCourse.isTaughtInSpring()) {
+				coursesNotTaughtCurrentSemester = true;
+			} else if (! isSpringSemester && ! mandatoryCourse.isTaughtInAutumn()) {
+				coursesNotTaughtCurrentSemester = true;
+			}		
+		}
+		
+		if (! coursesNotTaughtCurrentSemester) {
+			for (SemesterOptionalCourseGroup optionalCourseGroup: semester.getOptionalCourseGroups()) {
+				for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
+					if (isSpringSemester && ! selectedCourse.isTaughtInSpring()) {
+						coursesNotTaughtCurrentSemester = true;
+					} else if (! isSpringSemester && ! selectedCourse.isTaughtInAutumn()) {
+						coursesNotTaughtCurrentSemester = true;
+					}	
+				}
+			}
+		}
+		
+		if (coursesNotTaughtCurrentSemester) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic

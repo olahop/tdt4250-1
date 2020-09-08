@@ -50,40 +50,40 @@
       </optionalCourseGroups>
     </semesters>
     <semesters
-        ProgramsSemesterOrderNr="1">
+        programsSemesterOrderNr="1">
       <mandatoryCourses
           courses="//@courses.2 //@courses.5"/>
     </semesters>
     <semesters
-        ProgramsSemesterOrderNr="2">
+        programsSemesterOrderNr="2">
       <mandatoryCourses/>
     </semesters>
     <semesters
-        ProgramsSemesterOrderNr="3">
+        programsSemesterOrderNr="3">
       <mandatoryCourses/>
     </semesters>
     <semesters
-        ProgramsSemesterOrderNr="4">
+        programsSemesterOrderNr="4">
       <mandatoryCourses/>
     </semesters>
     <semesters
-        ProgramsSemesterOrderNr="5">
+        programsSemesterOrderNr="5">
       <mandatoryCourses/>
     </semesters>
     <semesters
-        ProgramsSemesterOrderNr="6">
+        programsSemesterOrderNr="6">
       <mandatoryCourses/>
     </semesters>
     <semesters
-        ProgramsSemesterOrderNr="7">
+        programsSemesterOrderNr="7">
       <mandatoryCourses/>
     </semesters>
     <semesters
-        ProgramsSemesterOrderNr="8">
+        programsSemesterOrderNr="8">
       <mandatoryCourses/>
     </semesters>
     <semesters
-        ProgramsSemesterOrderNr="9">
+        programsSemesterOrderNr="9">
       <mandatoryCourses/>
     </semesters>
   </programs>
@@ -99,6 +99,7 @@
   <courses name="OOP"
       code="TDT4100"
       credits="7.5"
+      taughtInAutumn="true"
       taughtInSpring="true"/>
   <courses name="Diskret matematikk"
       code="TMA4140"
@@ -110,5 +111,7 @@
       taughtInAutumn="true"/>
   <courses name="PLab"
       code="TDT4112"
-      credits="7.5"/>
+      credits="7.5"
+      taughtInAutumn="true"/>
+  <courses code="TDT4111"/>
 </studyplan:Studyplan>

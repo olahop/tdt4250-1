@@ -310,6 +310,11 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 		for(Course course: mandatoryCourses.getCourses()) {
 			totalCreditsValue += course.getCredits();
 		}
+		for (SemesterOptionalCourseGroup optionalCourseGroup: this.getOptionalCourseGroups()) {
+			for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
+				totalCreditsValue += selectedCourse.getCredits();
+			}
+		}
 		return totalCreditsValue;
 	}
 
@@ -476,7 +481,7 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (ProgramsSemesterOrderNr: ");
+		result.append(" (programsSemesterOrderNr: ");
 		result.append(programsSemesterOrderNr);
 		result.append(", totalCreditsValue: ");
 		result.append(totalCreditsValue);
