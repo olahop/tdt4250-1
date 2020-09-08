@@ -2,6 +2,7 @@
  */
 package studyplan;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,11 +17,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link studyplan.SemesterOptionalCourseGroup#getNrOfOptionalFromGroup <em>Nr Of Optional From Group</em>}</li>
  *   <li>{@link studyplan.SemesterOptionalCourseGroup#getSemester <em>Semester</em>}</li>
  *   <li>{@link studyplan.SemesterOptionalCourseGroup#getCourseGroup <em>Course Group</em>}</li>
+ *   <li>{@link studyplan.SemesterOptionalCourseGroup#getCurrentlySelected <em>Currently Selected</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getSemesterOptionalCourseGroup()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nrOfOptionalMustBeLessThanSizeOfGroup'"
- *        annotation="http://www.eclipse.org/acceleo/query/1.0 nrOfOptionalMustBeLessThanSizeOfGroup='self.courseGroup-&gt;size() &gt;= self.nrOfOptionalFromGroup'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nrOfOptionalMustBeLessThanSizeOfGroup currentlySelectedInOptions currentlySelectedCorrectSize'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 nrOfOptionalMustBeLessThanSizeOfGroup='self.courseGroup.courses-&gt;size() &gt;= self.nrOfOptionalFromGroup' currentlySelectedCorrectSize='self.currentlySelected-&gt;size() = self.nrOfOptionalFromGroup' currentlySelectedInOptions='self.courseGroup.courses-&gt;includesAll(self.currentlySelected)'"
  * @generated
  */
 public interface SemesterOptionalCourseGroup extends EObject {
@@ -89,5 +91,17 @@ public interface SemesterOptionalCourseGroup extends EObject {
 	 * @generated
 	 */
 	void setCourseGroup(CourseGroup value);
+
+	/**
+	 * Returns the value of the '<em><b>Currently Selected</b></em>' reference list.
+	 * The list contents are of type {@link studyplan.Course}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Currently Selected</em>' reference list.
+	 * @see studyplan.StudyplanPackage#getSemesterOptionalCourseGroup_CurrentlySelected()
+	 * @model
+	 * @generated
+	 */
+	EList<Course> getCurrentlySelected();
 
 } // SemesterOptionalCourseGroup

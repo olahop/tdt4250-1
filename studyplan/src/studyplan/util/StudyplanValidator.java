@@ -2,6 +2,8 @@
  */
 package studyplan.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
@@ -132,7 +134,7 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateProgram_allMainSpecsSimilarDuration(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_mandatoryCoursesCovered(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_semestersHasUniqueOrderNr(program, diagnostics, context);
-		if (result || diagnostics != null) result &= validateProgram_noDuplicateMandatoryCourses(program, diagnostics, context);
+		if (result || diagnostics != null) result &= validateProgram_noDuplicateCourses(program, diagnostics, context);
 		return result;
 	}
 
@@ -169,14 +171,38 @@ public class StudyplanValidator extends EObjectValidator {
 	 * Validates the masterLevelHasMaxLimitOfLevelThreeCoures constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateProgram_masterLevelHasMaxLimitOfLevelThreeCoures(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+
+		int MASTER_LEVEL_VALUE_LIMIT = 4;
+		int NR_OF_MASTER_SEMESTERS = 4;
+		double VALID_LIMIT_OF_LOWER_LEVEL_CREDITS = 22.5;
+		double lowerLevelCredits = 0.0;
+		
+		if (program.getType().getName() != "Bachelor") {
+			List<Semester> semesters = program.getSemesters();
+			for (int i = 1; i <= NR_OF_MASTER_SEMESTERS; i++) {
+				Semester semester = semesters.get(semesters.size() - i);
+				
+				List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
+				for (Course mandatoryCourse: mandatoryCourses) {
+					if (mandatoryCourse.getLevel().getValue() < MASTER_LEVEL_VALUE_LIMIT) {
+						lowerLevelCredits += mandatoryCourse.getCredits();
+					}
+				}
+				
+				for (SemesterOptionalCourseGroup optionalCourseGroup: semester.getOptionalCourseGroups()) {
+					for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
+						if (selectedCourse.getLevel().getValue() < MASTER_LEVEL_VALUE_LIMIT) {
+							lowerLevelCredits += selectedCourse.getCredits();
+						}
+					}
+				}
+			}			
+		}
+		
+		if (lowerLevelCredits > VALID_LIMIT_OF_LOWER_LEVEL_CREDITS) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
@@ -255,14 +281,28 @@ public class StudyplanValidator extends EObjectValidator {
 	 * Validates the mandatoryCoursesCovered constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean validateProgram_mandatoryCoursesCovered(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+		
+		List<Course> PROGRAMS_MANDATORY_COURSES = program.getMandatoryCourses().getCourses(); 
+		List<Course> allCourses = new ArrayList<>();
+		
+		for (Semester semester: program.getSemesters()) {
+			
+			List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
+			for (Course mandatoryCourse: mandatoryCourses) {
+				allCourses.add(mandatoryCourse);
+			}
+			
+			for (SemesterOptionalCourseGroup optionalCourseGroup: semester.getOptionalCourseGroups()) {
+				for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
+					allCourses.add(selectedCourse);
+				}
+			}
+		}			
+		
+		if (allCourses.containsAll(PROGRAMS_MANDATORY_COURSES)) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
@@ -309,17 +349,46 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the noDuplicateMandatoryCourses constraint of '<em>Program</em>'.
+	 * Validates the noDuplicateCourses constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public boolean validateProgram_noDuplicateMandatoryCourses(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
+	public boolean validateProgram_noDuplicateCourses(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		
+		List<Course> allCourses = new ArrayList<>();
+		boolean duplicateCourses = false;
+		
+		for (Semester semester: program.getSemesters()) {
+			
+			List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
+			for (Course mandatoryCourse: mandatoryCourses) {
+				if(allCourses.contains(mandatoryCourse)) {
+					duplicateCourses = true;
+					break;
+				} else {
+					allCourses.add(mandatoryCourse);
+				}
+			}
+			
+			for (SemesterOptionalCourseGroup optionalCourseGroup: semester.getOptionalCourseGroups()) {
+				for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
+					if(allCourses.contains(selectedCourse)) {
+						duplicateCourses = true;
+						break;
+					} else {
+						allCourses.add(selectedCourse);
+					}
+				}
+			}
+			
+			if (duplicateCourses) {
+				break;
+			}
+		}			
+		
+		
+		if (duplicateCourses) {
 			if (diagnostics != null) {
 				diagnostics.add
 					(createDiagnostic
@@ -327,7 +396,7 @@ public class StudyplanValidator extends EObjectValidator {
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "noDuplicateMandatoryCourses", getObjectLabel(program, context) },
+						 new Object[] { "noDuplicateCourses", getObjectLabel(program, context) },
 						 new Object[] { program },
 						 context));
 			}
@@ -648,6 +717,8 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(semesterOptionalCourseGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(semesterOptionalCourseGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSemesterOptionalCourseGroup_nrOfOptionalMustBeLessThanSizeOfGroup(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSemesterOptionalCourseGroup_currentlySelectedInOptions(semesterOptionalCourseGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSemesterOptionalCourseGroup_currentlySelectedCorrectSize(semesterOptionalCourseGroup, diagnostics, context);
 		return result;
 	}
 
@@ -657,7 +728,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__NR_OF_OPTIONAL_MUST_BE_LESS_THAN_SIZE_OF_GROUP__EEXPRESSION = "self.courseGroup->size() >= self.nrOfOptionalFromGroup";
+	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__NR_OF_OPTIONAL_MUST_BE_LESS_THAN_SIZE_OF_GROUP__EEXPRESSION = "self.courseGroup.courses->size() >= self.nrOfOptionalFromGroup";
 
 	/**
 	 * Validates the nrOfOptionalMustBeLessThanSizeOfGroup constraint of '<em>Semester Optional Course Group</em>'.
@@ -675,6 +746,64 @@ public class StudyplanValidator extends EObjectValidator {
 				 "http://www.eclipse.org/acceleo/query/1.0",
 				 "nrOfOptionalMustBeLessThanSizeOfGroup",
 				 SEMESTER_OPTIONAL_COURSE_GROUP__NR_OF_OPTIONAL_MUST_BE_LESS_THAN_SIZE_OF_GROUP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the currentlySelectedInOptions constraint of '<em>Semester Optional Course Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED_IN_OPTIONS__EEXPRESSION = "self.courseGroup.courses->includesAll(self.currentlySelected)";
+
+	/**
+	 * Validates the currentlySelectedInOptions constraint of '<em>Semester Optional Course Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSemesterOptionalCourseGroup_currentlySelectedInOptions(SemesterOptionalCourseGroup semesterOptionalCourseGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(StudyplanPackage.Literals.SEMESTER_OPTIONAL_COURSE_GROUP,
+				 semesterOptionalCourseGroup,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "currentlySelectedInOptions",
+				 SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED_IN_OPTIONS__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * The cached validation expression for the currentlySelectedCorrectSize constraint of '<em>Semester Optional Course Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED_CORRECT_SIZE__EEXPRESSION = "self.currentlySelected->size() = self.nrOfOptionalFromGroup";
+
+	/**
+	 * Validates the currentlySelectedCorrectSize constraint of '<em>Semester Optional Course Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSemesterOptionalCourseGroup_currentlySelectedCorrectSize(SemesterOptionalCourseGroup semesterOptionalCourseGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(StudyplanPackage.Literals.SEMESTER_OPTIONAL_COURSE_GROUP,
+				 semesterOptionalCourseGroup,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "currentlySelectedCorrectSize",
+				 SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED_CORRECT_SIZE__EEXPRESSION,
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);

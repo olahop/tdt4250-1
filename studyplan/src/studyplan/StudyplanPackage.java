@@ -462,13 +462,22 @@ public interface StudyplanPackage extends EPackage {
 	int SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP = 2;
 
 	/**
+	 * The feature id for the '<em><b>Currently Selected</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED = 3;
+
+	/**
 	 * The number of structural features of the '<em>Semester Optional Course Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEMESTER_OPTIONAL_COURSE_GROUP_FEATURE_COUNT = 3;
+	int SEMESTER_OPTIONAL_COURSE_GROUP_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Semester Optional Course Group</em>' class.
@@ -926,6 +935,17 @@ public interface StudyplanPackage extends EPackage {
 	EReference getSemesterOptionalCourseGroup_CourseGroup();
 
 	/**
+	 * Returns the meta object for the reference list '{@link studyplan.SemesterOptionalCourseGroup#getCurrentlySelected <em>Currently Selected</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Currently Selected</em>'.
+	 * @see studyplan.SemesterOptionalCourseGroup#getCurrentlySelected()
+	 * @see #getSemesterOptionalCourseGroup()
+	 * @generated
+	 */
+	EReference getSemesterOptionalCourseGroup_CurrentlySelected();
+
+	/**
 	 * Returns the meta object for class '{@link studyplan.Studyplan <em>Studyplan</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1294,6 +1314,14 @@ public interface StudyplanPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP = eINSTANCE.getSemesterOptionalCourseGroup_CourseGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>Currently Selected</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED = eINSTANCE.getSemesterOptionalCourseGroup_CurrentlySelected();
 
 		/**
 		 * The meta object literal for the '{@link studyplan.impl.StudyplanImpl <em>Studyplan</em>}' class.

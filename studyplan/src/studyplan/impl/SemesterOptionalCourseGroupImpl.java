@@ -2,15 +2,19 @@
  */
 package studyplan.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import studyplan.Course;
 import studyplan.CourseGroup;
 import studyplan.Semester;
 import studyplan.SemesterOptionalCourseGroup;
@@ -27,6 +31,7 @@ import studyplan.StudyplanPackage;
  *   <li>{@link studyplan.impl.SemesterOptionalCourseGroupImpl#getNrOfOptionalFromGroup <em>Nr Of Optional From Group</em>}</li>
  *   <li>{@link studyplan.impl.SemesterOptionalCourseGroupImpl#getSemester <em>Semester</em>}</li>
  *   <li>{@link studyplan.impl.SemesterOptionalCourseGroupImpl#getCourseGroup <em>Course Group</em>}</li>
+ *   <li>{@link studyplan.impl.SemesterOptionalCourseGroupImpl#getCurrentlySelected <em>Currently Selected</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,6 +76,16 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	 * @ordered
 	 */
 	protected CourseGroup courseGroup;
+
+	/**
+	 * The cached value of the '{@link #getCurrentlySelected() <em>Currently Selected</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCurrentlySelected()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Course> currentlySelected;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -205,6 +220,19 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
+	public EList<Course> getCurrentlySelected() {
+		if (currentlySelected == null) {
+			currentlySelected = new EObjectResolvingEList<Course>(Course.class, this, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED);
+		}
+		return currentlySelected;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
@@ -228,6 +256,8 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 				return basicGetSemester();
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
 				return getCourseGroup();
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
+				return getCurrentlySelected();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,6 +267,7 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -248,6 +279,10 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 				return;
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
 				setCourseGroup((CourseGroup)newValue);
+				return;
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
+				getCurrentlySelected().clear();
+				getCurrentlySelected().addAll((Collection<? extends Course>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -270,6 +305,9 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
 				setCourseGroup((CourseGroup)null);
 				return;
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
+				getCurrentlySelected().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -288,6 +326,8 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 				return semester != null;
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
 				return courseGroup != null;
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
+				return currentlySelected != null && !currentlySelected.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
