@@ -25,7 +25,7 @@ This section covers how most of the features in the task specification and in us
 - **Constraints**: TODO
 - **Derived features**: TODO
 - **Operations**: TODO
-- **DataTypes**: TODO + kanskje legge til flere enn bare CourseCode..
+- **DataTypes**: Only CourseCode. Considered Credits, but covered this as a constraint instead. Did not see enough profit by changing it.
 - **TODO**
 
 ## Work flow
