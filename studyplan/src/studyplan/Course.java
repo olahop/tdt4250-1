@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see studyplan.StudyplanPackage#getCourse()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='hasValidCreditValue codeIsUnique taughtInAutumnOrSpring'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 codeIsUnique='self.eContainer().courses-&gt;isUnique(course | course.code)' taughtInAutumnOrSpring=' self.taughtInAutumn or self.taughtInSpring'"
  * @generated
  */
 public interface Course extends EObject {

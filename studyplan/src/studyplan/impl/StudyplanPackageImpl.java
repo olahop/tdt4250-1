@@ -723,7 +723,7 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 		initEReference(getSpecialization_SubSpecializations(), this.getSpecialization(), this.getSpecialization_ParentSpecialization(), "subSpecializations", null, 0, -1, Specialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(semesterEClass, Semester.class, "Semester", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSemester_ProgramsSemesterOrderNr(), ecorePackage.getEInt(), "ProgramsSemesterOrderNr", null, 0, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSemester_ProgramsSemesterOrderNr(), ecorePackage.getEInt(), "programsSemesterOrderNr", null, 0, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSemester_MandatoryCourses(), this.getCourseGroup(), null, "mandatoryCourses", null, 1, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSemester_OptionalCourseGroups(), this.getSemesterOptionalCourseGroup(), null, "optionalCourseGroups", null, 0, -1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSemester_Program(), this.getProgram(), this.getProgram_Semesters(), "program", null, 1, 1, Semester.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -829,11 +829,25 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 			   "semestersHasUniqueOrderNr", "self.semesters->isUnique(sem | sem.ProgramsSemesterOrderNr)"
 		   });
 		addAnnotation
+		  (courseEClass,
+		   source,
+		   new String[] {
+			   "codeIsUnique", "self.eContainer().courses->isUnique(course | course.code)",
+			   "taughtInAutumnOrSpring", " self.taughtInAutumn or self.taughtInSpring"
+		   });
+		addAnnotation
 		  (specializationEClass,
 		   source,
 		   new String[] {
 			   "subspecsShorterThanParent", "self.subSpecializations->collect(spec | spec.durationInSemesters)->forAll(num | num <= self.durationInSemesters)",
-			   "allMainSpecsSimilarDuration", "self.subSpecializations->collect(subSpec | subSpec.durationInSemesters)->forAll(num | num = self.subSpecializations->first().durationInSemesters)"
+			   "allMainSpecsSimilarDuration", "self.subSpecializations->collect(subSpec | subSpec.durationInSemesters)->forAll(num | num = self.subSpecializations->first().durationInSemesters)",
+			   "allSubspecsSimilarLength", "self.subSpecializations->forAll(subSpec | subSpec.size() = self.subSpecialization->first().durationInSemesters)"
+		   });
+		addAnnotation
+		  (semesterEClass,
+		   source,
+		   new String[] {
+			   "shouldContainEnoughCredits", "self.totalCreditsValue >= 30.0"
 		   });
 		addAnnotation
 		  (semesterOptionalCourseGroupEClass,
