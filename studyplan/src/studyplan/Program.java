@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getProgram()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered'"
- *        annotation="http://www.eclipse.org/acceleo/query/1.0 totalNrOfSemestersShouldMatchType='self.type.value = self.semesters-&gt;size()' allSpecsDurationShorterThanProgram='self.specializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.type.value)' allMainSpecsSimilarDuration='self.specializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num = self.specializations-&gt;first().durationInSemesters)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='totalNrOfSemestersShouldMatchType masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered semestersHasUniqueOrderNr noDuplicateMandatoryCourses'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 totalNrOfSemestersShouldMatchType='self.type.value = self.semesters-&gt;size()' allSpecsDurationShorterThanProgram='self.specializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.type.value)' allMainSpecsSimilarDuration='self.specializations-&gt;select(spec | spec.parentSpecialization = null)-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num = self.specializations-&gt;first().durationInSemesters)' semestersHasUniqueOrderNr='self.semesters-&gt;isUnique(sem | sem.ProgramsSemesterOrderNr)'"
  * @generated
  */
 public interface Program extends EObject {

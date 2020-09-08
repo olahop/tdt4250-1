@@ -127,11 +127,12 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_totalNrOfSemestersShouldMatchType(program, diagnostics, context);
-		if (result || diagnostics != null) result &= validateProgram_noDuplicateCourses(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_masterLevelHasMaxLimitOfLevelThreeCoures(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_allSpecsDurationShorterThanProgram(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_allMainSpecsSimilarDuration(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_mandatoryCoursesCovered(program, diagnostics, context);
+		if (result || diagnostics != null) result &= validateProgram_semestersHasUniqueOrderNr(program, diagnostics, context);
+		if (result || diagnostics != null) result &= validateProgram_noDuplicateMandatoryCourses(program, diagnostics, context);
 		return result;
 	}
 
@@ -162,34 +163,6 @@ public class StudyplanValidator extends EObjectValidator {
 				 Diagnostic.ERROR,
 				 DIAGNOSTIC_SOURCE,
 				 0);
-	}
-
-	/**
-	 * Validates the noDuplicateCourses constraint of '<em>Program</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateProgram_noDuplicateCourses(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "noDuplicateCourses", getObjectLabel(program, context) },
-						 new Object[] { program },
-						 context));
-			}
-			return false;
-		}
-		return true;
 	}
 
 	/**
@@ -255,7 +228,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PROGRAM__ALL_MAIN_SPECS_SIMILAR_DURATION__EEXPRESSION = "self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)";
+	protected static final String PROGRAM__ALL_MAIN_SPECS_SIMILAR_DURATION__EEXPRESSION = "self.specializations->select(spec | spec.parentSpecialization = null)->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)";
 
 	/**
 	 * Validates the allMainSpecsSimilarDuration constraint of '<em>Program</em>'.
@@ -298,6 +271,63 @@ public class StudyplanValidator extends EObjectValidator {
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
 						 new Object[] { "mandatoryCoursesCovered", getObjectLabel(program, context) },
+						 new Object[] { program },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * The cached validation expression for the semestersHasUniqueOrderNr constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROGRAM__SEMESTERS_HAS_UNIQUE_ORDER_NR__EEXPRESSION = "self.semesters->isUnique(sem | sem.ProgramsSemesterOrderNr)";
+
+	/**
+	 * Validates the semestersHasUniqueOrderNr constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateProgram_semestersHasUniqueOrderNr(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(StudyplanPackage.Literals.PROGRAM,
+				 program,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "semestersHasUniqueOrderNr",
+				 PROGRAM__SEMESTERS_HAS_UNIQUE_ORDER_NR__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+	}
+
+	/**
+	 * Validates the noDuplicateMandatoryCourses constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateProgram_noDuplicateMandatoryCourses(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "noDuplicateMandatoryCourses", getObjectLabel(program, context) },
 						 new Object[] { program },
 						 context));
 			}

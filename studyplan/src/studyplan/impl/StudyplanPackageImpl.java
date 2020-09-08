@@ -771,7 +771,7 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 		  (programEClass,
 		   source,
 		   new String[] {
-			   "constraints", "totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered"
+			   "constraints", "totalNrOfSemestersShouldMatchType masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered semestersHasUniqueOrderNr noDuplicateMandatoryCourses"
 		   });
 		addAnnotation
 		  (courseEClass,
@@ -813,7 +813,8 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 		   new String[] {
 			   "totalNrOfSemestersShouldMatchType", "self.type.value = self.semesters->size()",
 			   "allSpecsDurationShorterThanProgram", "self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num <= self.type.value)",
-			   "allMainSpecsSimilarDuration", "self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)"
+			   "allMainSpecsSimilarDuration", "self.specializations->select(spec | spec.parentSpecialization = null)->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)",
+			   "semestersHasUniqueOrderNr", "self.semesters->isUnique(sem | sem.ProgramsSemesterOrderNr)"
 		   });
 		addAnnotation
 		  (specializationEClass,

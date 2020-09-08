@@ -41,6 +41,13 @@
     <semesters>
       <mandatoryCourses
           courses="//@courses.0 //@courses.4 //@courses.1 //@courses.3"/>
+      <optionalCourseGroups
+          nrOfOptionalFromGroup="2"
+          semester="//@programs.0/@semesters.0"
+          currentlySelected="//@courses.0 //@courses.5">
+        <courseGroup
+            courses="//@courses.0 //@courses.4 //@courses.5"/>
+      </optionalCourseGroups>
     </semesters>
     <semesters
         ProgramsSemesterOrderNr="1">
