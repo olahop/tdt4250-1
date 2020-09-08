@@ -789,7 +789,7 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 		  (semesterEClass,
 		   source,
 		   new String[] {
-			   "constraints", "shouldContainEnoughCredits courseIsTaughtCurrentSemester"
+			   "constraints", "shouldContainEnoughCredits coursesTaughtCurrentSemester"
 		   });
 		addAnnotation
 		  (semesterOptionalCourseGroupEClass,

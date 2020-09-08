@@ -542,7 +542,7 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(semester, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(semester, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSemester_shouldContainEnoughCredits(semester, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSemester_courseIsTaughtCurrentSemester(semester, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSemester_coursesTaughtCurrentSemester(semester, diagnostics, context);
 		return result;
 	}
 
@@ -575,12 +575,12 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the courseIsTaughtCurrentSemester constraint of '<em>Semester</em>'.
+	 * Validates the coursesTaughtCurrentSemester constraint of '<em>Semester</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSemester_courseIsTaughtCurrentSemester(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSemester_coursesTaughtCurrentSemester(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -593,7 +593,7 @@ public class StudyplanValidator extends EObjectValidator {
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "courseIsTaughtCurrentSemester", getObjectLabel(semester, context) },
+						 new Object[] { "coursesTaughtCurrentSemester", getObjectLabel(semester, context) },
 						 new Object[] { semester },
 						 context));
 			}

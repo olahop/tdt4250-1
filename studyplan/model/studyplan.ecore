@@ -7,12 +7,13 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered"/>
+      <details key="constraints" value="totalNrOfSemestersShouldMatchType noDuplicateCourses masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered semestersHasUniqueOrderNr"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
       <details key="totalNrOfSemestersShouldMatchType" value="self.type.value = self.semesters->size()"/>
       <details key="allSpecsDurationShorterThanProgram" value="self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num &lt;= self.type.value)"/>
-      <details key="allMainSpecsSimilarDuration" value="self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)"/>
+      <details key="allMainSpecsSimilarDuration" value="self.specializations->select(spec | spec.parentSpecialization = null)->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)"/>
+      <details key="semestersHasUniqueOrderNr" value="self.semesters->isUnique(sem | sem.ProgramsSemesterOrderNr)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ProgramTypeAndDuration"/>
@@ -74,7 +75,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Semester">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="shouldContainEnoughCredits courseIsTaughtCurrentSemester"/>
+      <details key="constraints" value="shouldContainEnoughCredits coursesTaughtCurrentSemester"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ProgramsSemesterOrderNr"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

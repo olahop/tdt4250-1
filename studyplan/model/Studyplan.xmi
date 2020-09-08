@@ -9,33 +9,76 @@
       name="Datateknologi 5-årig"
       type="IntegratedMaster">
     <specializations
-        name="AI"
-        durationInSemesters="4"
+        name="Algoritmer og datamaskiner"
+        durationInSemesters="6"
         subSpecializations="//@programs.0/@specializations.1">
       <mandatoryCourses/>
     </specializations>
     <specializations
-        name="AI2"
-        durationInSemesters="2"
+        name="Algoritmer og datamaskiner2"
+        durationInSemesters="4"
         parentSpecialization="//@programs.0/@specializations.0">
       <mandatoryCourses
           courses="//@courses.0"/>
     </specializations>
+    <specializations
+        name="Programvaresystemer"
+        durationInSemesters="6">
+      <mandatoryCourses/>
+    </specializations>
+    <specializations
+        name="Kunstig intelligens"
+        durationInSemesters="6">
+      <mandatoryCourses/>
+    </specializations>
+    <specializations
+        name="Databaser og søk"
+        durationInSemesters="6">
+      <mandatoryCourses/>
+    </specializations>
     <mandatoryCourses
-        courses="//@courses.0 //@courses.3"/>
+        courses="//@courses.0 //@courses.4"/>
     <semesters>
       <mandatoryCourses
-          courses="//@courses.0 //@courses.3 //@courses.1 //@courses.2"/>
+          courses="//@courses.0 //@courses.4 //@courses.1 //@courses.3"/>
     </semesters>
-    <semesters/>
-    <semesters/>
-    <semesters/>
-    <semesters/>
-    <semesters/>
-    <semesters/>
-    <semesters/>
-    <semesters/>
-    <semesters/>
+    <semesters
+        ProgramsSemesterOrderNr="1">
+      <mandatoryCourses
+          courses="//@courses.2 //@courses.5"/>
+    </semesters>
+    <semesters
+        ProgramsSemesterOrderNr="2">
+      <mandatoryCourses/>
+    </semesters>
+    <semesters
+        ProgramsSemesterOrderNr="3">
+      <mandatoryCourses/>
+    </semesters>
+    <semesters
+        ProgramsSemesterOrderNr="4">
+      <mandatoryCourses/>
+    </semesters>
+    <semesters
+        ProgramsSemesterOrderNr="5">
+      <mandatoryCourses/>
+    </semesters>
+    <semesters
+        ProgramsSemesterOrderNr="6">
+      <mandatoryCourses/>
+    </semesters>
+    <semesters
+        ProgramsSemesterOrderNr="7">
+      <mandatoryCourses/>
+    </semesters>
+    <semesters
+        ProgramsSemesterOrderNr="8">
+      <mandatoryCourses/>
+    </semesters>
+    <semesters
+        ProgramsSemesterOrderNr="9">
+      <mandatoryCourses/>
+    </semesters>
   </programs>
   <courses name="Informasjonsteknologi"
       code="TDT4110"
@@ -46,6 +89,10 @@
       credits="7.5"
       taughtInAutumn="true"
       taughtInSpring="true"/>
+  <courses name="OOP"
+      code="TDT4100"
+      credits="7.5"
+      taughtInSpring="true"/>
   <courses name="Diskret matematikk"
       code="TMA4140"
       credits="7.5"
@@ -54,4 +101,7 @@
       code="TMA4100"
       credits="7.5"
       taughtInAutumn="true"/>
+  <courses name="PLab"
+      code="TDT4112"
+      credits="7.5"/>
 </studyplan:Studyplan>
