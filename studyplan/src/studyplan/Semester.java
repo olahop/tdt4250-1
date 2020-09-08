@@ -135,21 +135,10 @@ public interface Semester extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Total Credits Value</em>' attribute.
-	 * @see #setTotalCreditsValue(double)
 	 * @see studyplan.StudyplanPackage#getSemester_TotalCreditsValue()
-	 * @model derived="true"
+	 * @model changeable="false" derived="true"
 	 * @generated
 	 */
 	double getTotalCreditsValue();
-
-	/**
-	 * Sets the value of the '{@link studyplan.Semester#getTotalCreditsValue <em>Total Credits Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Total Credits Value</em>' attribute.
-	 * @see #getTotalCreditsValue()
-	 * @generated
-	 */
-	void setTotalCreditsValue(double value);
 
 } // Semester

@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import studyplan.Course;
 import studyplan.CourseGroup;
 import studyplan.Program;
 import studyplan.Semester;
@@ -300,24 +302,15 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public double getTotalCreditsValue() {
+		double totalCreditsValue = 0.0;
+		for(Course course: mandatoryCourses.getCourses()) {
+			totalCreditsValue += course.getCredits();
+		}
 		return totalCreditsValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTotalCreditsValue(double newTotalCreditsValue) {
-		double oldTotalCreditsValue = totalCreditsValue;
-		totalCreditsValue = newTotalCreditsValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE, oldTotalCreditsValue, totalCreditsValue));
 	}
 
 	/**
@@ -418,9 +411,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 			case StudyplanPackage.SEMESTER__SPECIALIZATION:
 				setSpecialization((Specialization)newValue);
 				return;
-			case StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE:
-				setTotalCreditsValue((Double)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -447,9 +437,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 				return;
 			case StudyplanPackage.SEMESTER__SPECIALIZATION:
 				setSpecialization((Specialization)null);
-				return;
-			case StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE:
-				setTotalCreditsValue(TOTAL_CREDITS_VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);

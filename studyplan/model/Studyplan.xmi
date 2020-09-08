@@ -26,12 +26,6 @@
     <semesters>
       <mandatoryCourses
           courses="//@courses.0 //@courses.3 //@courses.1 //@courses.2"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          semester="//@programs.0/@semesters.0">
-        <courseGroup
-            courses="//@courses.0"/>
-      </optionalCourseGroups>
     </semesters>
     <semesters/>
     <semesters/>

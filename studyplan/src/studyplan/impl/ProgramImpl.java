@@ -248,11 +248,16 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public int getDurationPreSpecialization() {
-		return durationPreSpecialization;
+		int totalNrOfSemesters = this.type.getValue();
+		if(this.specializations.size() > 0) {
+			int nrOfSpecializedSemesters = this.specializations.get(0).getDurationInSemesters();
+			return totalNrOfSemesters - nrOfSpecializedSemesters;
+		}
+		return totalNrOfSemesters;
 	}
 
 	/**
