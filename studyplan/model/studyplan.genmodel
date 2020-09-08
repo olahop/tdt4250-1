@@ -57,6 +57,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyplan.ecore#//SemesterOptionalCourseGroup/semester"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyplan.ecore#//SemesterOptionalCourseGroup/courseGroup"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference studyplan.ecore#//SemesterOptionalCourseGroup/currentlySelected"/>
+      <genOperations ecoreOperation="studyplan.ecore#//SemesterOptionalCourseGroup/selectOptionalCourse">
+        <genParameters ecoreParameter="studyplan.ecore#//SemesterOptionalCourseGroup/selectOptionalCourse/course"/>
+      </genOperations>
+      <genOperations ecoreOperation="studyplan.ecore#//SemesterOptionalCourseGroup/unselectOptionalCourse">
+        <genParameters ecoreParameter="studyplan.ecore#//SemesterOptionalCourseGroup/unselectOptionalCourse/course"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="studyplan.ecore#//Studyplan">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference studyplan.ecore#//Studyplan/programs"/>

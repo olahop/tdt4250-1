@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -529,6 +530,26 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 	 * @generated
 	 */
 	@Override
+	public EOperation getSemesterOptionalCourseGroup__SelectOptionalCourse__Course() {
+		return semesterOptionalCourseGroupEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getSemesterOptionalCourseGroup__UnselectOptionalCourse__Course() {
+		return semesterOptionalCourseGroupEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getStudyplan() {
 		return studyplanEClass;
 	}
@@ -652,6 +673,8 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 		createEReference(semesterOptionalCourseGroupEClass, SEMESTER_OPTIONAL_COURSE_GROUP__SEMESTER);
 		createEReference(semesterOptionalCourseGroupEClass, SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP);
 		createEReference(semesterOptionalCourseGroupEClass, SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED);
+		createEOperation(semesterOptionalCourseGroupEClass, SEMESTER_OPTIONAL_COURSE_GROUP___SELECT_OPTIONAL_COURSE__COURSE);
+		createEOperation(semesterOptionalCourseGroupEClass, SEMESTER_OPTIONAL_COURSE_GROUP___UNSELECT_OPTIONAL_COURSE__COURSE);
 
 		studyplanEClass = createEClass(STUDYPLAN);
 		createEReference(studyplanEClass, STUDYPLAN__PROGRAMS);
@@ -734,7 +757,13 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 		initEAttribute(getSemesterOptionalCourseGroup_NrOfOptionalFromGroup(), ecorePackage.getEInt(), "nrOfOptionalFromGroup", null, 1, 1, SemesterOptionalCourseGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSemesterOptionalCourseGroup_Semester(), this.getSemester(), null, "semester", null, 1, 1, SemesterOptionalCourseGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSemesterOptionalCourseGroup_CourseGroup(), this.getCourseGroup(), null, "courseGroup", null, 1, 1, SemesterOptionalCourseGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSemesterOptionalCourseGroup_CurrentlySelected(), this.getCourse(), null, "currentlySelected", null, 0, -1, SemesterOptionalCourseGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSemesterOptionalCourseGroup_CurrentlySelected(), this.getCourse(), null, "currentlySelected", null, 0, -1, SemesterOptionalCourseGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		EOperation op = initEOperation(getSemesterOptionalCourseGroup__SelectOptionalCourse__Course(), null, "selectOptionalCourse", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getCourse(), "course", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getSemesterOptionalCourseGroup__UnselectOptionalCourse__Course(), null, "unselectOptionalCourse", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getCourse(), "course", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(studyplanEClass, Studyplan.class, "Studyplan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStudyplan_Programs(), this.getProgram(), null, "programs", null, 0, -1, Studyplan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

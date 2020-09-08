@@ -98,10 +98,49 @@ public interface SemesterOptionalCourseGroup extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Currently Selected</em>' reference list.
+	 * @see #isSetCurrentlySelected()
+	 * @see #unsetCurrentlySelected()
 	 * @see studyplan.StudyplanPackage#getSemesterOptionalCourseGroup_CurrentlySelected()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<Course> getCurrentlySelected();
+
+	/**
+	 * Unsets the value of the '{@link studyplan.SemesterOptionalCourseGroup#getCurrentlySelected <em>Currently Selected</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetCurrentlySelected()
+	 * @see #getCurrentlySelected()
+	 * @generated
+	 */
+	void unsetCurrentlySelected();
+
+	/**
+	 * Returns whether the value of the '{@link studyplan.SemesterOptionalCourseGroup#getCurrentlySelected <em>Currently Selected</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Currently Selected</em>' reference list is set.
+	 * @see #unsetCurrentlySelected()
+	 * @see #getCurrentlySelected()
+	 * @generated
+	 */
+	boolean isSetCurrentlySelected();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void selectOptionalCourse(Course course);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void unselectOptionalCourse(Course course);
 
 } // SemesterOptionalCourseGroup

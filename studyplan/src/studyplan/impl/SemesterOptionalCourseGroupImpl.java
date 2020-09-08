@@ -2,6 +2,7 @@
  */
 package studyplan.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import studyplan.Course;
 import studyplan.CourseGroup;
 import studyplan.Semester;
@@ -222,9 +224,55 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public EList<Course> getCurrentlySelected() {
 		if (currentlySelected == null) {
-			currentlySelected = new EObjectResolvingEList<Course>(Course.class, this, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED);
+			currentlySelected = new EObjectResolvingEList.Unsettable<Course>(Course.class, this, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED);
 		}
 		return currentlySelected;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetCurrentlySelected() {
+		if (currentlySelected != null) ((InternalEList.Unsettable<?>)currentlySelected).unset();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetCurrentlySelected() {
+		return currentlySelected != null && ((InternalEList.Unsettable<?>)currentlySelected).isSet();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void selectOptionalCourse(Course course) {
+				
+		if(this.courseGroup.getCourses().contains(course) && ! this.currentlySelected.contains(course)){
+			this.currentlySelected.add(course);
+		} else {
+			throw new IllegalArgumentException("Course not part of alternatives");
+		}
+
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void unselectOptionalCourse(Course course) {
+		this.currentlySelected.remove(course);
 	}
 
 	/**
@@ -306,7 +354,7 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 				setCourseGroup((CourseGroup)null);
 				return;
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
-				getCurrentlySelected().clear();
+				unsetCurrentlySelected();
 				return;
 		}
 		super.eUnset(featureID);
@@ -327,9 +375,27 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
 				return courseGroup != null;
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
-				return currentlySelected != null && !currentlySelected.isEmpty();
+				return isSetCurrentlySelected();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP___SELECT_OPTIONAL_COURSE__COURSE:
+				selectOptionalCourse((Course)arguments.get(0));
+				return null;
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP___UNSELECT_OPTIONAL_COURSE__COURSE:
+				unselectOptionalCourse((Course)arguments.get(0));
+				return null;
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

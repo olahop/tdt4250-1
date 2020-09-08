@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -480,13 +481,31 @@ public interface StudyplanPackage extends EPackage {
 	int SEMESTER_OPTIONAL_COURSE_GROUP_FEATURE_COUNT = 4;
 
 	/**
+	 * The operation id for the '<em>Select Optional Course</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMESTER_OPTIONAL_COURSE_GROUP___SELECT_OPTIONAL_COURSE__COURSE = 0;
+
+	/**
+	 * The operation id for the '<em>Unselect Optional Course</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEMESTER_OPTIONAL_COURSE_GROUP___UNSELECT_OPTIONAL_COURSE__COURSE = 1;
+
+	/**
 	 * The number of operations of the '<em>Semester Optional Course Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEMESTER_OPTIONAL_COURSE_GROUP_OPERATION_COUNT = 0;
+	int SEMESTER_OPTIONAL_COURSE_GROUP_OPERATION_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link studyplan.impl.StudyplanImpl <em>Studyplan</em>}' class.
@@ -946,6 +965,26 @@ public interface StudyplanPackage extends EPackage {
 	EReference getSemesterOptionalCourseGroup_CurrentlySelected();
 
 	/**
+	 * Returns the meta object for the '{@link studyplan.SemesterOptionalCourseGroup#selectOptionalCourse(studyplan.Course) <em>Select Optional Course</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Select Optional Course</em>' operation.
+	 * @see studyplan.SemesterOptionalCourseGroup#selectOptionalCourse(studyplan.Course)
+	 * @generated
+	 */
+	EOperation getSemesterOptionalCourseGroup__SelectOptionalCourse__Course();
+
+	/**
+	 * Returns the meta object for the '{@link studyplan.SemesterOptionalCourseGroup#unselectOptionalCourse(studyplan.Course) <em>Unselect Optional Course</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unselect Optional Course</em>' operation.
+	 * @see studyplan.SemesterOptionalCourseGroup#unselectOptionalCourse(studyplan.Course)
+	 * @generated
+	 */
+	EOperation getSemesterOptionalCourseGroup__UnselectOptionalCourse__Course();
+
+	/**
 	 * Returns the meta object for class '{@link studyplan.Studyplan <em>Studyplan</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1322,6 +1361,22 @@ public interface StudyplanPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED = eINSTANCE.getSemesterOptionalCourseGroup_CurrentlySelected();
+
+		/**
+		 * The meta object literal for the '<em><b>Select Optional Course</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SEMESTER_OPTIONAL_COURSE_GROUP___SELECT_OPTIONAL_COURSE__COURSE = eINSTANCE.getSemesterOptionalCourseGroup__SelectOptionalCourse__Course();
+
+		/**
+		 * The meta object literal for the '<em><b>Unselect Optional Course</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SEMESTER_OPTIONAL_COURSE_GROUP___UNSELECT_OPTIONAL_COURSE__COURSE = eINSTANCE.getSemesterOptionalCourseGroup__UnselectOptionalCourse__Course();
 
 		/**
 		 * The meta object literal for the '{@link studyplan.impl.StudyplanImpl <em>Studyplan</em>}' class.
