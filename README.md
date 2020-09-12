@@ -12,7 +12,7 @@ The model folder contains the initial models related to the project:
 
 - **_studyplan.ecore_** is the Ecore model where classes and other structures has been defined according to the Ecore format.
 - **_studyplan.genmodel_** is the generator model, which is a dynamic extension of the Ecore model, used to generate Java code which conform to the structure set in the mentioned model.
-- **_Studyplan.xmi_** is a dynamic instance of the model, with the eCLass **Studyplan** as its root resource. This instance currently holds a draft of the study plan for the 5-year computer science program at NTNU.
+- **_Studyplan.xmi_** is a dynamic instance of the model, with the eCLass **Studyplan** as its root resource. This instance currently holds a draft of the study plan for the 5-year computer science program at NTNU with a specialization in artificial intelligence.
 
 ### Src
 
@@ -27,6 +27,15 @@ This section covers how most of the features in the task specification and use o
 - **Operations**: Due to lack of imagination the only included operations are _selectOptionalCourse_ and _unselectOptionalCourse_, which adds and removes courses from the _currentlySelected_-list in eClass **SemesterOptionalCourseGroup**. Maybe these eventually can be used to keep track of a student's decision in the study plan to enroll or remove a course.
 - **DataTypes**: Currently, the only custom made eDataType is **CourseCode**. An alternative attribute I considered making its own eDataType was _Credits_. However, I had already configured these values limitations through constraints and did not see enough to gain by changing it to a custom eData Type. The Enums below could, naturally, also have been turned into data types, due to the similarities in qualities.
 - **Enums**: _ProgramTypeAndDuration_ holds the valid program types within my system and the duration of these program types, given in semesters. _CourseLevel_ holds the different levels of courses, inspired by NTNU courses.
+
+## Assumptions
+
+These are some of the assumptions made during the work on this assignment, which may differ from the real-life study planning pages at NTNU:
+
+- Valid course credit values have been set to 5, 7.5, 10, 15, and 30.
+- Courses taught both in autumn and spring have only one code.
+- All specializations within a program have the same duration.
+- All subspecializations within a specialization has the same duration.
 
 ## Workflow
 
