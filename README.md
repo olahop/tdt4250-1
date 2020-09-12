@@ -1,6 +1,6 @@
 # Assignment 1
 
-The repository is part of the delivery in the first assignment related to the course TDT4250 Advanced Software Design at NTNU. The purpose of the assingment is to learn modelling with EMF and Ecore.
+The repository is part of the delivery in the first assignment related to the course TDT4250 Advanced Software Design at NTNU. The purpose of the assingment is to learn modelling with Eclipse Modeling Framework (EMF) and Ecore.
 
 ## Content
 
