@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see studyplan.StudyplanPackage#getSpecialization()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='allSubspecsSimilarLength subspecsShorterThanParent mandatoryCoursesAreCovered'"
- *        annotation="http://www.eclipse.org/acceleo/query/1.0 subspecsShorterThanParent='self.subSpecializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.durationInSemesters)' allMainSpecsSimilarDuration='self.subSpecializations-&gt;collect(subSpec | subSpec.durationInSemesters)-&gt;forAll(num | num = self.subSpecializations-&gt;first().durationInSemesters)' allSubspecsSimilarLength='self.subSpecializations-&gt;forAll(subSpec | subSpec.size() = self.subSpecialization-&gt;first().durationInSemesters)'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 subspecsShorterThanParent='self.subSpecializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.durationInSemesters)' allMainSpecsSimilarDuration='self.subSpecializations-&gt;collect(subSpec | subSpec.durationInSemesters)-&gt;forAll(num | num = self.subSpecializations-&gt;first().durationInSemesters)' allSubspecsSimilarLength='self.subSpecializations-&gt;forAll(subSpec | subSpec.durationInSemesters = self.subSpecializations-&gt;first().durationInSemesters)'"
  * @generated
  */
 public interface Specialization extends EObject {

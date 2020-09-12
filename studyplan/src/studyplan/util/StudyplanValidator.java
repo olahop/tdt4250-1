@@ -552,7 +552,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SPECIALIZATION__ALL_SUBSPECS_SIMILAR_LENGTH__EEXPRESSION = "self.subSpecializations->forAll(subSpec | subSpec.size() = self.subSpecialization->first().durationInSemesters)";
+	protected static final String SPECIALIZATION__ALL_SUBSPECS_SIMILAR_LENGTH__EEXPRESSION = "self.subSpecializations->forAll(subSpec | subSpec.durationInSemesters = self.subSpecializations->first().durationInSemesters)";
 
 	/**
 	 * Validates the allSubspecsSimilarLength constraint of '<em>Specialization</em>'.
@@ -663,6 +663,7 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(semester, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSemester_shouldContainEnoughCredits(semester, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSemester_coursesTaughtCurrentSemester(semester, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSemester_optionGroupsCorrectSemester(semester, diagnostics, context);
 		return result;
 	}
 
@@ -741,6 +742,35 @@ public class StudyplanValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * The cached validation expression for the optionGroupsCorrectSemester constraint of '<em>Semester</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SEMESTER__OPTION_GROUPS_CORRECT_SEMESTER__EEXPRESSION = "self.optionalCourseGroups->forAll(optionalGroup | optionalGroup.semester = self)";
+
+	/**
+	 * Validates the optionGroupsCorrectSemester constraint of '<em>Semester</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSemester_optionGroupsCorrectSemester(Semester semester, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return
+			validate
+				(StudyplanPackage.Literals.SEMESTER,
+				 semester,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "optionGroupsCorrectSemester",
+				 SEMESTER__OPTION_GROUPS_CORRECT_SEMESTER__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

@@ -830,7 +830,7 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 		  (semesterEClass,
 		   source,
 		   new String[] {
-			   "constraints", "shouldContainEnoughCredits coursesTaughtCurrentSemester"
+			   "constraints", "shouldContainEnoughCredits coursesTaughtCurrentSemester optionGroupsCorrectSemester"
 		   });
 		addAnnotation
 		  (semesterOptionalCourseGroupEClass,
@@ -870,13 +870,14 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 		   new String[] {
 			   "subspecsShorterThanParent", "self.subSpecializations->collect(spec | spec.durationInSemesters)->forAll(num | num <= self.durationInSemesters)",
 			   "allMainSpecsSimilarDuration", "self.subSpecializations->collect(subSpec | subSpec.durationInSemesters)->forAll(num | num = self.subSpecializations->first().durationInSemesters)",
-			   "allSubspecsSimilarLength", "self.subSpecializations->forAll(subSpec | subSpec.size() = self.subSpecialization->first().durationInSemesters)"
+			   "allSubspecsSimilarLength", "self.subSpecializations->forAll(subSpec | subSpec.durationInSemesters = self.subSpecializations->first().durationInSemesters)"
 		   });
 		addAnnotation
 		  (semesterEClass,
 		   source,
 		   new String[] {
-			   "shouldContainEnoughCredits", "self.totalCreditsValue >= 30.0"
+			   "shouldContainEnoughCredits", "self.totalCreditsValue >= 30.0",
+			   "optionGroupsCorrectSemester", "self.optionalCourseGroups->forAll(optionalGroup | optionalGroup.semester = self)"
 		   });
 		addAnnotation
 		  (semesterOptionalCourseGroupEClass,
