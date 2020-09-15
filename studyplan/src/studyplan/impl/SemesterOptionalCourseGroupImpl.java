@@ -251,8 +251,8 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	@Override
 	public void selectOptionalCourse(Course course) {
 				
-		if(this.courseGroup.getCourses().contains(course) && ! this.currentlySelected.contains(course)){
-			this.currentlySelected.add(course);
+		if(this.getCourseGroup().getCourses().contains(course) && ! this.getCurrentlySelected().contains(course)){
+			this.getCurrentlySelected().add(course);
 		} else {
 			throw new IllegalArgumentException("Course not part of alternatives");
 		}
@@ -266,7 +266,7 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	 */
 	@Override
 	public void unselectOptionalCourse(Course course) {
-		this.currentlySelected.remove(course);
+		this.getCurrentlySelected().remove(course);
 	}
 
 	/**

@@ -2,8 +2,6 @@
  */
 package studyplan.tests;
 
-import java.util.ArrayList;
-import java.util.List;
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;

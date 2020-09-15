@@ -5,7 +5,8 @@ package studyplan.tests;
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
-
+import studyplan.Course;
+import studyplan.CourseGroup;
 import studyplan.SemesterOptionalCourseGroup;
 import studyplan.StudyplanFactory;
 
@@ -98,12 +99,24 @@ public class SemesterOptionalCourseGroupTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see studyplan.SemesterOptionalCourseGroup#selectOptionalCourse(studyplan.Course)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testSelectOptionalCourse__Course() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		CourseGroup optionalCourses = StudyplanFactory.eINSTANCE.createCourseGroup();
+		Course course1 = StudyplanFactory.eINSTANCE.createCourse();
+		course1.setCredits(7.5);
+		optionalCourses.getCourses().add(course1);
+		Course course2 = StudyplanFactory.eINSTANCE.createCourse();
+		course2.setCredits(7.5);
+		optionalCourses.getCourses().add(course2);
+		
+		SemesterOptionalCourseGroup socg = StudyplanFactory.eINSTANCE.createSemesterOptionalCourseGroup();
+		socg.setCourseGroup(optionalCourses);
+		socg.selectOptionalCourse(course1);
+		
+		assertFalse(socg.getCurrentlySelected().isEmpty());
+		assertEquals(1, socg.getCurrentlySelected().size());
+		assertEquals(course1, socg.getCurrentlySelected().get(0));
 	}
 
 	/**
@@ -111,12 +124,20 @@ public class SemesterOptionalCourseGroupTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see studyplan.SemesterOptionalCourseGroup#unselectOptionalCourse(studyplan.Course)
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testUnselectOptionalCourse__Course() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		CourseGroup optionalCourses = StudyplanFactory.eINSTANCE.createCourseGroup();
+		Course course1 = StudyplanFactory.eINSTANCE.createCourse();
+		course1.setCredits(7.5);
+		optionalCourses.getCourses().add(course1);
+		
+		SemesterOptionalCourseGroup socg = StudyplanFactory.eINSTANCE.createSemesterOptionalCourseGroup();
+		socg.setCourseGroup(optionalCourses);
+		socg.selectOptionalCourse(course1);		
+		socg.unselectOptionalCourse(course1);
+		
+		assertTrue(socg.getCurrentlySelected().isEmpty());
 	}
 
 } //SemesterOptionalCourseGroupTest
