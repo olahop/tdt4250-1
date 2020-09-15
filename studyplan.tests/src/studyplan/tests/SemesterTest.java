@@ -2,10 +2,13 @@
  */
 package studyplan.tests;
 
+import java.util.ArrayList;
+import java.util.List;
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
-
+import studyplan.Course;
+import studyplan.CourseGroup;
 import studyplan.Semester;
 import studyplan.StudyplanFactory;
 
@@ -97,9 +100,31 @@ public class SemesterTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see studyplan.Semester#getTotalCreditsValue()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void testGetTotalCreditsValue() {
+		List<Course> courses = new ArrayList<>();
+		Course course1 = StudyplanFactory.eINSTANCE.createCourse();
+		course1.setCredits(7.5);
+		courses.add(course1);
+		Course course2 = StudyplanFactory.eINSTANCE.createCourse();
+		course2.setCredits(7.5);
+		courses.add(course2);
+		Course course3 = StudyplanFactory.eINSTANCE.createCourse();
+		course3.setCredits(7.5);
+		courses.add(course3);
+		
+		CourseGroup courseGroup1 = StudyplanFactory.eINSTANCE.createCourseGroup();
+		
+		
+		//courseGroup1.eSet(, course1);
+		
+		//System.out.print(courseGroup1.getCourses());
+		
+		
+		Semester semester = StudyplanFactory.eINSTANCE.createSemester();
+		semester.setMandatoryCourses(courseGroup1);
+		
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

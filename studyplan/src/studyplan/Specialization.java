@@ -106,7 +106,7 @@ public interface Specialization extends EObject {
 	 * @return the value of the '<em>Sub Specializations</em>' reference list.
 	 * @see studyplan.StudyplanPackage#getSpecialization_SubSpecializations()
 	 * @see studyplan.Specialization#getParentSpecialization
-	 * @model opposite="parentSpecialization" derived="true"
+	 * @model opposite="parentSpecialization"
 	 * @generated
 	 */
 	EList<Specialization> getSubSpecializations();

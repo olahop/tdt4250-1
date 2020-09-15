@@ -13,12 +13,6 @@ import studyplan.StudyplanFactory;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Specialization</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are tested:
- * <ul>
- *   <li>{@link studyplan.Specialization#getSubSpecializations() <em>Sub Specializations</em>}</li>
- * </ul>
- * </p>
  * @generated
  */
 public class SpecializationTest extends TestCase {
@@ -90,19 +84,6 @@ public class SpecializationTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
-	}
-
-	/**
-	 * Tests the '{@link studyplan.Specialization#getSubSpecializations() <em>Sub Specializations</em>}' feature getter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see studyplan.Specialization#getSubSpecializations()
-	 * @generated
-	 */
-	public void testGetSubSpecializations() {
-		// TODO: implement this feature getter test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
 	}
 
 } //SpecializationTest
