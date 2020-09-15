@@ -445,7 +445,7 @@ public interface StudyplanPackage extends EPackage {
 	int SEMESTER_OPTIONAL_COURSE_GROUP__NR_OF_OPTIONAL_FROM_GROUP = 0;
 
 	/**
-	 * The feature id for the '<em><b>Semester</b></em>' reference.
+	 * The feature id for the '<em><b>Semester</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -932,10 +932,10 @@ public interface StudyplanPackage extends EPackage {
 	EAttribute getSemesterOptionalCourseGroup_NrOfOptionalFromGroup();
 
 	/**
-	 * Returns the meta object for the reference '{@link studyplan.SemesterOptionalCourseGroup#getSemester <em>Semester</em>}'.
+	 * Returns the meta object for the container reference '{@link studyplan.SemesterOptionalCourseGroup#getSemester <em>Semester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Semester</em>'.
+	 * @return the meta object for the container reference '<em>Semester</em>'.
 	 * @see studyplan.SemesterOptionalCourseGroup#getSemester()
 	 * @see #getSemesterOptionalCourseGroup()
 	 * @generated
@@ -1339,7 +1339,7 @@ public interface StudyplanPackage extends EPackage {
 		EAttribute SEMESTER_OPTIONAL_COURSE_GROUP__NR_OF_OPTIONAL_FROM_GROUP = eINSTANCE.getSemesterOptionalCourseGroup_NrOfOptionalFromGroup();
 
 		/**
-		 * The meta object literal for the '<em><b>Semester</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Semester</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

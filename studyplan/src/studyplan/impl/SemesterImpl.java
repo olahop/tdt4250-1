@@ -14,8 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -211,7 +210,7 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	@Override
 	public EList<SemesterOptionalCourseGroup> getOptionalCourseGroups() {
 		if (optionalCourseGroups == null) {
-			optionalCourseGroups = new EObjectContainmentEList<SemesterOptionalCourseGroup>(SemesterOptionalCourseGroup.class, this, StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS);
+			optionalCourseGroups = new EObjectContainmentWithInverseEList<SemesterOptionalCourseGroup>(SemesterOptionalCourseGroup.class, this, StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__SEMESTER);
 		}
 		return optionalCourseGroups;
 	}
@@ -323,9 +322,12 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOptionalCourseGroups()).basicAdd(otherEnd, msgs);
 			case StudyplanPackage.SEMESTER__PROGRAM:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);

@@ -76,11 +76,13 @@ public interface Semester extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Optional Course Groups</b></em>' containment reference list.
 	 * The list contents are of type {@link studyplan.SemesterOptionalCourseGroup}.
+	 * It is bidirectional and its opposite is '{@link studyplan.SemesterOptionalCourseGroup#getSemester <em>Semester</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Optional Course Groups</em>' containment reference list.
 	 * @see studyplan.StudyplanPackage#getSemester_OptionalCourseGroups()
-	 * @model containment="true"
+	 * @see studyplan.SemesterOptionalCourseGroup#getSemester
+	 * @model opposite="semester" containment="true"
 	 * @generated
 	 */
 	EList<SemesterOptionalCourseGroup> getOptionalCourseGroups();

@@ -91,7 +91,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mandatoryCourses" lowerBound="1"
         eType="#//CourseGroup" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="optionalCourseGroups" upperBound="-1"
-        eType="#//SemesterOptionalCourseGroup" containment="true"/>
+        eType="#//SemesterOptionalCourseGroup" containment="true" eOpposite="#//SemesterOptionalCourseGroup/semester"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="program" lowerBound="1"
         eType="#//Program" eOpposite="#//Program/semesters"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="specialization" eType="#//Specialization"/>
@@ -116,7 +116,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrOfOptionalFromGroup"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="semester" lowerBound="1"
-        eType="#//Semester"/>
+        eType="#//Semester" eOpposite="#//Semester/optionalCourseGroups"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="courseGroup" lowerBound="1"
         eType="#//CourseGroup" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentlySelected" upperBound="-1"

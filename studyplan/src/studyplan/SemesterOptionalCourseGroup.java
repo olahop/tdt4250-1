@@ -49,22 +49,24 @@ public interface SemesterOptionalCourseGroup extends EObject {
 	void setNrOfOptionalFromGroup(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Semester</b></em>' reference.
+	 * Returns the value of the '<em><b>Semester</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link studyplan.Semester#getOptionalCourseGroups <em>Optional Course Groups</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Semester</em>' reference.
+	 * @return the value of the '<em>Semester</em>' container reference.
 	 * @see #setSemester(Semester)
 	 * @see studyplan.StudyplanPackage#getSemesterOptionalCourseGroup_Semester()
-	 * @model required="true"
+	 * @see studyplan.Semester#getOptionalCourseGroups
+	 * @model opposite="optionalCourseGroups" required="true" transient="false"
 	 * @generated
 	 */
 	Semester getSemester();
 
 	/**
-	 * Sets the value of the '{@link studyplan.SemesterOptionalCourseGroup#getSemester <em>Semester</em>}' reference.
+	 * Sets the value of the '{@link studyplan.SemesterOptionalCourseGroup#getSemester <em>Semester</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Semester</em>' reference.
+	 * @param value the new value of the '<em>Semester</em>' container reference.
 	 * @see #getSemester()
 	 * @generated
 	 */

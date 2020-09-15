@@ -10,6 +10,7 @@ import junit.textui.TestRunner;
 import studyplan.Course;
 import studyplan.CourseGroup;
 import studyplan.Semester;
+import studyplan.SemesterOptionalCourseGroup;
 import studyplan.StudyplanFactory;
 
 /**
@@ -103,31 +104,33 @@ public class SemesterTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testGetTotalCreditsValue() {
-		List<Course> courses = new ArrayList<>();
+		CourseGroup mandatoryCourses = StudyplanFactory.eINSTANCE.createCourseGroup();
 		Course course1 = StudyplanFactory.eINSTANCE.createCourse();
 		course1.setCredits(7.5);
-		courses.add(course1);
+		mandatoryCourses.getCourses().add(course1);
 		Course course2 = StudyplanFactory.eINSTANCE.createCourse();
 		course2.setCredits(7.5);
-		courses.add(course2);
+		mandatoryCourses.getCourses().add(course2);
 		Course course3 = StudyplanFactory.eINSTANCE.createCourse();
 		course3.setCredits(7.5);
-		courses.add(course3);
-		
-		CourseGroup courseGroup1 = StudyplanFactory.eINSTANCE.createCourseGroup();
-		
-		
-		//courseGroup1.eSet(, course1);
-		
-		//System.out.print(courseGroup1.getCourses());
-		
-		
+		mandatoryCourses.getCourses().add(course3);
+					
 		Semester semester = StudyplanFactory.eINSTANCE.createSemester();
-		semester.setMandatoryCourses(courseGroup1);
+		semester.setMandatoryCourses(mandatoryCourses);
+		assertEquals(22.5, semester.getTotalCreditsValue());
 		
-		// TODO: implement this feature getter test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
+		CourseGroup optionalCourses = StudyplanFactory.eINSTANCE.createCourseGroup();
+		Course course4 = StudyplanFactory.eINSTANCE.createCourse();
+		course4.setCredits(7.5);
+		optionalCourses.getCourses().add(course4);
+		
+		SemesterOptionalCourseGroup socg = StudyplanFactory.eINSTANCE.createSemesterOptionalCourseGroup();
+		socg.setSemester(semester);
+		socg.setCourseGroup(optionalCourses);
+		assertEquals(22.5, semester.getTotalCreditsValue());
+		
+		socg.getCurrentlySelected().add(course4);
+		assertEquals(30.0, semester.getTotalCreditsValue());
 	}
 
 } //SemesterTest
