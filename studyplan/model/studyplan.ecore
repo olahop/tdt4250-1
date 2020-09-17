@@ -15,6 +15,7 @@
       <details key="allMainSpecsSimilarDuration" value="self.specializations->select(spec | spec.parentSpecialization = null)->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)"/>
       <details key="semestersHasUniqueOrderNr" value="self.semesters->isUnique(sem | sem.ProgramsSemesterOrderNr)"/>
       <details key="masterLevelHasMaxLimitOfLevelThreeCoures" value="self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).optionalCourseGroups.currentlySelected)->select( c | c.level.value &lt; 3).credits->sum() &lt;= 22.5"/>
+      <details key="mandatoryCoursesCovered" value="self.semesters->subSequence(1, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(1, self.semesters->size()).optionalCourseGroups.currentlySelected)->includesAll(self.mandatoryCourses.courses)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ProgramTypeAndDuration"/>

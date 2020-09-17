@@ -856,7 +856,8 @@ public class StudyplanPackageImpl extends EPackageImpl implements StudyplanPacka
 			   "allSpecsDurationShorterThanProgram", "self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num <= self.type.value)",
 			   "allMainSpecsSimilarDuration", "self.specializations->select(spec | spec.parentSpecialization = null)->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)",
 			   "semestersHasUniqueOrderNr", "self.semesters->isUnique(sem | sem.ProgramsSemesterOrderNr)",
-			   "masterLevelHasMaxLimitOfLevelThreeCoures", "self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).optionalCourseGroups.currentlySelected)->select( c | c.level.value < 3).credits->sum() <= 22.5"
+			   "masterLevelHasMaxLimitOfLevelThreeCoures", "self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).optionalCourseGroups.currentlySelected)->select( c | c.level.value < 3).credits->sum() <= 22.5",
+			   "mandatoryCoursesCovered", "self.semesters->subSequence(1, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(1, self.semesters->size()).optionalCourseGroups.currentlySelected)->includesAll(self.mandatoryCourses.courses)"
 		   });
 		addAnnotation
 		  (courseEClass,

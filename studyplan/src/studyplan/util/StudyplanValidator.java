@@ -255,45 +255,32 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the mandatoryCoursesCovered constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROGRAM__MANDATORY_COURSES_COVERED__EEXPRESSION = "self.semesters->subSequence(1, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(1, self.semesters->size()).optionalCourseGroups.currentlySelected)->includesAll(self.mandatoryCourses.courses)";
+
+	/**
 	 * Validates the mandatoryCoursesCovered constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean validateProgram_mandatoryCoursesCovered(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		
-		List<Course> PROGRAMS_MANDATORY_COURSES = program.getMandatoryCourses().getCourses(); 
-		List<Course> allCourses = new ArrayList<>();
-		
-		for (Semester semester: program.getSemesters()) {
-			
-			List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
-			for (Course mandatoryCourse: mandatoryCourses) {
-				allCourses.add(mandatoryCourse);
-			}
-			
-			for (SemesterOptionalCourseGroup optionalCourseGroup: semester.getOptionalCourseGroups()) {
-				for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
-					allCourses.add(selectedCourse);
-				}
-			}
-		}			
-		
-		if (allCourses.containsAll(PROGRAMS_MANDATORY_COURSES)) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "mandatoryCoursesCovered", getObjectLabel(program, context) },
-						 new Object[] { program },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.PROGRAM,
+				 program,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "mandatoryCoursesCovered",
+				 PROGRAM__MANDATORY_COURSES_COVERED__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
