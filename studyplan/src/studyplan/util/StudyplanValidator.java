@@ -168,55 +168,32 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the masterLevelHasMaxLimitOfLevelThreeCoures constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROGRAM__MASTER_LEVEL_HAS_MAX_LIMIT_OF_LEVEL_THREE_COURES__EEXPRESSION = "self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).optionalCourseGroups.currentlySelected)->select( c | c.level.value < 3).credits->sum() <= 22.5";
+
+	/**
 	 * Validates the masterLevelHasMaxLimitOfLevelThreeCoures constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean validateProgram_masterLevelHasMaxLimitOfLevelThreeCoures(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-
-		int MASTER_LEVEL_VALUE_LIMIT = 4;
-		int NR_OF_MASTER_SEMESTERS = 4;
-		double VALID_LIMIT_OF_LOWER_LEVEL_CREDITS = 22.5;
-		double lowerLevelCredits = 0.0;
-		
-		if (program.getType().getName() != "Bachelor") {
-			List<Semester> semesters = program.getSemesters();
-			for (int i = 1; i <= NR_OF_MASTER_SEMESTERS; i++) {
-				Semester semester = semesters.get(semesters.size() - i);
-				
-				List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
-				for (Course mandatoryCourse: mandatoryCourses) {
-					if (mandatoryCourse.getLevel().getValue() < MASTER_LEVEL_VALUE_LIMIT) {
-						lowerLevelCredits += mandatoryCourse.getCredits();
-					}
-				}
-				
-				for (SemesterOptionalCourseGroup optionalCourseGroup: semester.getOptionalCourseGroups()) {
-					for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
-						if (selectedCourse.getLevel().getValue() < MASTER_LEVEL_VALUE_LIMIT) {
-							lowerLevelCredits += selectedCourse.getCredits();
-						}
-					}
-				}
-			}			
-		}
-		
-		if (lowerLevelCredits > VALID_LIMIT_OF_LOWER_LEVEL_CREDITS) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "masterLevelHasMaxLimitOfLevelThreeCoures", getObjectLabel(program, context) },
-						 new Object[] { program },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.PROGRAM,
+				 program,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "masterLevelHasMaxLimitOfLevelThreeCoures",
+				 PROGRAM__MASTER_LEVEL_HAS_MAX_LIMIT_OF_LEVEL_THREE_COURES__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**

@@ -104,7 +104,6 @@
           courses="//@courses.15 //@courses.21 //@courses.18"/>
       <optionalCourseGroups
           nrOfOptionalFromGroup="1"
-          semester="//@programs.0/@semesters.4"
           currentlySelected="//@courses.19">
         <courseGroup
             courses="//@courses.19 //@courses.20 //@courses.22 //@courses.23 //@courses.17"/>
@@ -123,7 +122,6 @@
           courses="//@courses.30 //@courses.37"/>
       <optionalCourseGroups
           nrOfOptionalFromGroup="1"
-          semester="//@programs.0/@semesters.6"
           currentlySelected="//@courses.43">
         <courseGroup
             courses="//@courses.44 //@courses.45 //@courses.43"/>
@@ -136,14 +134,12 @@
           courses="//@courses.62 //@courses.56"/>
       <optionalCourseGroups
           nrOfOptionalFromGroup="1"
-          semester="//@programs.0/@semesters.7"
           currentlySelected="//@courses.48">
         <courseGroup
             courses="//@courses.50 //@courses.57 //@courses.53 //@courses.48 //@courses.51 //@courses.54 //@courses.55"/>
       </optionalCourseGroups>
       <optionalCourseGroups
           nrOfOptionalFromGroup="1"
-          semester="//@programs.0/@semesters.7"
           currentlySelected="//@courses.59">
         <courseGroup
             courses="//@courses.59 //@courses.60 //@courses.61"/>
@@ -156,7 +152,6 @@
           courses="//@courses.63 //@courses.64"/>
       <optionalCourseGroups
           nrOfOptionalFromGroup="1"
-          semester="//@programs.0/@semesters.8"
           currentlySelected="//@courses.44">
         <courseGroup
             courses="//@courses.44 //@courses.45 //@courses.43"/>
