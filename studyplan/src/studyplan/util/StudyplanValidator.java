@@ -313,60 +313,32 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the noDuplicateCourses constraint of '<em>Program</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PROGRAM__NO_DUPLICATE_COURSES__EEXPRESSION = "self.semesters->subSequence(1, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(1, self.semesters->size()).optionalCourseGroups.currentlySelected)->isUnique(c | c.code)";
+
+	/**
 	 * Validates the noDuplicateCourses constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean validateProgram_noDuplicateCourses(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		
-		List<Course> allCourses = new ArrayList<>();
-		boolean duplicateCourses = false;
-		
-		for (Semester semester: program.getSemesters()) {
-			
-			List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
-			for (Course mandatoryCourse: mandatoryCourses) {
-				if(allCourses.contains(mandatoryCourse)) {
-					duplicateCourses = true;
-					break;
-				} else {
-					allCourses.add(mandatoryCourse);
-				}
-			}
-			
-			for (SemesterOptionalCourseGroup optionalCourseGroup: semester.getOptionalCourseGroups()) {
-				for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
-					if(allCourses.contains(selectedCourse)) {
-						duplicateCourses = true;
-						break;
-					} else {
-						allCourses.add(selectedCourse);
-					}
-				}
-			}
-			
-			if (duplicateCourses) {
-				break;
-			}
-		}			
-		
-		
-		if (duplicateCourses) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "noDuplicateCourses", getObjectLabel(program, context) },
-						 new Object[] { program },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.PROGRAM,
+				 program,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "noDuplicateCourses",
+				 PROGRAM__NO_DUPLICATE_COURSES__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
