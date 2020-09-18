@@ -12,5 +12,8 @@ Export-Package: studyplan.tests
 Require-Bundle: org.eclipse.core.runtime,
  studyplan;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.junit;visibility:=reexport
+ org.junit;visibility:=reexport,
+ org.eclipse.acceleo.query;bundle-version="7.0.0",
+ org.antlr.runtime;bundle-version="4.7.2"
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.acceleo.query.delegates;version="5.0.1"

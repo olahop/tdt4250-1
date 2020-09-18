@@ -1,498 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<studyplan:Studyplan
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:studyplan="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore"
-    xsi:schemaLocation="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore studyplan.ecore">
-  <programs
-      name="Datateknologi 5-årig"
-      type="IntegratedMaster">
-    <specializations
-        name="Algoritmer og datamaskiner"
-        durationInSemesters="6"
-        subSpecializations="//@programs.0/@specializations.1 //@programs.0/@specializations.2 //@programs.0/@specializations.3">
-      <mandatoryCourses
-          courses="//@courses.17 //@courses.25"/>
+<studyplan:Studyplan xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:studyplan="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore" xsi:schemaLocation="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore studyplan.ecore">
+  <programs name="Datateknologi 5-årig" type="IntegratedMaster">
+    <specializations name="Algoritmer og datamaskiner" durationInSemesters="6" subSpecializations="//@programs.0/@specializations.1 //@programs.0/@specializations.2 //@programs.0/@specializations.3">
+      <mandatoryCourses courses="//@courses.17 //@courses.25"/>
     </specializations>
-    <specializations
-        name="Algoritmer og HPC"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.0">
-      <mandatoryCourses
-          courses="//@courses.40 //@courses.46"/>
+    <specializations name="Algoritmer og HPC" durationInSemesters="4" parentSpecialization="//@programs.0/@specializations.0">
+      <mandatoryCourses courses="//@courses.40 //@courses.46"/>
     </specializations>
-    <specializations
-        name="Datamaskiner og systemprogramvare"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.0">
-      <mandatoryCourses
-          courses="//@courses.41 //@courses.49"/>
+    <specializations name="Datamaskiner og systemprogramvare" durationInSemesters="4" parentSpecialization="//@programs.0/@specializations.0">
+      <mandatoryCourses courses="//@courses.41 //@courses.49"/>
     </specializations>
-    <specializations
-        name="Visuell databehandling"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.0">
-      <mandatoryCourses
-          courses="//@courses.47 //@courses.42"/>
+    <specializations name="Visuell databehandling" durationInSemesters="4" parentSpecialization="//@programs.0/@specializations.0">
+      <mandatoryCourses courses="//@courses.47 //@courses.42"/>
     </specializations>
-    <specializations
-        name="Databaser og søk"
-        durationInSemesters="6">
-      <mandatoryCourses
-          courses="//@courses.20 //@courses.26 //@courses.39 //@courses.51 //@courses.30"/>
+    <specializations name="Databaser og søk" durationInSemesters="6">
+      <mandatoryCourses courses="//@courses.20 //@courses.26 //@courses.39 //@courses.51 //@courses.30"/>
     </specializations>
-    <specializations
-        name="Kunstig intelligens"
-        durationInSemesters="6">
-      <mandatoryCourses
-          courses="//@courses.21 //@courses.27 //@courses.37 //@courses.56 //@courses.30"/>
+    <specializations name="Kunstig intelligens" durationInSemesters="6">
+      <mandatoryCourses courses="//@courses.21 //@courses.27 //@courses.37 //@courses.56 //@courses.30"/>
     </specializations>
-    <specializations
-        name="Programvaresystemer"
-        durationInSemesters="6"
-        subSpecializations="//@programs.0/@specializations.9 //@programs.0/@specializations.7 //@programs.0/@specializations.8">
-      <mandatoryCourses
-          courses="//@courses.30 //@courses.58 //@courses.23"/>
+    <specializations name="Programvaresystemer" durationInSemesters="6" subSpecializations="//@programs.0/@specializations.9 //@programs.0/@specializations.7 //@programs.0/@specializations.8">
+      <mandatoryCourses courses="//@courses.30 //@courses.58 //@courses.23"/>
     </specializations>
-    <specializations
-        name="Digital virksomhetsutvikling"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.6">
-      <mandatoryCourses
-          courses="//@courses.31 //@courses.32"/>
+    <specializations name="Digital virksomhetsutvikling" durationInSemesters="4" parentSpecialization="//@programs.0/@specializations.6">
+      <mandatoryCourses courses="//@courses.31 //@courses.32"/>
     </specializations>
-    <specializations
-        name="Interaksjonsdesign og spilltek."
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.6">
-      <mandatoryCourses
-          courses="//@courses.34 //@courses.33"/>
+    <specializations name="Interaksjonsdesign og spilltek." durationInSemesters="4" parentSpecialization="//@programs.0/@specializations.6">
+      <mandatoryCourses courses="//@courses.34 //@courses.33"/>
     </specializations>
-    <specializations
-        name="Programvareutvikling"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.6">
-      <mandatoryCourses
-          courses="//@courses.35 //@courses.36"/>
+    <specializations name="Programvareutvikling" durationInSemesters="4" parentSpecialization="//@programs.0/@specializations.6">
+      <mandatoryCourses courses="//@courses.35 //@courses.36"/>
     </specializations>
-    <mandatoryCourses
-        courses="//@courses.0 //@courses.4 //@courses.1 //@courses.3 //@courses.2 //@courses.7 //@courses.8 //@courses.9 //@courses.11 //@courses.10 //@courses.6 //@courses.5 //@courses.12 //@courses.13 //@courses.14 //@courses.15 //@courses.16 //@courses.18 //@courses.24 //@courses.29 //@courses.28 //@courses.65 //@courses.63 //@courses.64 //@courses.62"/>
+    <mandatoryCourses courses="//@courses.0 //@courses.4 //@courses.1 //@courses.3 //@courses.2 //@courses.7 //@courses.8 //@courses.9 //@courses.11 //@courses.10 //@courses.6 //@courses.5 //@courses.12 //@courses.13 //@courses.14 //@courses.15 //@courses.16 //@courses.18 //@courses.24 //@courses.29 //@courses.28 //@courses.65 //@courses.63 //@courses.64 //@courses.62"/>
     <semesters>
-      <mandatoryCourses
-          courses="//@courses.0 //@courses.4 //@courses.1 //@courses.3"/>
+      <mandatoryCourses courses="//@courses.0 //@courses.4 //@courses.1 //@courses.3"/>
     </semesters>
-    <semesters
-        programsSemesterOrderNr="1">
-      <mandatoryCourses
-          courses="//@courses.2 //@courses.7 //@courses.9 //@courses.11"/>
+    <semesters programsSemesterOrderNr="1">
+      <mandatoryCourses courses="//@courses.2 //@courses.7 //@courses.9 //@courses.11"/>
     </semesters>
-    <semesters
-        programsSemesterOrderNr="2">
-      <mandatoryCourses
-          courses="//@courses.8 //@courses.10 //@courses.6 //@courses.5"/>
+    <semesters programsSemesterOrderNr="2">
+      <mandatoryCourses courses="//@courses.8 //@courses.10 //@courses.6 //@courses.5"/>
     </semesters>
-    <semesters
-        programsSemesterOrderNr="3">
-      <mandatoryCourses
-          courses="//@courses.12 //@courses.13 //@courses.14 //@courses.16"/>
+    <semesters programsSemesterOrderNr="3">
+      <mandatoryCourses courses="//@courses.12 //@courses.13 //@courses.14 //@courses.16"/>
     </semesters>
-    <semesters
-        programsSemesterOrderNr="4"
-        specialization="//@programs.0/@specializations.5">
-      <mandatoryCourses
-          courses="//@courses.15 //@courses.21 //@courses.18"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected="//@courses.19">
-        <courseGroup
-            courses="//@courses.19 //@courses.20 //@courses.22 //@courses.23 //@courses.17"/>
+    <semesters programsSemesterOrderNr="4" specialization="//@programs.0/@specializations.5">
+      <mandatoryCourses courses="//@courses.15 //@courses.21 //@courses.18"/>
+      <optionalCourseGroups nrOfOptionalFromGroup="1" currentlySelected="//@courses.19">
+        <courseGroup courses="//@courses.19 //@courses.20 //@courses.22 //@courses.23 //@courses.17"/>
       </optionalCourseGroups>
     </semesters>
-    <semesters
-        programsSemesterOrderNr="5"
-        specialization="//@programs.0/@specializations.5">
-      <mandatoryCourses
-          courses="//@courses.29 //@courses.28 //@courses.27 //@courses.24"/>
+    <semesters programsSemesterOrderNr="5" specialization="//@programs.0/@specializations.5">
+      <mandatoryCourses courses="//@courses.29 //@courses.28 //@courses.27 //@courses.24"/>
     </semesters>
-    <semesters
-        programsSemesterOrderNr="6"
-        specialization="//@programs.0/@specializations.5">
-      <mandatoryCourses
-          courses="//@courses.30 //@courses.37"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected="//@courses.43">
-        <courseGroup
-            courses="//@courses.44 //@courses.45 //@courses.43"/>
+    <semesters programsSemesterOrderNr="6" specialization="//@programs.0/@specializations.5">
+      <mandatoryCourses courses="//@courses.30 //@courses.37"/>
+      <optionalCourseGroups nrOfOptionalFromGroup="1" currentlySelected="//@courses.43">
+        <courseGroup courses="//@courses.44 //@courses.45 //@courses.43"/>
       </optionalCourseGroups>
     </semesters>
-    <semesters
-        programsSemesterOrderNr="7"
-        specialization="//@programs.0/@specializations.5">
-      <mandatoryCourses
-          courses="//@courses.62 //@courses.56"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected="//@courses.48">
-        <courseGroup
-            courses="//@courses.50 //@courses.57 //@courses.53 //@courses.48 //@courses.51 //@courses.54 //@courses.55"/>
+    <semesters programsSemesterOrderNr="7" specialization="//@programs.0/@specializations.5">
+      <mandatoryCourses courses="//@courses.62 //@courses.56"/>
+      <optionalCourseGroups nrOfOptionalFromGroup="1" currentlySelected="//@courses.48">
+        <courseGroup courses="//@courses.50 //@courses.57 //@courses.53 //@courses.48 //@courses.51 //@courses.54 //@courses.55"/>
       </optionalCourseGroups>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected="//@courses.59">
-        <courseGroup
-            courses="//@courses.59 //@courses.60 //@courses.61"/>
+      <optionalCourseGroups nrOfOptionalFromGroup="1" currentlySelected="//@courses.59">
+        <courseGroup courses="//@courses.59 //@courses.60 //@courses.61"/>
       </optionalCourseGroups>
     </semesters>
-    <semesters
-        programsSemesterOrderNr="8"
-        specialization="//@programs.0/@specializations.5">
-      <mandatoryCourses
-          courses="//@courses.63 //@courses.64"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected="//@courses.44">
-        <courseGroup
-            courses="//@courses.44 //@courses.45 //@courses.43"/>
+    <semesters programsSemesterOrderNr="8" specialization="//@programs.0/@specializations.5">
+      <mandatoryCourses courses="//@courses.63 //@courses.64"/>
+      <optionalCourseGroups nrOfOptionalFromGroup="1" currentlySelected="//@courses.44">
+        <courseGroup courses="//@courses.44 //@courses.45 //@courses.43"/>
       </optionalCourseGroups>
     </semesters>
-    <semesters
-        programsSemesterOrderNr="9"
-        specialization="//@programs.0/@specializations.5">
-      <mandatoryCourses
-          courses="//@courses.65"/>
+    <semesters programsSemesterOrderNr="9" specialization="//@programs.0/@specializations.5">
+      <mandatoryCourses courses="//@courses.65"/>
     </semesters>
   </programs>
-  <courses name="Informasjonsteknologi"
-      code="TDT4110"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="ExPhil"
-      code="EXPH0004"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="OOP"
-      code="TDT4100"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Diskret matematikk"
-      code="TMA4140"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Matte 1"
-      code="TMA4100"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Statistikk"
-      code="TMA4240"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="Datamaksiner og dig.tek"
-      code="TDT4160"
-      level="level2"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="ProgLab"
-      code="TDT4112"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="DT Prog.prosjekt"
-      code="TDT4113"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Krets- og Dig.tek"
-      code="TFE4101"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="AlgDat"
-      code="TDT4120"
-      level="level2"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Matte 3"
-      code="TMA4115"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="Programvareutvikling"
-      code="TDT4140"
-      level="level2"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Datamod. og databasesys."
-      code="TDT4145"
-      level="level2"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="MMI"
-      code="TDT4180"
-      level="level2"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="IntroAI"
-      code="TDT4136"
-      level="level3"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="KTN"
-      code="TTM4100"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Maskinnær prog."
-      code="TDT4258"
-      level="level3"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Matte 4"
-      code="TMA4135"
-      level="level3"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="Webutvikling"
-      code="IT2810"
-      level="level3"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Info.gjenfinning"
-      code="TDT4117"
-      level="level3"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Kog.Ark"
-      code="TDT4137"
-      level="level3"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Prog.språk"
-      code="TDT4165"
-      level="level3"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Info.sys."
-      code="TDT4175"
-      level="level3"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="OS"
-      code="TDT4186"
-      level="level3"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Kompilatortek."
-      code="TDT4205"
-      level="level3"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Datavarehus og datagruvedrift"
-      code="TDT4300"
-      level="level3"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Metoder i AI"
-      code="TDT4171"
-      level="level3"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Fysikk"
-      code="TFY4125"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="Tek.led"
-      code="TIØ4258"
-      level="level3"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="Kundestyrt"
-      code="TDT4290"
-      level="higher"
-      credits="15.0"
-      taughtInAutumn="true"/>
-  <courses name="Virksomhetsarkitektur og -innovasjon"
-      code="TDT4252"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Digital tjenesteinnovasjon"
-      code="TDT4257"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Samhandlingstek."
-      code="TDT4245"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Design av UI"
-      code="IT3402"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Avansert Prog.utvikling"
-      code="TDT4242"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Avansert Prog.design"
-      code="TDT4250"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Maskinlæring"
-      code="TDT4173"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Datamaskinprosjekt"
-      code="TDT4295"
-      level="higher"
-      credits="15.0"
-      taughtInAutumn="true"/>
-  <courses name="Store, distribuerte datamengder"
-      code="TDT4225"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Parallelle beregninger"
-      code="TDT4200"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Datamaskinkonstruksjon"
-      code="TDT4255"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Gr.visuell databehandling"
-      code="TDT4195"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Komplimentær 1"
-      code="KOMP0001"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="Komplimentær 2"
-      code="KOMP0002"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="Komplimentær 3"
-      code="KOMP0003"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="Algoritmekonstruksjon"
-      code="TDT4125"
-      level="level3"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Grafikk og visualisering"
-      code="TDT4230"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Prog.sikkerhet"
-      code="TDT4237"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Datamaskinarkitektur"
-      code="TDT4260"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Datasyn"
-      code="TDT4265"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Big Data-arkitektur"
-      code="TDT4305"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Avansert databasesystemer"
-      code="TDT4150"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Web-intelligens"
-      code="TDT4215"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Intelligent tekstanalyse og språkforståelse"
-      code="TDT4310"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Info.sikkerhet"
-      code="TTM4135"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="AI prog."
-      code="IT3105"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="Bio-inspirert AI"
-      code="IT3708"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="ProgArk"
-      code="TDT4240"
-      level="level3"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="I-emne 1"
-      code="IEM0001"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="I-emne 2"
-      code="IEM0002"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="I-emne 3"
-      code="IEM0003"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"
-      taughtInSpring="true"/>
-  <courses name="EiT"
-      code="EIT0000"
-      level="higher"
-      credits="7.5"
-      taughtInSpring="true"/>
-  <courses name="DT fordypningsprosjekt"
-      code="TDT4501"
-      level="higher"
-      credits="15.0"
-      taughtInAutumn="true"/>
-  <courses name="DT fordypningsemner"
-      code="TDT4506"
-      level="higher"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Masteroppgave"
-      code="TDT4900"
-      level="higher"
-      credits="30.0"
-      taughtInSpring="true"/>
+  <courses name="Informasjonsteknologi" code="TDT4110" credits="7.5" taughtInAutumn="true"/>
+  <courses name="ExPhil" code="EXPH0004" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="OOP" code="TDT4100" credits="7.5" taughtInSpring="true"/>
+  <courses name="Diskret matematikk" code="TMA4140" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Matte 1" code="TMA4100" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Statistikk" code="TMA4240" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="Datamaksiner og dig.tek" code="TDT4160" level="level2" credits="7.5" taughtInAutumn="true"/>
+  <courses name="ProgLab" code="TDT4112" credits="7.5" taughtInSpring="true"/>
+  <courses name="DT Prog.prosjekt" code="TDT4113" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Krets- og Dig.tek" code="TFE4101" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="AlgDat" code="TDT4120" level="level2" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Matte 3" code="TMA4115" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="Programvareutvikling" code="TDT4140" level="level2" credits="7.5" taughtInSpring="true"/>
+  <courses name="Datamod. og databasesys." code="TDT4145" level="level2" credits="7.5" taughtInSpring="true"/>
+  <courses name="MMI" code="TDT4180" level="level2" credits="7.5" taughtInSpring="true"/>
+  <courses name="IntroAI" code="TDT4136" level="level3" credits="7.5" taughtInAutumn="true"/>
+  <courses name="KTN" code="TTM4100" credits="7.5" taughtInSpring="true"/>
+  <courses name="Maskinnær prog." code="TDT4258" level="level3" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Matte 4" code="TMA4135" level="level3" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="Webutvikling" code="IT2810" level="level3" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Info.gjenfinning" code="TDT4117" level="level3" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Kog.Ark" code="TDT4137" level="level3" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Prog.språk" code="TDT4165" level="level3" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Info.sys." code="TDT4175" level="level3" credits="7.5" taughtInAutumn="true"/>
+  <courses name="OS" code="TDT4186" level="level3" credits="7.5" taughtInSpring="true"/>
+  <courses name="Kompilatortek." code="TDT4205" level="level3" credits="7.5" taughtInSpring="true"/>
+  <courses name="Datavarehus og datagruvedrift" code="TDT4300" level="level3" credits="7.5" taughtInSpring="true"/>
+  <courses name="Metoder i AI" code="TDT4171" level="level3" credits="7.5" taughtInSpring="true"/>
+  <courses name="Fysikk" code="TFY4125" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="Tek.led" code="TIØ4258" level="level3" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="Kundestyrt" code="TDT4290" level="higher" credits="15.0" taughtInAutumn="true"/>
+  <courses name="Virksomhetsarkitektur og -innovasjon" code="TDT4252" level="higher" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Digital tjenesteinnovasjon" code="TDT4257" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Samhandlingstek." code="TDT4245" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Design av UI" code="IT3402" level="higher" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Avansert Prog.utvikling" code="TDT4242" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Avansert Prog.design" code="TDT4250" level="higher" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Maskinlæring" code="TDT4173" level="higher" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Datamaskinprosjekt" code="TDT4295" level="higher" credits="15.0" taughtInAutumn="true"/>
+  <courses name="Store, distribuerte datamengder" code="TDT4225" level="higher" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Parallelle beregninger" code="TDT4200" level="higher" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Datamaskinkonstruksjon" code="TDT4255" level="higher" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Gr.visuell databehandling" code="TDT4195" level="higher" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Komplimentær 1" code="KOMP0001" level="higher" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="Komplimentær 2" code="KOMP0002" level="higher" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="Komplimentær 3" code="KOMP0003" level="higher" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="Algoritmekonstruksjon" code="TDT4125" level="level3" credits="7.5" taughtInSpring="true"/>
+  <courses name="Grafikk og visualisering" code="TDT4230" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Prog.sikkerhet" code="TDT4237" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Datamaskinarkitektur" code="TDT4260" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Datasyn" code="TDT4265" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Big Data-arkitektur" code="TDT4305" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Avansert databasesystemer" code="TDT4150" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Web-intelligens" code="TDT4215" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Intelligent tekstanalyse og språkforståelse" code="TDT4310" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Info.sikkerhet" code="TTM4135" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="AI prog." code="IT3105" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="Bio-inspirert AI" code="IT3708" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="ProgArk" code="TDT4240" level="level3" credits="7.5" taughtInSpring="true"/>
+  <courses name="I-emne 1" code="IEM0001" level="higher" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="I-emne 2" code="IEM0002" level="higher" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="I-emne 3" code="IEM0003" level="higher" credits="7.5" taughtInAutumn="true" taughtInSpring="true"/>
+  <courses name="EiT" code="EIT0000" level="higher" credits="7.5" taughtInSpring="true"/>
+  <courses name="DT fordypningsprosjekt" code="TDT4501" level="higher" credits="15.0" taughtInAutumn="true"/>
+  <courses name="DT fordypningsemner" code="TDT4506" level="higher" credits="7.5" taughtInAutumn="true"/>
+  <courses name="Masteroppgave" code="TDT4900" level="higher" credits="30.0" taughtInSpring="true"/>
 </studyplan:Studyplan>
