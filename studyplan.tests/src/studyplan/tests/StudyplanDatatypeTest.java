@@ -1,45 +1,48 @@
 package studyplan.tests;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.Diagnostician;
-
 import junit.framework.TestCase;
+
 import studyplan.StudyplanFactory;
 import studyplan.StudyplanPackage;
-import studyplan.impl.StudyplanFactoryImpl;
-import studyplan.impl.StudyplanPackageImpl;
 
 public class StudyplanDatatypeTest extends TestCase {
+	
 
 	protected void setUp() throws Exception {
-		super.setUp();
+		super.setUp();	
 	}
 	
 	public void test_courseCode_valid() {
-		StudyplanFactoryImpl fac = new StudyplanFactoryImpl();		
 		
-		fac.createCourseCodeFromString(StudyplanPackage.eINSTANCE.getCourseCode(), "TDT4000");
+		String valid_code = "TDT4000";
+		
+		Object code = StudyplanFactory.eINSTANCE.createFromString(StudyplanPackage.eINSTANCE.getCourseCode(), valid_code);
+		assertEquals(code, valid_code);			
 		
 		
-		String res = "";
-			
-		try {
-			res = fac.createCourseCodeFromString(StudyplanPackage.eINSTANCE.getCourseCode(), "TDT4000");
-		} catch (Exception exception) {
-			assertTrue(exception instanceof IllegalArgumentException);
-		}
-			assertEquals(res, "TDT4000");
-	
-			
+		String res = StudyplanFactory.eINSTANCE.convertToString(StudyplanPackage.eINSTANCE.getCourseCode(), valid_code);
+		assertEquals(res, valid_code);			
 	}
 	
 	public void test_courseCode_invalid() {
-		assertTrue(false);
-	}
+		
+		String[] invalidCourseCodes = {"*1TDT2", "11TDT", "asd2342", "TDT*123"};
+		
+		for (String code: invalidCourseCodes) {
+			boolean failedAttempt = false;
+			
+			String res = StudyplanFactory.eINSTANCE.convertToString(StudyplanPackage.eINSTANCE.getCourseCode(), code);
+			assertEquals(res, code);
+			
+			try {				
+				StudyplanFactory.eINSTANCE.createFromString(StudyplanPackage.eINSTANCE.getCourseCode(), code);				
+			} catch (Exception exception) {
+				assertTrue(exception instanceof IllegalArgumentException);
+				failedAttempt = true;
+			}
+			assertTrue(failedAttempt);
+		}
 
+	}
+	
 }
