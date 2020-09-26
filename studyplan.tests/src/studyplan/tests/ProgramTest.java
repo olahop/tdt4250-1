@@ -15,12 +15,6 @@ import studyplan.StudyplanFactory;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Program</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are tested:
- * <ul>
- *   <li>{@link studyplan.Program#getDurationPreSpecialization() <em>Duration Pre Specialization</em>}</li>
- * </ul>
- * </p>
  * @generated
  */
 public class ProgramTest extends TestCase {
@@ -99,7 +93,7 @@ public class ProgramTest extends TestCase {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see studyplan.Program#getDurationPreSpecialization()
-	 * @generated NOT
+	 * @generated
 	 */
 	public void testGetDurationPreSpecialization() {
 		Program program = StudyplanFactory.eINSTANCE.createProgram();		

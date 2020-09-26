@@ -16,16 +16,16 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link studyplan.Specialization#getProgram <em>Program</em>}</li>
- *   <li>{@link studyplan.Specialization#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  *   <li>{@link studyplan.Specialization#getName <em>Name</em>}</li>
  *   <li>{@link studyplan.Specialization#getDurationInSemesters <em>Duration In Semesters</em>}</li>
  *   <li>{@link studyplan.Specialization#getParentSpecialization <em>Parent Specialization</em>}</li>
  *   <li>{@link studyplan.Specialization#getSubSpecializations <em>Sub Specializations</em>}</li>
+ *   <li>{@link studyplan.Specialization#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getSpecialization()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='allSubspecsSimilarLength subspecsShorterThanParent mandatoryCoursesAreCovered'"
- *        annotation="http://www.eclipse.org/acceleo/query/1.0 subspecsShorterThanParent='self.subSpecializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.durationInSemesters)' allMainSpecsSimilarDuration='self.subSpecializations-&gt;collect(subSpec | subSpec.durationInSemesters)-&gt;forAll(num | num = self.subSpecializations-&gt;first().durationInSemesters)' allSubspecsSimilarLength='self.subSpecializations-&gt;forAll(subSpec | subSpec.durationInSemesters = self.subSpecializations-&gt;first().durationInSemesters)'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 subspecsShorterThanParent='self.subSpecializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.durationInSemesters)' mandatoryCoursesAreCovered='true' allSubspecsSimilarLength='self.subSpecializations-&gt;forAll(subSpec | subSpec.durationInSemesters = self.subSpecializations-&gt;first().durationInSemesters)'"
  * @generated
  */
 public interface Specialization extends EObject {
@@ -54,26 +54,16 @@ public interface Specialization extends EObject {
 	void setProgram(Program value);
 
 	/**
-	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' reference list.
+	 * The list contents are of type {@link studyplan.Course}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mandatory Courses</em>' containment reference.
-	 * @see #setMandatoryCourses(CourseGroup)
+	 * @return the value of the '<em>Mandatory Courses</em>' reference list.
 	 * @see studyplan.StudyplanPackage#getSpecialization_MandatoryCourses()
-	 * @model containment="true" required="true"
+	 * @model
 	 * @generated
 	 */
-	CourseGroup getMandatoryCourses();
-
-	/**
-	 * Sets the value of the '{@link studyplan.Specialization#getMandatoryCourses <em>Mandatory Courses</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mandatory Courses</em>' containment reference.
-	 * @see #getMandatoryCourses()
-	 * @generated
-	 */
-	void setMandatoryCourses(CourseGroup value);
+	EList<Course> getMandatoryCourses();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

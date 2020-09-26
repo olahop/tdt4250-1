@@ -59,7 +59,6 @@ public class StudyplanFactoryImpl extends EFactoryImpl implements StudyplanFacto
 		switch (eClass.getClassifierID()) {
 			case StudyplanPackage.PROGRAM: return createProgram();
 			case StudyplanPackage.COURSE: return createCourse();
-			case StudyplanPackage.COURSE_GROUP: return createCourseGroup();
 			case StudyplanPackage.SPECIALIZATION: return createSpecialization();
 			case StudyplanPackage.SEMESTER: return createSemester();
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP: return createSemesterOptionalCourseGroup();
@@ -127,17 +126,6 @@ public class StudyplanFactoryImpl extends EFactoryImpl implements StudyplanFacto
 	public Course createCourse() {
 		CourseImpl course = new CourseImpl();
 		return course;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public CourseGroup createCourseGroup() {
-		CourseGroupImpl courseGroup = new CourseGroupImpl();
-		return courseGroup;
 	}
 
 	/**

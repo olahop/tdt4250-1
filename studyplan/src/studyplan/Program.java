@@ -18,14 +18,14 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link studyplan.Program#getName <em>Name</em>}</li>
  *   <li>{@link studyplan.Program#getType <em>Type</em>}</li>
  *   <li>{@link studyplan.Program#getSpecializations <em>Specializations</em>}</li>
- *   <li>{@link studyplan.Program#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  *   <li>{@link studyplan.Program#getSemesters <em>Semesters</em>}</li>
  *   <li>{@link studyplan.Program#getDurationPreSpecialization <em>Duration Pre Specialization</em>}</li>
+ *   <li>{@link studyplan.Program#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getProgram()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='totalNrOfSemestersShouldMatchType masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered semestersHasUniqueOrderNr noDuplicateCourses'"
- *        annotation="http://www.eclipse.org/acceleo/query/1.0 totalNrOfSemestersShouldMatchType='self.type.value = self.semesters-&gt;size()' allSpecsDurationShorterThanProgram='self.specializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.type.value)' allMainSpecsSimilarDuration='self.specializations-&gt;select(spec | spec.parentSpecialization = null)-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num = self.specializations-&gt;first().durationInSemesters)' semestersHasUniqueOrderNr='self.semesters-&gt;isUnique(sem | sem.ProgramsSemesterOrderNr)' masterLevelHasMaxLimitOfLevelThreeCoures='self.semesters-&gt;subSequence(self.semesters-&gt;size()-3, self.semesters-&gt;size()).mandatoryCourses.courses-&gt;union(self.semesters-&gt;subSequence(self.semesters-&gt;size()-3, self.semesters-&gt;size()).optionalCourseGroups.currentlySelected)-&gt;select( c | c.level.value &lt; 3).credits-&gt;sum() &lt;= 22.5' mandatoryCoursesCovered='self.semesters-&gt;subSequence(1, self.semesters-&gt;size()).mandatoryCourses.courses-&gt;union(self.semesters-&gt;subSequence(1, self.semesters-&gt;size()).optionalCourseGroups.currentlySelected)-&gt;includesAll(self.mandatoryCourses.courses)' noDuplicateCourses='self.semesters-&gt;subSequence(1, self.semesters-&gt;size()).mandatoryCourses.courses-&gt;union(self.semesters-&gt;subSequence(1, self.semesters-&gt;size()).optionalCourseGroups.currentlySelected)-&gt;isUnique(c | c.code)'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='totalNrOfSemestersShouldMatchType masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered noDuplicateCourses'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 totalNrOfSemestersShouldMatchType='self.type.value = self.semesters.programsSemesterOrderNr-&gt;asSet()-&gt;size()' allSpecsDurationShorterThanProgram='self.specializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.type.value)' allMainSpecsSimilarDuration='self.specializations-&gt;select(spec | spec.parentSpecialization = null)-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num = self.specializations-&gt;first().durationInSemesters)' masterLevelHasMaxLimitOfLevelThreeCoures='true' mandatoryCoursesCovered='true' noDuplicateCourses='true'"
  * @generated
  */
 public interface Program extends EObject {
@@ -69,26 +69,16 @@ public interface Program extends EObject {
 	EList<Specialization> getSpecializations();
 
 	/**
-	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' reference list.
+	 * The list contents are of type {@link studyplan.Course}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mandatory Courses</em>' containment reference.
-	 * @see #setMandatoryCourses(CourseGroup)
+	 * @return the value of the '<em>Mandatory Courses</em>' reference list.
 	 * @see studyplan.StudyplanPackage#getProgram_MandatoryCourses()
-	 * @model containment="true" required="true"
+	 * @model
 	 * @generated
 	 */
-	CourseGroup getMandatoryCourses();
-
-	/**
-	 * Sets the value of the '{@link studyplan.Program#getMandatoryCourses <em>Mandatory Courses</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mandatory Courses</em>' containment reference.
-	 * @see #getMandatoryCourses()
-	 * @generated
-	 */
-	void setMandatoryCourses(CourseGroup value);
+	EList<Course> getMandatoryCourses();
 
 	/**
 	 * Returns the value of the '<em><b>Semesters</b></em>' containment reference list.
@@ -99,7 +89,7 @@ public interface Program extends EObject {
 	 * @return the value of the '<em>Semesters</em>' containment reference list.
 	 * @see studyplan.StudyplanPackage#getProgram_Semesters()
 	 * @see studyplan.Semester#getProgram
-	 * @model opposite="program" containment="true" lower="4" upper="10"
+	 * @model opposite="program" containment="true"
 	 * @generated
 	 */
 	EList<Semester> getSemesters();
@@ -109,11 +99,22 @@ public interface Program extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Duration Pre Specialization</em>' attribute.
+	 * @see #setDurationPreSpecialization(int)
 	 * @see studyplan.StudyplanPackage#getProgram_DurationPreSpecialization()
-	 * @model changeable="false" derived="true"
+	 * @model
 	 * @generated
 	 */
 	int getDurationPreSpecialization();
+
+	/**
+	 * Sets the value of the '{@link studyplan.Program#getDurationPreSpecialization <em>Duration Pre Specialization</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Duration Pre Specialization</em>' attribute.
+	 * @see #getDurationPreSpecialization()
+	 * @generated
+	 */
+	void setDurationPreSpecialization(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

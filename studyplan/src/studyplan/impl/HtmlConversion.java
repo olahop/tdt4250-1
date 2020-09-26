@@ -76,13 +76,13 @@ public class HtmlConversion {
 		for (Semester semester: semesters) {
 			content += "<h2>Semester " + semesterCount++ + ":</h2>";
 			content += "<p> Code Name Credits Status</p>";
-			for (Course course: semester.getMandatoryCourses().getCourses()) {
+			for (Course course: semester.getMandatoryCourses()) {
 				content += "<p>" + course.getCode() + " " + course.getName() + "&emsp;" + course.getCredits() + " O </p>";
 			}	
 			if(semester.getOptionalCourseGroups() != null) {
 				int optionalCourseGroupId = 1;
 				for (SemesterOptionalCourseGroup socg: semester.getOptionalCourseGroups()) {
-					for (Course course: socg.getCourseGroup().getCourses()) {
+					for (Course course: socg.getOptionalCourses()) {
 						content += "<p>" + course.getCode() + " " + course.getName() + "&emsp;" + course.getCredits() + " V" + optionalCourseGroupId  + "</p>";
 					}
 					optionalCourseGroupId++;

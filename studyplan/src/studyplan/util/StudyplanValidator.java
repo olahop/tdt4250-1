@@ -92,8 +92,6 @@ public class StudyplanValidator extends EObjectValidator {
 				return validateProgram((Program)value, diagnostics, context);
 			case StudyplanPackage.COURSE:
 				return validateCourse((Course)value, diagnostics, context);
-			case StudyplanPackage.COURSE_GROUP:
-				return validateCourseGroup((CourseGroup)value, diagnostics, context);
 			case StudyplanPackage.SPECIALIZATION:
 				return validateSpecialization((Specialization)value, diagnostics, context);
 			case StudyplanPackage.SEMESTER:
@@ -133,7 +131,6 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateProgram_allSpecsDurationShorterThanProgram(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_allMainSpecsSimilarDuration(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_mandatoryCoursesCovered(program, diagnostics, context);
-		if (result || diagnostics != null) result &= validateProgram_semestersHasUniqueOrderNr(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_noDuplicateCourses(program, diagnostics, context);
 		return result;
 	}
@@ -144,7 +141,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PROGRAM__TOTAL_NR_OF_SEMESTERS_SHOULD_MATCH_TYPE__EEXPRESSION = "self.type.value = self.semesters->size()";
+	protected static final String PROGRAM__TOTAL_NR_OF_SEMESTERS_SHOULD_MATCH_TYPE__EEXPRESSION = "self.type.value = self.semesters.programsSemesterOrderNr->asSet()->size()";
 
 	/**
 	 * Validates the totalNrOfSemestersShouldMatchType constraint of '<em>Program</em>'.
@@ -173,7 +170,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PROGRAM__MASTER_LEVEL_HAS_MAX_LIMIT_OF_LEVEL_THREE_COURES__EEXPRESSION = "self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(self.semesters->size()-3, self.semesters->size()).optionalCourseGroups.currentlySelected)->select( c | c.level.value < 3).credits->sum() <= 22.5";
+	protected static final String PROGRAM__MASTER_LEVEL_HAS_MAX_LIMIT_OF_LEVEL_THREE_COURES__EEXPRESSION = "true";
 
 	/**
 	 * Validates the masterLevelHasMaxLimitOfLevelThreeCoures constraint of '<em>Program</em>'.
@@ -260,7 +257,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PROGRAM__MANDATORY_COURSES_COVERED__EEXPRESSION = "self.semesters->subSequence(1, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(1, self.semesters->size()).optionalCourseGroups.currentlySelected)->includesAll(self.mandatoryCourses.courses)";
+	protected static final String PROGRAM__MANDATORY_COURSES_COVERED__EEXPRESSION = "true";
 
 	/**
 	 * Validates the mandatoryCoursesCovered constraint of '<em>Program</em>'.
@@ -284,41 +281,12 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the semestersHasUniqueOrderNr constraint of '<em>Program</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String PROGRAM__SEMESTERS_HAS_UNIQUE_ORDER_NR__EEXPRESSION = "self.semesters->isUnique(sem | sem.ProgramsSemesterOrderNr)";
-
-	/**
-	 * Validates the semestersHasUniqueOrderNr constraint of '<em>Program</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateProgram_semestersHasUniqueOrderNr(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(StudyplanPackage.Literals.PROGRAM,
-				 program,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/acceleo/query/1.0",
-				 "semestersHasUniqueOrderNr",
-				 PROGRAM__SEMESTERS_HAS_UNIQUE_ORDER_NR__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
 	 * The cached validation expression for the noDuplicateCourses constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PROGRAM__NO_DUPLICATE_COURSES__EEXPRESSION = "self.semesters->subSequence(1, self.semesters->size()).mandatoryCourses.courses->union(self.semesters->subSequence(1, self.semesters->size()).optionalCourseGroups.currentlySelected)->isUnique(c | c.code)";
+	protected static final String PROGRAM__NO_DUPLICATE_COURSES__EEXPRESSION = "true";
 
 	/**
 	 * Validates the noDuplicateCourses constraint of '<em>Program</em>'.
@@ -457,15 +425,6 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCourseGroup(CourseGroup courseGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(courseGroup, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateSpecialization(Specialization specialization, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(specialization, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(specialization, diagnostics, context);
@@ -541,45 +500,32 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the mandatoryCoursesAreCovered constraint of '<em>Specialization</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SPECIALIZATION__MANDATORY_COURSES_ARE_COVERED__EEXPRESSION = "true";
+
+	/**
 	 * Validates the mandatoryCoursesAreCovered constraint of '<em>Specialization</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean validateSpecialization_mandatoryCoursesAreCovered(Specialization specialization, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		
-		List<Course> SPECIALIZATION_MANDATORY_COURSES = specialization.getMandatoryCourses().getCourses(); 
-		List<Course> allProgramCourses = new ArrayList<>();
-		
-		for (Semester semester: specialization.getProgram().getSemesters()) {
-			
-			List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
-			for (Course mandatoryCourse: mandatoryCourses) {
-				allProgramCourses.add(mandatoryCourse);
-			}
-			
-			for (SemesterOptionalCourseGroup optionalCourseGroup: semester.getOptionalCourseGroups()) {
-				for (Course selectedCourse: optionalCourseGroup.getCurrentlySelected()) {
-					allProgramCourses.add(selectedCourse);
-				}
-			}
-		}			
-		
-		if (allProgramCourses.containsAll(SPECIALIZATION_MANDATORY_COURSES)) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "mandatoryCoursesAreCovered", getObjectLabel(specialization, context) },
-						 new Object[] { specialization },
-						 context));
-			}
-			return false;
-		}
-		return true;
+		return
+			validate
+				(StudyplanPackage.Literals.SPECIALIZATION,
+				 specialization,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/acceleo/query/1.0",
+				 "mandatoryCoursesAreCovered",
+				 SPECIALIZATION__MANDATORY_COURSES_ARE_COVERED__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
 	}
 
 	/**
@@ -642,8 +588,7 @@ public class StudyplanValidator extends EObjectValidator {
 		boolean isSpringSemester = semester.getProgramsSemesterOrderNr() % 2 == 1;
 		boolean coursesNotTaughtCurrentSemester = false;
 		
-		List<Course> mandatoryCourses = semester.getMandatoryCourses().getCourses();
-		for (Course mandatoryCourse: mandatoryCourses) {
+		for (Course mandatoryCourse: semester.getMandatoryCourses()) {
 			if (isSpringSemester && ! mandatoryCourse.isTaughtInSpring()) {
 				coursesNotTaughtCurrentSemester = true;
 			} else if (! isSpringSemester && ! mandatoryCourse.isTaughtInAutumn()) {
@@ -736,7 +681,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__NR_OF_OPTIONAL_MUST_BE_LESS_THAN_SIZE_OF_GROUP__EEXPRESSION = "self.courseGroup.courses->size() >= self.nrOfOptionalFromGroup";
+	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__NR_OF_OPTIONAL_MUST_BE_LESS_THAN_SIZE_OF_GROUP__EEXPRESSION = "self.optionalCourses->size() >= self.nrOfOptionalFromGroup";
 
 	/**
 	 * Validates the nrOfOptionalMustBeLessThanSizeOfGroup constraint of '<em>Semester Optional Course Group</em>'.
@@ -765,7 +710,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED_IN_OPTIONS__EEXPRESSION = "self.courseGroup.courses->includesAll(self.currentlySelected)";
+	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED_IN_OPTIONS__EEXPRESSION = "self.optionalCourses->includesAll(self.currentlySelected)";
 
 	/**
 	 * Validates the currentlySelectedInOptions constraint of '<em>Semester Optional Course Group</em>'.
@@ -794,7 +739,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED_CORRECT_SIZE__EEXPRESSION = "self.currentlySelected->size() = self.nrOfOptionalFromGroup";
+	protected static final String SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED_CORRECT_SIZE__EEXPRESSION = "self.currentlySelected->size() <= self.nrOfOptionalFromGroup";
 
 	/**
 	 * Validates the currentlySelectedCorrectSize constraint of '<em>Semester Optional Course Group</em>'.
