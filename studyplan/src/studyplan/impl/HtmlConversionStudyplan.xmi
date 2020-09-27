@@ -4,60 +4,328 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:studyplan="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore"
-    xsi:schemaLocation="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore ../../../model/studyplan.ecore">
+    xsi:schemaLocation="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore studyplan.ecore">
   <programs
       name="Datateknologi 5-årig"
       type="IntegratedMaster"
-      durationPreSpecialization="4"
       mandatoryCourses="//@courses.0 //@courses.4 //@courses.1 //@courses.3 //@courses.2 //@courses.7 //@courses.8 //@courses.9 //@courses.11 //@courses.10 //@courses.6 //@courses.5 //@courses.12 //@courses.13 //@courses.14 //@courses.15 //@courses.16 //@courses.18 //@courses.24 //@courses.29 //@courses.28 //@courses.65 //@courses.63 //@courses.64 //@courses.62">
     <specializations
         name="Algoritmer og datamaskiner"
-        durationInSemesters="6"
-        subSpecializations="//@programs.0/@specializations.1 //@programs.0/@specializations.2 //@programs.0/@specializations.3"
-        mandatoryCourses="//@courses.25 //@courses.17"/>
-    <specializations
-        name="Algoritmer og HPC"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.0"
-        mandatoryCourses="//@courses.40 //@courses.46"/>
-    <specializations
-        name="Datamaskiner og systemprogramvare"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.0"
-        mandatoryCourses="//@courses.41 //@courses.49"/>
-    <specializations
-        name="Visuell databehandling"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.0"
-        mandatoryCourses="//@courses.42 //@courses.47"/>
+        mandatoryCourses="//@courses.25 //@courses.17">
+      <subSpecializations
+          name="Algoritmer og HPC"
+          mandatoryCourses="//@courses.40 //@courses.46">
+        <semesters
+            programsSemesterOrderNr="6"
+            mandatoryCourses="//@courses.40">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.38 //@courses.30"/>
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="7"
+            mandatoryCourses="//@courses.46 //@courses.62">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.47 //@courses.48 //@courses.49 //@courses.50"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="8"
+            mandatoryCourses="//@courses.63 //@courses.64">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              currentlySelected=""
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="9"
+            mandatoryCourses="//@courses.65"/>
+      </subSpecializations>
+      <subSpecializations
+          name="Visuell databehandling"
+          mandatoryCourses="//@courses.42 //@courses.47">
+        <semesters
+            programsSemesterOrderNr="6"
+            mandatoryCourses="//@courses.42">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.30 //@courses.38"/>
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="7"
+            mandatoryCourses="//@courses.47 //@courses.62">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.46 //@courses.48 //@courses.49 //@courses.50"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="8"
+            mandatoryCourses="//@courses.63 //@courses.64">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              currentlySelected=""
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="9"
+            mandatoryCourses="//@courses.65"/>
+      </subSpecializations>
+      <subSpecializations
+          name="Datamaskiner og systemprogramvare"
+          mandatoryCourses="//@courses.41 //@courses.49">
+        <semesters
+            programsSemesterOrderNr="6"
+            mandatoryCourses="//@courses.41">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.30 //@courses.38"/>
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="7"
+            mandatoryCourses="//@courses.49 //@courses.62">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.46 //@courses.47 //@courses.48 //@courses.50"/>
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="8"
+            mandatoryCourses="//@courses.63 //@courses.64">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              currentlySelected=""
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="9"
+            mandatoryCourses="//@courses.65"/>
+      </subSpecializations>
+      <semesters
+          programsSemesterOrderNr="4"
+          mandatoryCourses="//@courses.17 //@courses.18 //@courses.15">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            optionalCourses="//@courses.19 //@courses.20 //@courses.21 //@courses.22 //@courses.23"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="5"
+          mandatoryCourses="//@courses.24 //@courses.25 //@courses.29 //@courses.28"/>
+    </specializations>
     <specializations
         name="Databaser og søk"
-        durationInSemesters="6"
-        mandatoryCourses="//@courses.20 //@courses.26 //@courses.39 //@courses.51 //@courses.30"/>
+        mandatoryCourses="//@courses.20 //@courses.26 //@courses.39 //@courses.51 //@courses.30">
+      <semesters
+          programsSemesterOrderNr="4"
+          mandatoryCourses="//@courses.20 //@courses.18 //@courses.15">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            optionalCourses="//@courses.17 //@courses.19 //@courses.21 //@courses.22 //@courses.23"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="5"
+          mandatoryCourses="//@courses.24 //@courses.28 //@courses.29 //@courses.26"/>
+      <semesters
+          programsSemesterOrderNr="6"
+          mandatoryCourses="//@courses.30 //@courses.39">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="7"
+          mandatoryCourses="//@courses.51 //@courses.62">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            optionalCourses="//@courses.48 //@courses.50 //@courses.52 //@courses.53 //@courses.54 //@courses.55"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="8"
+          mandatoryCourses="//@courses.63 //@courses.64">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            currentlySelected=""
+            optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="9"
+          mandatoryCourses="//@courses.65"/>
+    </specializations>
     <specializations
         name="Kunstig intelligens"
-        durationInSemesters="6"
-        mandatoryCourses="//@courses.21 //@courses.27 //@courses.37 //@courses.56 //@courses.30"/>
+        mandatoryCourses="//@courses.21 //@courses.27 //@courses.37 //@courses.56 //@courses.30">
+      <semesters
+          programsSemesterOrderNr="4"
+          mandatoryCourses="//@courses.15 //@courses.21 //@courses.18">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            currentlySelected=""
+            optionalCourses="//@courses.23 //@courses.19 //@courses.22 //@courses.20 //@courses.17"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="5"
+          mandatoryCourses="//@courses.24 //@courses.27 //@courses.28 //@courses.29"/>
+      <semesters
+          programsSemesterOrderNr="6"
+          mandatoryCourses="//@courses.30 //@courses.37">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            currentlySelected=""
+            optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="7"
+          mandatoryCourses="//@courses.62 //@courses.56">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            currentlySelected=""
+            optionalCourses="//@courses.48 //@courses.50 //@courses.51 //@courses.53 //@courses.54 //@courses.57"/>
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            currentlySelected=""
+            optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="8"
+          mandatoryCourses="//@courses.63 //@courses.64">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            currentlySelected=""
+            optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="9"
+          mandatoryCourses="//@courses.65"/>
+    </specializations>
     <specializations
         name="Programvaresystemer"
-        durationInSemesters="6"
-        subSpecializations="//@programs.0/@specializations.9 //@programs.0/@specializations.7 //@programs.0/@specializations.8"
-        mandatoryCourses="//@courses.30 //@courses.58 //@courses.23"/>
-    <specializations
-        name="Digital virksomhetsutvikling"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.6"
-        mandatoryCourses="//@courses.31 //@courses.32"/>
-    <specializations
-        name="Interaksjonsdesign og spilltek."
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.6"
-        mandatoryCourses="//@courses.34 //@courses.33"/>
-    <specializations
-        name="Programvareutvikling"
-        durationInSemesters="4"
-        parentSpecialization="//@programs.0/@specializations.6"
-        mandatoryCourses="//@courses.35 //@courses.36"/>
+        mandatoryCourses="//@courses.30 //@courses.58 //@courses.23">
+      <subSpecializations
+          name="Programvareutvikling"
+          mandatoryCourses="//@courses.35 //@courses.36">
+        <semesters
+            programsSemesterOrderNr="6"
+            mandatoryCourses="//@courses.36 //@courses.30">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="7"
+            mandatoryCourses="//@courses.35 //@courses.62">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.32 //@courses.33 //@courses.48 //@courses.53"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="8"
+            mandatoryCourses="//@courses.63 //@courses.64">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              currentlySelected=""
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="9"
+            mandatoryCourses="//@courses.65"/>
+      </subSpecializations>
+      <subSpecializations
+          name="Digital virksomhetsutvikling"
+          mandatoryCourses="//@courses.31 //@courses.32">
+        <semesters
+            programsSemesterOrderNr="6"
+            mandatoryCourses="//@courses.30 //@courses.31">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="7"
+            mandatoryCourses="//@courses.62 //@courses.32">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.33 //@courses.35 //@courses.48 //@courses.53"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="8"
+            mandatoryCourses="//@courses.63 //@courses.64">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              currentlySelected=""
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="9"
+            mandatoryCourses="//@courses.65"/>
+      </subSpecializations>
+      <subSpecializations
+          name="Interaksjonsdesign og spilltek."
+          mandatoryCourses="//@courses.34 //@courses.33">
+        <semesters
+            programsSemesterOrderNr="6"
+            mandatoryCourses="//@courses.34 //@courses.30">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="7"
+            mandatoryCourses="//@courses.33 //@courses.62">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              optionalCourses="//@courses.32 //@courses.35 //@courses.48 //@courses.53"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="8"
+            mandatoryCourses="//@courses.63 //@courses.64">
+          <optionalCourseGroups
+              nrOfOptionalFromGroup="1"
+              currentlySelected=""
+              optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
+        </semesters>
+        <semesters
+            programsSemesterOrderNr="9"
+            mandatoryCourses="//@courses.65"/>
+      </subSpecializations>
+      <semesters
+          programsSemesterOrderNr="4"
+          mandatoryCourses="//@courses.18 //@courses.23 //@courses.15">
+        <optionalCourseGroups
+            nrOfOptionalFromGroup="1"
+            optionalCourses="//@courses.19 //@courses.20 //@courses.21 //@courses.22 //@courses.17"/>
+      </semesters>
+      <semesters
+          programsSemesterOrderNr="5"
+          mandatoryCourses="//@courses.28 //@courses.29 //@courses.24 //@courses.58"/>
+    </specializations>
     <semesters
         mandatoryCourses="//@courses.0 //@courses.1 //@courses.3 //@courses.4"/>
     <semesters
@@ -69,231 +337,6 @@
     <semesters
         programsSemesterOrderNr="3"
         mandatoryCourses="//@courses.12 //@courses.14 //@courses.16 //@courses.13"/>
-    <semesters
-        programsSemesterOrderNr="4"
-        specializations="//@programs.0/@specializations.5"
-        mandatoryCourses="//@courses.15 //@courses.21 //@courses.18">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected=""
-          optionalCourses="//@courses.23 //@courses.19 //@courses.22 //@courses.20 //@courses.17"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="4"
-        specializations="//@programs.0/@specializations.6"
-        mandatoryCourses="//@courses.18 //@courses.23 //@courses.15">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.19 //@courses.20 //@courses.21 //@courses.22 //@courses.17"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="4"
-        specializations="//@programs.0/@specializations.4"
-        mandatoryCourses="//@courses.20 //@courses.18 //@courses.15">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.17 //@courses.19 //@courses.21 //@courses.22 //@courses.23"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="4"
-        specializations="//@programs.0/@specializations.0"
-        mandatoryCourses="//@courses.17 //@courses.18 //@courses.15">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.19 //@courses.20 //@courses.21 //@courses.22 //@courses.23"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="5"
-        specializations="//@programs.0/@specializations.0"
-        mandatoryCourses="//@courses.24 //@courses.25 //@courses.29 //@courses.28"/>
-    <semesters
-        programsSemesterOrderNr="5"
-        specializations="//@programs.0/@specializations.4"
-        mandatoryCourses="//@courses.24 //@courses.28 //@courses.29 //@courses.26"/>
-    <semesters
-        programsSemesterOrderNr="5"
-        specializations="//@programs.0/@specializations.5"
-        mandatoryCourses="//@courses.24 //@courses.27 //@courses.28 //@courses.29"/>
-    <semesters
-        programsSemesterOrderNr="5"
-        specializations="//@programs.0/@specializations.6"
-        mandatoryCourses="//@courses.28 //@courses.29 //@courses.24 //@courses.58"/>
-    <semesters
-        programsSemesterOrderNr="6"
-        specializations="//@programs.0/@specializations.1"
-        mandatoryCourses="//@courses.40">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.38 //@courses.30"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="6"
-        specializations="//@programs.0/@specializations.2"
-        mandatoryCourses="//@courses.41">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.30 //@courses.38"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="6"
-        specializations="//@programs.0/@specializations.3"
-        mandatoryCourses="//@courses.42">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.30 //@courses.38"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="6"
-        specializations="//@programs.0/@specializations.4"
-        mandatoryCourses="//@courses.30 //@courses.39">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="6"
-        specializations="//@programs.0/@specializations.5"
-        mandatoryCourses="//@courses.30 //@courses.37">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected=""
-          optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="6"
-        specializations="//@programs.0/@specializations.7"
-        mandatoryCourses="//@courses.30 //@courses.31">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="6"
-        specializations="//@programs.0/@specializations.8"
-        mandatoryCourses="//@courses.34 //@courses.30">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="6"
-        specializations="//@programs.0/@specializations.9"
-        mandatoryCourses="//@courses.36 //@courses.30">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="7"
-        specializations="//@programs.0/@specializations.1"
-        mandatoryCourses="//@courses.46 //@courses.62">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.47 //@courses.48 //@courses.49 //@courses.50"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="7"
-        specializations="//@programs.0/@specializations.2"
-        mandatoryCourses="//@courses.49 //@courses.62">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.46 //@courses.47 //@courses.48 //@courses.50"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="7"
-        specializations="//@programs.0/@specializations.3"
-        mandatoryCourses="//@courses.47 //@courses.62">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.46 //@courses.48 //@courses.49 //@courses.50"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="7"
-        specializations="//@programs.0/@specializations.4"
-        mandatoryCourses="//@courses.51 //@courses.62">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.48 //@courses.50 //@courses.52 //@courses.53 //@courses.54 //@courses.55"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="7"
-        specializations="//@programs.0/@specializations.5"
-        mandatoryCourses="//@courses.62 //@courses.56">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected=""
-          optionalCourses="//@courses.48 //@courses.50 //@courses.51 //@courses.53 //@courses.54 //@courses.57"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected=""
-          optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="7"
-        mandatoryCourses="//@courses.62 //@courses.32">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.33 //@courses.35 //@courses.48 //@courses.53"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="7"
-        specializations="//@programs.0/@specializations.8"
-        mandatoryCourses="//@courses.33 //@courses.62">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.32 //@courses.35 //@courses.48 //@courses.53"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="7"
-        specializations="//@programs.0/@specializations.9"
-        mandatoryCourses="//@courses.35 //@courses.62">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.59 //@courses.60 //@courses.61"/>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          optionalCourses="//@courses.32 //@courses.33 //@courses.48 //@courses.53"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="8"
-        specializations="//@programs.0/@specializations.1 //@programs.0/@specializations.2 //@programs.0/@specializations.3 //@programs.0/@specializations.4 //@programs.0/@specializations.5 //@programs.0/@specializations.7 //@programs.0/@specializations.8 //@programs.0/@specializations.9"
-        mandatoryCourses="//@courses.63 //@courses.64">
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1"
-          currentlySelected=""
-          optionalCourses="//@courses.43 //@courses.44 //@courses.45"/>
-    </semesters>
-    <semesters
-        programsSemesterOrderNr="9"
-        specializations="//@programs.0/@specializations.1 //@programs.0/@specializations.2 //@programs.0/@specializations.3 //@programs.0/@specializations.4 //@programs.0/@specializations.5 //@programs.0/@specializations.7 //@programs.0/@specializations.8 //@programs.0/@specializations.9"
-        mandatoryCourses="//@courses.65"/>
   </programs>
   <courses name="Informasjonsteknologi"
       code="TDT4110"
