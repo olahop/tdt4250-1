@@ -16,14 +16,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import studyplan.Course;
-import studyplan.Program;
 import studyplan.Semester;
 import studyplan.SemesterOptionalCourseGroup;
-import studyplan.Specialization;
 import studyplan.StudyplanPackage;
 
 /**
@@ -36,8 +33,6 @@ import studyplan.StudyplanPackage;
  * <ul>
  *   <li>{@link studyplan.impl.SemesterImpl#getProgramsSemesterOrderNr <em>Programs Semester Order Nr</em>}</li>
  *   <li>{@link studyplan.impl.SemesterImpl#getOptionalCourseGroups <em>Optional Course Groups</em>}</li>
- *   <li>{@link studyplan.impl.SemesterImpl#getProgram <em>Program</em>}</li>
- *   <li>{@link studyplan.impl.SemesterImpl#getSpecializations <em>Specializations</em>}</li>
  *   <li>{@link studyplan.impl.SemesterImpl#getTotalCreditsValue <em>Total Credits Value</em>}</li>
  *   <li>{@link studyplan.impl.SemesterImpl#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  * </ul>
@@ -74,16 +69,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	 * @ordered
 	 */
 	protected EList<SemesterOptionalCourseGroup> optionalCourseGroups;
-
-	/**
-	 * The cached value of the '{@link #getSpecializations() <em>Specializations</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSpecializations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Specialization> specializations;
 
 	/**
 	 * The default value of the '{@link #getTotalCreditsValue() <em>Total Credits Value</em>}' attribute.
@@ -186,62 +171,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Program getProgram() {
-		if (eContainerFeatureID() != StudyplanPackage.SEMESTER__PROGRAM) return null;
-		return (Program)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetProgram(Program newProgram, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newProgram, StudyplanPackage.SEMESTER__PROGRAM, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setProgram(Program newProgram) {
-		if (newProgram != eInternalContainer() || (eContainerFeatureID() != StudyplanPackage.SEMESTER__PROGRAM && newProgram != null)) {
-			if (EcoreUtil.isAncestor(this, newProgram))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newProgram != null)
-				msgs = ((InternalEObject)newProgram).eInverseAdd(this, StudyplanPackage.PROGRAM__SEMESTERS, Program.class, msgs);
-			msgs = basicSetProgram(newProgram, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER__PROGRAM, newProgram, newProgram));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Specialization> getSpecializations() {
-		if (specializations == null) {
-			specializations = new EObjectResolvingEList<Specialization>(Specialization.class, this, StudyplanPackage.SEMESTER__SPECIALIZATIONS);
-		}
-		return specializations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -269,10 +198,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 		switch (featureID) {
 			case StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOptionalCourseGroups()).basicAdd(otherEnd, msgs);
-			case StudyplanPackage.SEMESTER__PROGRAM:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetProgram((Program)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -287,24 +212,8 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 		switch (featureID) {
 			case StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS:
 				return ((InternalEList<?>)getOptionalCourseGroups()).basicRemove(otherEnd, msgs);
-			case StudyplanPackage.SEMESTER__PROGRAM:
-				return basicSetProgram(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case StudyplanPackage.SEMESTER__PROGRAM:
-				return eInternalContainer().eInverseRemove(this, StudyplanPackage.PROGRAM__SEMESTERS, Program.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -319,10 +228,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 				return getProgramsSemesterOrderNr();
 			case StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS:
 				return getOptionalCourseGroups();
-			case StudyplanPackage.SEMESTER__PROGRAM:
-				return getProgram();
-			case StudyplanPackage.SEMESTER__SPECIALIZATIONS:
-				return getSpecializations();
 			case StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE:
 				return getTotalCreditsValue();
 			case StudyplanPackage.SEMESTER__MANDATORY_COURSES:
@@ -347,13 +252,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 				getOptionalCourseGroups().clear();
 				getOptionalCourseGroups().addAll((Collection<? extends SemesterOptionalCourseGroup>)newValue);
 				return;
-			case StudyplanPackage.SEMESTER__PROGRAM:
-				setProgram((Program)newValue);
-				return;
-			case StudyplanPackage.SEMESTER__SPECIALIZATIONS:
-				getSpecializations().clear();
-				getSpecializations().addAll((Collection<? extends Specialization>)newValue);
-				return;
 			case StudyplanPackage.SEMESTER__MANDATORY_COURSES:
 				getMandatoryCourses().clear();
 				getMandatoryCourses().addAll((Collection<? extends Course>)newValue);
@@ -376,12 +274,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 			case StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS:
 				getOptionalCourseGroups().clear();
 				return;
-			case StudyplanPackage.SEMESTER__PROGRAM:
-				setProgram((Program)null);
-				return;
-			case StudyplanPackage.SEMESTER__SPECIALIZATIONS:
-				getSpecializations().clear();
-				return;
 			case StudyplanPackage.SEMESTER__MANDATORY_COURSES:
 				getMandatoryCourses().clear();
 				return;
@@ -401,10 +293,6 @@ public class SemesterImpl extends MinimalEObjectImpl.Container implements Semest
 				return programsSemesterOrderNr != PROGRAMS_SEMESTER_ORDER_NR_EDEFAULT;
 			case StudyplanPackage.SEMESTER__OPTIONAL_COURSE_GROUPS:
 				return optionalCourseGroups != null && !optionalCourseGroups.isEmpty();
-			case StudyplanPackage.SEMESTER__PROGRAM:
-				return getProgram() != null;
-			case StudyplanPackage.SEMESTER__SPECIALIZATIONS:
-				return specializations != null && !specializations.isEmpty();
 			case StudyplanPackage.SEMESTER__TOTAL_CREDITS_VALUE:
 				return totalCreditsValue != TOTAL_CREDITS_VALUE_EDEFAULT;
 			case StudyplanPackage.SEMESTER__MANDATORY_COURSES:

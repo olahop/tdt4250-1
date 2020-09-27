@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link studyplan.Semester#getProgramsSemesterOrderNr <em>Programs Semester Order Nr</em>}</li>
  *   <li>{@link studyplan.Semester#getOptionalCourseGroups <em>Optional Course Groups</em>}</li>
- *   <li>{@link studyplan.Semester#getProgram <em>Program</em>}</li>
- *   <li>{@link studyplan.Semester#getSpecializations <em>Specializations</em>}</li>
  *   <li>{@link studyplan.Semester#getTotalCreditsValue <em>Total Credits Value</em>}</li>
  *   <li>{@link studyplan.Semester#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  * </ul>
@@ -76,42 +74,6 @@ public interface Semester extends EObject {
 	 * @generated
 	 */
 	EList<SemesterOptionalCourseGroup> getOptionalCourseGroups();
-
-	/**
-	 * Returns the value of the '<em><b>Program</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link studyplan.Program#getSemesters <em>Semesters</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Program</em>' container reference.
-	 * @see #setProgram(Program)
-	 * @see studyplan.StudyplanPackage#getSemester_Program()
-	 * @see studyplan.Program#getSemesters
-	 * @model opposite="semesters" required="true" transient="false"
-	 * @generated
-	 */
-	Program getProgram();
-
-	/**
-	 * Sets the value of the '{@link studyplan.Semester#getProgram <em>Program</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Program</em>' container reference.
-	 * @see #getProgram()
-	 * @generated
-	 */
-	void setProgram(Program value);
-
-	/**
-	 * Returns the value of the '<em><b>Specializations</b></em>' reference list.
-	 * The list contents are of type {@link studyplan.Specialization}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specializations</em>' reference list.
-	 * @see studyplan.StudyplanPackage#getSemester_Specializations()
-	 * @model
-	 * @generated
-	 */
-	EList<Specialization> getSpecializations();
 
 	/**
 	 * Returns the value of the '<em><b>Total Credits Value</b></em>' attribute.

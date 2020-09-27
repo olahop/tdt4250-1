@@ -128,7 +128,6 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_totalNrOfSemestersShouldMatchType(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_masterLevelHasMaxLimitOfLevelThreeCoures(program, diagnostics, context);
-		if (result || diagnostics != null) result &= validateProgram_allSpecsDurationShorterThanProgram(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_allMainSpecsSimilarDuration(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_mandatoryCoursesCovered(program, diagnostics, context);
 		if (result || diagnostics != null) result &= validateProgram_noDuplicateCourses(program, diagnostics, context);
@@ -141,7 +140,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PROGRAM__TOTAL_NR_OF_SEMESTERS_SHOULD_MATCH_TYPE__EEXPRESSION = "self.type.value = self.semesters.programsSemesterOrderNr->asSet()->size()";
+	protected static final String PROGRAM__TOTAL_NR_OF_SEMESTERS_SHOULD_MATCH_TYPE__EEXPRESSION = "self.specializations.subSpecializations->forAll(sub | sub.semesters->union(sub.eContainer().semesters)->union(sub.eContainer().eContainer().semesters)->size() = self.type.value)";
 
 	/**
 	 * Validates the totalNrOfSemestersShouldMatchType constraint of '<em>Program</em>'.
@@ -165,61 +164,31 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the masterLevelHasMaxLimitOfLevelThreeCoures constraint of '<em>Program</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String PROGRAM__MASTER_LEVEL_HAS_MAX_LIMIT_OF_LEVEL_THREE_COURES__EEXPRESSION = "true";
-
-	/**
 	 * Validates the masterLevelHasMaxLimitOfLevelThreeCoures constraint of '<em>Program</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateProgram_masterLevelHasMaxLimitOfLevelThreeCoures(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(StudyplanPackage.Literals.PROGRAM,
-				 program,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/acceleo/query/1.0",
-				 "masterLevelHasMaxLimitOfLevelThreeCoures",
-				 PROGRAM__MASTER_LEVEL_HAS_MAX_LIMIT_OF_LEVEL_THREE_COURES__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * The cached validation expression for the allSpecsDurationShorterThanProgram constraint of '<em>Program</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String PROGRAM__ALL_SPECS_DURATION_SHORTER_THAN_PROGRAM__EEXPRESSION = "self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num <= self.type.value)";
-
-	/**
-	 * Validates the allSpecsDurationShorterThanProgram constraint of '<em>Program</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateProgram_allSpecsDurationShorterThanProgram(Program program, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(StudyplanPackage.Literals.PROGRAM,
-				 program,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/acceleo/query/1.0",
-				 "allSpecsDurationShorterThanProgram",
-				 PROGRAM__ALL_SPECS_DURATION_SHORTER_THAN_PROGRAM__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "masterLevelHasMaxLimitOfLevelThreeCoures", getObjectLabel(program, context) },
+						 new Object[] { program },
+						 context));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -228,7 +197,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PROGRAM__ALL_MAIN_SPECS_SIMILAR_DURATION__EEXPRESSION = "self.specializations->select(spec | spec.parentSpecialization = null)->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)";
+	protected static final String PROGRAM__ALL_MAIN_SPECS_SIMILAR_DURATION__EEXPRESSION = "self.specializations->forAll(spe | spe.semesters.programsSemesterOrderNr->union(spe.subSpecializations.semesters.programsSemesterOrderNr)->asSet()->size() = self.specializations->first().semesters.programsSemesterOrderNr->union(self.specializations.subSpecializations.semesters.programsSemesterOrderNr)->asSet()->size())";
 
 	/**
 	 * Validates the allMainSpecsSimilarDuration constraint of '<em>Program</em>'.
@@ -257,7 +226,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PROGRAM__MANDATORY_COURSES_COVERED__EEXPRESSION = "true";
+	protected static final String PROGRAM__MANDATORY_COURSES_COVERED__EEXPRESSION = "self.specializations.subSpecializations->forAll(sub | sub.semesters.mandatoryCourses->union(sub.eContainer().semesters.mandatoryCourses)->union(sub.eContainer().eContainer().semesters.mandatoryCourses)->includesAll(self.mandatoryCourses))";
 
 	/**
 	 * Validates the mandatoryCoursesCovered constraint of '<em>Program</em>'.
@@ -286,7 +255,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PROGRAM__NO_DUPLICATE_COURSES__EEXPRESSION = "true";
+	protected static final String PROGRAM__NO_DUPLICATE_COURSES__EEXPRESSION = "self.specializations.subSpecializations->forAll(sub | sub.semesters.mandatoryCourses->union(sub.eContainer().semesters.mandatoryCourses)->union(sub.eContainer().eContainer().semesters.mandatoryCourses)->isUnique(c | c.code))";
 
 	/**
 	 * Validates the noDuplicateCourses constraint of '<em>Program</em>'.
@@ -436,7 +405,6 @@ public class StudyplanValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(specialization, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(specialization, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSpecialization_allSubspecsSimilarLength(specialization, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSpecialization_subspecsShorterThanParent(specialization, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSpecialization_mandatoryCoursesAreCovered(specialization, diagnostics, context);
 		return result;
 	}
@@ -447,7 +415,7 @@ public class StudyplanValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SPECIALIZATION__ALL_SUBSPECS_SIMILAR_LENGTH__EEXPRESSION = "self.subSpecializations->forAll(subSpec | subSpec.durationInSemesters = self.subSpecializations->first().durationInSemesters)";
+	protected static final String SPECIALIZATION__ALL_SUBSPECS_SIMILAR_LENGTH__EEXPRESSION = "self.subSpecializations->forAll(sub | sub.semesters->size() = self.subSpecializations->first().semesters->size())";
 
 	/**
 	 * Validates the allSubspecsSimilarLength constraint of '<em>Specialization</em>'.
@@ -471,41 +439,12 @@ public class StudyplanValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the subspecsShorterThanParent constraint of '<em>Specialization</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String SPECIALIZATION__SUBSPECS_SHORTER_THAN_PARENT__EEXPRESSION = "self.subSpecializations->collect(spec | spec.durationInSemesters)->forAll(num | num <= self.durationInSemesters)";
-
-	/**
-	 * Validates the subspecsShorterThanParent constraint of '<em>Specialization</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSpecialization_subspecsShorterThanParent(Specialization specialization, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(StudyplanPackage.Literals.SPECIALIZATION,
-				 specialization,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/acceleo/query/1.0",
-				 "subspecsShorterThanParent",
-				 SPECIALIZATION__SUBSPECS_SHORTER_THAN_PARENT__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
 	 * The cached validation expression for the mandatoryCoursesAreCovered constraint of '<em>Specialization</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SPECIALIZATION__MANDATORY_COURSES_ARE_COVERED__EEXPRESSION = "true";
+	protected static final String SPECIALIZATION__MANDATORY_COURSES_ARE_COVERED__EEXPRESSION = "self.subSpecializations->forAll(sub | sub.semesters.mandatoryCourses->union(sub.eContainer().semesters.mandatoryCourses)->includesAll(self.mandatoryCourses))";
 
 	/**
 	 * Validates the mandatoryCoursesAreCovered constraint of '<em>Specialization</em>'.

@@ -19,13 +19,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link studyplan.Program#getType <em>Type</em>}</li>
  *   <li>{@link studyplan.Program#getSpecializations <em>Specializations</em>}</li>
  *   <li>{@link studyplan.Program#getSemesters <em>Semesters</em>}</li>
- *   <li>{@link studyplan.Program#getDurationPreSpecialization <em>Duration Pre Specialization</em>}</li>
  *   <li>{@link studyplan.Program#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getProgram()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='totalNrOfSemestersShouldMatchType masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered noDuplicateCourses'"
- *        annotation="http://www.eclipse.org/acceleo/query/1.0 totalNrOfSemestersShouldMatchType='self.type.value = self.semesters.programsSemesterOrderNr-&gt;asSet()-&gt;size()' allSpecsDurationShorterThanProgram='self.specializations-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num &lt;= self.type.value)' allMainSpecsSimilarDuration='self.specializations-&gt;select(spec | spec.parentSpecialization = null)-&gt;collect(spec | spec.durationInSemesters)-&gt;forAll(num | num = self.specializations-&gt;first().durationInSemesters)' masterLevelHasMaxLimitOfLevelThreeCoures='true' mandatoryCoursesCovered='true' noDuplicateCourses='true'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='totalNrOfSemestersShouldMatchType masterLevelHasMaxLimitOfLevelThreeCoures allMainSpecsSimilarDuration mandatoryCoursesCovered noDuplicateCourses'"
+ *        annotation="http://www.eclipse.org/acceleo/query/1.0 totalNrOfSemestersShouldMatchType='self.specializations.subSpecializations-&gt;forAll(sub | sub.semesters-&gt;union(sub.eContainer().semesters)-&gt;union(sub.eContainer().eContainer().semesters)-&gt;size() = self.type.value)' allMainSpecsSimilarDuration='self.specializations-&gt;forAll(spe | spe.semesters.programsSemesterOrderNr-&gt;union(spe.subSpecializations.semesters.programsSemesterOrderNr)-&gt;asSet()-&gt;size() = self.specializations-&gt;first().semesters.programsSemesterOrderNr-&gt;union(self.specializations.subSpecializations.semesters.programsSemesterOrderNr)-&gt;asSet()-&gt;size())' mandatoryCoursesCovered='self.specializations.subSpecializations-&gt;forAll(sub | sub.semesters.mandatoryCourses-&gt;union(sub.eContainer().semesters.mandatoryCourses)-&gt;union(sub.eContainer().eContainer().semesters.mandatoryCourses)-&gt;includesAll(self.mandatoryCourses))' noDuplicateCourses='self.specializations.subSpecializations-&gt;forAll(sub | sub.semesters.mandatoryCourses-&gt;union(sub.eContainer().semesters.mandatoryCourses)-&gt;union(sub.eContainer().eContainer().semesters.mandatoryCourses)-&gt;isUnique(c | c.code))'"
  * @generated
  */
 public interface Program extends EObject {
@@ -57,13 +56,11 @@ public interface Program extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Specializations</b></em>' containment reference list.
 	 * The list contents are of type {@link studyplan.Specialization}.
-	 * It is bidirectional and its opposite is '{@link studyplan.Specialization#getProgram <em>Program</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Specializations</em>' containment reference list.
 	 * @see studyplan.StudyplanPackage#getProgram_Specializations()
-	 * @see studyplan.Specialization#getProgram
-	 * @model opposite="program" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Specialization> getSpecializations();
@@ -83,38 +80,14 @@ public interface Program extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Semesters</b></em>' containment reference list.
 	 * The list contents are of type {@link studyplan.Semester}.
-	 * It is bidirectional and its opposite is '{@link studyplan.Semester#getProgram <em>Program</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Semesters</em>' containment reference list.
 	 * @see studyplan.StudyplanPackage#getProgram_Semesters()
-	 * @see studyplan.Semester#getProgram
-	 * @model opposite="program" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Semester> getSemesters();
-
-	/**
-	 * Returns the value of the '<em><b>Duration Pre Specialization</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Duration Pre Specialization</em>' attribute.
-	 * @see #setDurationPreSpecialization(int)
-	 * @see studyplan.StudyplanPackage#getProgram_DurationPreSpecialization()
-	 * @model
-	 * @generated
-	 */
-	int getDurationPreSpecialization();
-
-	/**
-	 * Sets the value of the '{@link studyplan.Program#getDurationPreSpecialization <em>Duration Pre Specialization</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Duration Pre Specialization</em>' attribute.
-	 * @see #getDurationPreSpecialization()
-	 * @generated
-	 */
-	void setDurationPreSpecialization(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

@@ -7,15 +7,13 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Program">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="totalNrOfSemestersShouldMatchType masterLevelHasMaxLimitOfLevelThreeCoures allSpecsDurationShorterThanProgram allMainSpecsSimilarDuration mandatoryCoursesCovered noDuplicateCourses"/>
+      <details key="constraints" value="totalNrOfSemestersShouldMatchType masterLevelHasMaxLimitOfLevelThreeCoures allMainSpecsSimilarDuration mandatoryCoursesCovered noDuplicateCourses"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
-      <details key="totalNrOfSemestersShouldMatchType" value="self.type.value = self.semesters.programsSemesterOrderNr->asSet()->size()"/>
-      <details key="allSpecsDurationShorterThanProgram" value="self.specializations->collect(spec | spec.durationInSemesters)->forAll(num | num &lt;= self.type.value)"/>
-      <details key="allMainSpecsSimilarDuration" value="self.specializations->select(spec | spec.parentSpecialization = null)->collect(spec | spec.durationInSemesters)->forAll(num | num = self.specializations->first().durationInSemesters)"/>
-      <details key="masterLevelHasMaxLimitOfLevelThreeCoures" value="true"/>
-      <details key="mandatoryCoursesCovered" value="true"/>
-      <details key="noDuplicateCourses" value="true"/>
+      <details key="totalNrOfSemestersShouldMatchType" value="self.specializations.subSpecializations->forAll(sub | sub.semesters->union(sub.eContainer().semesters)->union(sub.eContainer().eContainer().semesters)->size() = self.type.value)"/>
+      <details key="allMainSpecsSimilarDuration" value="self.specializations->forAll(spe | spe.semesters.programsSemesterOrderNr->union(spe.subSpecializations.semesters.programsSemesterOrderNr)->asSet()->size() = self.specializations->first().semesters.programsSemesterOrderNr->union(self.specializations.subSpecializations.semesters.programsSemesterOrderNr)->asSet()->size())"/>
+      <details key="mandatoryCoursesCovered" value="self.specializations.subSpecializations->forAll(sub | sub.semesters.mandatoryCourses->union(sub.eContainer().semesters.mandatoryCourses)->union(sub.eContainer().eContainer().semesters.mandatoryCourses)->includesAll(self.mandatoryCourses))"/>
+      <details key="noDuplicateCourses" value="self.specializations.subSpecializations->forAll(sub | sub.semesters.mandatoryCourses->union(sub.eContainer().semesters.mandatoryCourses)->union(sub.eContainer().eContainer().semesters.mandatoryCourses)->isUnique(c | c.code))"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ProgramTypeAndDuration"/>
@@ -55,12 +53,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Specialization">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="allSubspecsSimilarLength subspecsShorterThanParent mandatoryCoursesAreCovered"/>
+      <details key="constraints" value="allSubspecsSimilarLength mandatoryCoursesAreCovered"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/acceleo/query/1.0">
-      <details key="subspecsShorterThanParent" value="self.subSpecializations->collect(spec | spec.durationInSemesters)->forAll(num | num &lt;= self.durationInSemesters)"/>
-      <details key="mandatoryCoursesAreCovered" value="true"/>
-      <details key="allSubspecsSimilarLength" value="self.subSpecializations->forAll(subSpec | subSpec.durationInSemesters = self.subSpecializations->first().durationInSemesters)"/>
+      <details key="mandatoryCoursesAreCovered" value="self.subSpecializations->forAll(sub | sub.semesters.mandatoryCourses->union(sub.eContainer().semesters.mandatoryCourses)->includesAll(self.mandatoryCourses))"/>
+      <details key="allSubspecsSimilarLength" value="self.subSpecializations->forAll(sub | sub.semesters->size() = self.subSpecializations->first().semesters->size())"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subSpecializations" upperBound="-1"
