@@ -21,7 +21,6 @@ import studyplan.StudyplanPackage;
 
 public class HtmlConversion {
 	
-	
 	private Resource testInstance;
 	
 	public HtmlConversion(String resource) {

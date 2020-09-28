@@ -38,11 +38,10 @@ public class StudyplanValidatorTest extends TestCase {
 		List<EObject> testCourses = testInstance.getContents().get(0).eContents().stream()
 				.filter(elem -> elem instanceof studyplan.impl.CourseImpl).collect(Collectors.toList());		
 		
-		
-		diagnostics = Diagnostician.INSTANCE.validate(testCourses.get(0));
+		diagnostics = Diagnostician.INSTANCE.validate(testCourses.get(2));
 		assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
 		
-		diagnostics = Diagnostician.INSTANCE.validate(testCourses.get(1));
+		diagnostics = Diagnostician.INSTANCE.validate(testCourses.get(3));
 		assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
 	}
 	
@@ -50,29 +49,48 @@ public class StudyplanValidatorTest extends TestCase {
 		List<EObject> testCourses = testInstance.getContents().get(0).eContents().stream()
 				.filter(elem -> elem instanceof studyplan.impl.CourseImpl).collect(Collectors.toList());		
 		
+		diagnostics = Diagnostician.INSTANCE.validate(testCourses.get(0));
+		assertTrue(diagnostics.getSeverity() == Diagnostic.ERROR);
 		
-		diagnostics = Diagnostician.INSTANCE.validate(testCourses.get(2));
+		diagnostics = Diagnostician.INSTANCE.validate(testCourses.get(1));
 		assertTrue(diagnostics.getSeverity() == Diagnostic.ERROR);
 	}
 
 	public void test_coursesTaughtCurrentSemester_valid() {
-		EObject semester_valid = testInstance.getContents().get(0).eContents().get(0).eContents().get(0);
-		diagnostics = Diagnostician.INSTANCE.validate(semester_valid);
-		assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
+		List<EObject> testSemesters = testInstance.getContents().get(0).eContents().get(0).eContents().stream()
+				.filter(elem -> elem instanceof studyplan.impl.SemesterImpl).collect(Collectors.toList());
+				
+		//EObject semester_valid = testInstance.getContents().get(0).eContents().get(0).eContents().get(0);
+		//System.out.println(testSemesters);
 		
-		semester_valid = testInstance.getContents().get(0).eContents().get(0).eContents().get(1);
-		diagnostics = Diagnostician.INSTANCE.validate(semester_valid);
+		
+		diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(0));
 		System.out.print(diagnostics);
 		assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
+		
+		//diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(3));
+		//assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
+		
+		//semester_valid = testInstance.getContents().get(0).eContents().get(0).eContents().get(1);
+		//diagnostics = Diagnostician.INSTANCE.validate(semester_valid);
+		//System.out.print(diagnostics);
+		//assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
 	}
 	
 	public void test_coursesTaughtCurrentSemester_invalid() {
-		EObject semester_invalid = testInstance.getContents().get(0).eContents().get(0).eContents().get(2);
-		diagnostics = Diagnostician.INSTANCE.validate(semester_invalid);
+		
+		List<EObject> testSemesters = testInstance.getContents().get(0).eContents().get(0).eContents().stream()
+				.filter(elem -> elem instanceof studyplan.impl.SemesterImpl).collect(Collectors.toList());
+		
+		
+		//EObject semester_invalid = testInstance.getContents().get(0).eContents().get(0).eContents().get(2);
+		//diagnostics = Diagnostician.INSTANCE.validate(semester_invalid);
+		diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(1));
 		assertTrue(diagnostics.getSeverity() == Diagnostic.ERROR);
 		
-		semester_invalid = testInstance.getContents().get(0).eContents().get(0).eContents().get(3);
-		diagnostics = Diagnostician.INSTANCE.validate(semester_invalid);
+		//semester_invalid = testInstance.getContents().get(0).eContents().get(0).eContents().get(3);
+		//diagnostics = Diagnostician.INSTANCE.validate(semester_invalid);
+		diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(2));
 		assertTrue(diagnostics.getSeverity() == Diagnostic.ERROR);
 	}
 	
