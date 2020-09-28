@@ -1,0 +1,25 @@
+body {
+  width: 60%;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+p,
+h4 {
+  width: 25%;
+  margin-bottom: 5px;
+}
+
+h2,
+h3 {
+  margin-top: 50px;
+}
+
+button {
+  margin: 50px auto;
+}

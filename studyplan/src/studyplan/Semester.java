@@ -16,11 +16,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link studyplan.Semester#getProgramsSemesterOrderNr <em>Programs Semester Order Nr</em>}</li>
- *   <li>{@link studyplan.Semester#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  *   <li>{@link studyplan.Semester#getOptionalCourseGroups <em>Optional Course Groups</em>}</li>
- *   <li>{@link studyplan.Semester#getProgram <em>Program</em>}</li>
- *   <li>{@link studyplan.Semester#getSpecialization <em>Specialization</em>}</li>
  *   <li>{@link studyplan.Semester#getTotalCreditsValue <em>Total Credits Value</em>}</li>
+ *   <li>{@link studyplan.Semester#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  * </ul>
  *
  * @see studyplan.StudyplanPackage#getSemester()
@@ -52,26 +50,16 @@ public interface Semester extends EObject {
 	void setProgramsSemesterOrderNr(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Mandatory Courses</b></em>' reference list.
+	 * The list contents are of type {@link studyplan.Course}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mandatory Courses</em>' containment reference.
-	 * @see #setMandatoryCourses(CourseGroup)
+	 * @return the value of the '<em>Mandatory Courses</em>' reference list.
 	 * @see studyplan.StudyplanPackage#getSemester_MandatoryCourses()
-	 * @model containment="true" required="true"
+	 * @model
 	 * @generated
 	 */
-	CourseGroup getMandatoryCourses();
-
-	/**
-	 * Sets the value of the '{@link studyplan.Semester#getMandatoryCourses <em>Mandatory Courses</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mandatory Courses</em>' containment reference.
-	 * @see #getMandatoryCourses()
-	 * @generated
-	 */
-	void setMandatoryCourses(CourseGroup value);
+	EList<Course> getMandatoryCourses();
 
 	/**
 	 * Returns the value of the '<em><b>Optional Course Groups</b></em>' containment reference list.
@@ -86,52 +74,6 @@ public interface Semester extends EObject {
 	 * @generated
 	 */
 	EList<SemesterOptionalCourseGroup> getOptionalCourseGroups();
-
-	/**
-	 * Returns the value of the '<em><b>Program</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link studyplan.Program#getSemesters <em>Semesters</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Program</em>' container reference.
-	 * @see #setProgram(Program)
-	 * @see studyplan.StudyplanPackage#getSemester_Program()
-	 * @see studyplan.Program#getSemesters
-	 * @model opposite="semesters" required="true" transient="false"
-	 * @generated
-	 */
-	Program getProgram();
-
-	/**
-	 * Sets the value of the '{@link studyplan.Semester#getProgram <em>Program</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Program</em>' container reference.
-	 * @see #getProgram()
-	 * @generated
-	 */
-	void setProgram(Program value);
-
-	/**
-	 * Returns the value of the '<em><b>Specialization</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Specialization</em>' reference.
-	 * @see #setSpecialization(Specialization)
-	 * @see studyplan.StudyplanPackage#getSemester_Specialization()
-	 * @model
-	 * @generated
-	 */
-	Specialization getSpecialization();
-
-	/**
-	 * Sets the value of the '{@link studyplan.Semester#getSpecialization <em>Specialization</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Specialization</em>' reference.
-	 * @see #getSpecialization()
-	 * @generated
-	 */
-	void setSpecialization(Specialization value);
 
 	/**
 	 * Returns the value of the '<em><b>Total Credits Value</b></em>' attribute.

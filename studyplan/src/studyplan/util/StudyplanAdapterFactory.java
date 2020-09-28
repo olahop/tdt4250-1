@@ -76,10 +76,6 @@ public class StudyplanAdapterFactory extends AdapterFactoryImpl {
 				return createCourseAdapter();
 			}
 			@Override
-			public Adapter caseCourseGroup(CourseGroup object) {
-				return createCourseGroupAdapter();
-			}
-			@Override
 			public Adapter caseSpecialization(Specialization object) {
 				return createSpecializationAdapter();
 			}
@@ -140,20 +136,6 @@ public class StudyplanAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCourseAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link studyplan.CourseGroup <em>Course Group</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see studyplan.CourseGroup
-	 * @generated
-	 */
-	public Adapter createCourseGroupAdapter() {
 		return null;
 	}
 

@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import studyplan.Course;
-import studyplan.CourseGroup;
 import studyplan.Semester;
 import studyplan.SemesterOptionalCourseGroup;
 import studyplan.StudyplanPackage;
@@ -33,8 +32,8 @@ import studyplan.StudyplanPackage;
  * <ul>
  *   <li>{@link studyplan.impl.SemesterOptionalCourseGroupImpl#getNrOfOptionalFromGroup <em>Nr Of Optional From Group</em>}</li>
  *   <li>{@link studyplan.impl.SemesterOptionalCourseGroupImpl#getSemester <em>Semester</em>}</li>
- *   <li>{@link studyplan.impl.SemesterOptionalCourseGroupImpl#getCourseGroup <em>Course Group</em>}</li>
  *   <li>{@link studyplan.impl.SemesterOptionalCourseGroupImpl#getCurrentlySelected <em>Currently Selected</em>}</li>
+ *   <li>{@link studyplan.impl.SemesterOptionalCourseGroupImpl#getOptionalCourses <em>Optional Courses</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,16 +60,6 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	protected int nrOfOptionalFromGroup = NR_OF_OPTIONAL_FROM_GROUP_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getCourseGroup() <em>Course Group</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCourseGroup()
-	 * @generated
-	 * @ordered
-	 */
-	protected CourseGroup courseGroup;
-
-	/**
 	 * The cached value of the '{@link #getCurrentlySelected() <em>Currently Selected</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,6 +68,16 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	 * @ordered
 	 */
 	protected EList<Course> currentlySelected;
+
+	/**
+	 * The cached value of the '{@link #getOptionalCourses() <em>Optional Courses</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOptionalCourses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Course> optionalCourses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -171,51 +170,6 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	 * @generated
 	 */
 	@Override
-	public CourseGroup getCourseGroup() {
-		return courseGroup;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCourseGroup(CourseGroup newCourseGroup, NotificationChain msgs) {
-		CourseGroup oldCourseGroup = courseGroup;
-		courseGroup = newCourseGroup;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, oldCourseGroup, newCourseGroup);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setCourseGroup(CourseGroup newCourseGroup) {
-		if (newCourseGroup != courseGroup) {
-			NotificationChain msgs = null;
-			if (courseGroup != null)
-				msgs = ((InternalEObject)courseGroup).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, null, msgs);
-			if (newCourseGroup != null)
-				msgs = ((InternalEObject)newCourseGroup).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, null, msgs);
-			msgs = basicSetCourseGroup(newCourseGroup, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP, newCourseGroup, newCourseGroup));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<Course> getCurrentlySelected() {
 		if (currentlySelected == null) {
 			currentlySelected = new EObjectResolvingEList.Unsettable<Course>(Course.class, this, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED);
@@ -246,12 +200,25 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Course> getOptionalCourses() {
+		if (optionalCourses == null) {
+			optionalCourses = new EObjectResolvingEList<Course>(Course.class, this, StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__OPTIONAL_COURSES);
+		}
+		return optionalCourses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
 	public void selectOptionalCourse(Course course) {
 				
-		if(this.getCourseGroup().getCourses().contains(course) && ! this.getCurrentlySelected().contains(course)){
+		if(this.getOptionalCourses().contains(course) && ! this.getCurrentlySelected().contains(course)){
 			this.getCurrentlySelected().add(course);
 		} else {
 			throw new IllegalArgumentException("Course not part of alternatives");
@@ -295,8 +262,6 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 		switch (featureID) {
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__SEMESTER:
 				return basicSetSemester(null, msgs);
-			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
-				return basicSetCourseGroup(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -327,10 +292,10 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 				return getNrOfOptionalFromGroup();
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__SEMESTER:
 				return getSemester();
-			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
-				return getCourseGroup();
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
 				return getCurrentlySelected();
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__OPTIONAL_COURSES:
+				return getOptionalCourses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -350,12 +315,13 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__SEMESTER:
 				setSemester((Semester)newValue);
 				return;
-			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
-				setCourseGroup((CourseGroup)newValue);
-				return;
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
 				getCurrentlySelected().clear();
 				getCurrentlySelected().addAll((Collection<? extends Course>)newValue);
+				return;
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__OPTIONAL_COURSES:
+				getOptionalCourses().clear();
+				getOptionalCourses().addAll((Collection<? extends Course>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -375,11 +341,11 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__SEMESTER:
 				setSemester((Semester)null);
 				return;
-			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
-				setCourseGroup((CourseGroup)null);
-				return;
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
 				unsetCurrentlySelected();
+				return;
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__OPTIONAL_COURSES:
+				getOptionalCourses().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -397,10 +363,10 @@ public class SemesterOptionalCourseGroupImpl extends MinimalEObjectImpl.Containe
 				return nrOfOptionalFromGroup != NR_OF_OPTIONAL_FROM_GROUP_EDEFAULT;
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__SEMESTER:
 				return getSemester() != null;
-			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__COURSE_GROUP:
-				return courseGroup != null;
 			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__CURRENTLY_SELECTED:
 				return isSetCurrentlySelected();
+			case StudyplanPackage.SEMESTER_OPTIONAL_COURSE_GROUP__OPTIONAL_COURSES:
+				return optionalCourses != null && !optionalCourses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

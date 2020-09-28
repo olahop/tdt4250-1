@@ -5,83 +5,67 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:studyplan="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore"
     xsi:schemaLocation="platform:/plugin/tdt4250.studyplan.model/model/studyplan.ecore ../../../../studyplan/model/studyplan.ecore">
-  <programs>
+  <programs
+      name="Datateknologi 5-årig"
+      type="IntegratedMaster">
     <semesters>
-      <mandatoryCourses>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.0"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.1"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.3"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.4"/>
-      </mandatoryCourses>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.0"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.1"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.3"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.4"/>
     </semesters>
     <semesters
         programsSemesterOrderNr="1">
-      <mandatoryCourses>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.2"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.5"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.7"/>
-      </mandatoryCourses>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1">
-        <courseGroup>
-          <courses
-              href="../../../../studyplan/model/Studyplan.xmi#//@courses.11"/>
-        </courseGroup>
-        <currentlySelected
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.11"/>
-      </optionalCourseGroups>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.2"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.5"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.14"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.13"/>
     </semesters>
     <semesters
         programsSemesterOrderNr="2">
-      <mandatoryCourses>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.19"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.23"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.24"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.28"/>
-      </mandatoryCourses>
+      <mandatoryCourses
+          href="#//@courses.2"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.9"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.11"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.15"/>
     </semesters>
     <semesters
         programsSemesterOrderNr="3">
-      <mandatoryCourses>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.2"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.5"/>
-        <courses
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.11"/>
-      </mandatoryCourses>
-      <optionalCourseGroups
-          nrOfOptionalFromGroup="1">
-        <courseGroup>
-          <courses
-              href="../../../../studyplan/model/Studyplan.xmi#//@courses.0"/>
-        </courseGroup>
-        <currentlySelected
-            href="../../../../studyplan/model/Studyplan.xmi#//@courses.0"/>
-      </optionalCourseGroups>
+      <mandatoryCourses
+          href="#//@courses.3"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.10"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.9"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.29"/>
     </semesters>
   </programs>
-  <courses name="Valid1"
-      code="TDT0001"
-      credits="5.0"
-      taughtInAutumn="true"/>
-  <courses name="Valid2"
-      code="TDT0002"
-      credits="7.5"
-      taughtInAutumn="true"/>
-  <courses name="Invalid1"
-      code="TDT0005"
+  <courses name="InvalidCredits1"
+      code="INV1234"
       credits="1.0"
+      taughtInAutumn="true"/>
+  <courses name="InvalidCredits2"
+      code="INV2345"
+      credits="35.0"
+      taughtInSpring="true"/>
+  <courses name="springCourse"
+      code="INV3456"
+      credits="7.5"
+      taughtInSpring="true"/>
+  <courses name="autumnCourse"
+      code="AUT1234"
+      credits="7.5"
       taughtInAutumn="true"/>
 </studyplan:Studyplan>

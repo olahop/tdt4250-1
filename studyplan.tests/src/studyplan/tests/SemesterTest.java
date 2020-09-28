@@ -6,7 +6,6 @@ import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 import studyplan.Course;
-import studyplan.CourseGroup;
 import studyplan.Semester;
 import studyplan.SemesterOptionalCourseGroup;
 import studyplan.StudyplanFactory;
@@ -102,32 +101,26 @@ public class SemesterTest extends TestCase {
 	 * @generated NOT
 	 */
 	public void testGetTotalCreditsValue() {
-		CourseGroup mandatoryCourses = StudyplanFactory.eINSTANCE.createCourseGroup();
+		Semester semester = StudyplanFactory.eINSTANCE.createSemester();
 		Course course1 = StudyplanFactory.eINSTANCE.createCourse();
 		course1.setCredits(7.5);
-		mandatoryCourses.getCourses().add(course1);
+		semester.getMandatoryCourses().add(course1);
 		Course course2 = StudyplanFactory.eINSTANCE.createCourse();
 		course2.setCredits(7.5);
-		mandatoryCourses.getCourses().add(course2);
+		semester.getMandatoryCourses().add(course2);
 		Course course3 = StudyplanFactory.eINSTANCE.createCourse();
 		course3.setCredits(7.5);
-		mandatoryCourses.getCourses().add(course3);
+		semester.getMandatoryCourses().add(course3);
 					
-		Semester semester = StudyplanFactory.eINSTANCE.createSemester();
-		semester.setMandatoryCourses(mandatoryCourses);
 		assertEquals(22.5, semester.getTotalCreditsValue());
-		
-		CourseGroup optionalCourses = StudyplanFactory.eINSTANCE.createCourseGroup();
-		Course course4 = StudyplanFactory.eINSTANCE.createCourse();
-		course4.setCredits(7.5);
-		optionalCourses.getCourses().add(course4);
 		
 		SemesterOptionalCourseGroup socg = StudyplanFactory.eINSTANCE.createSemesterOptionalCourseGroup();
+		socg.setNrOfOptionalFromGroup(1);
 		socg.setSemester(semester);
-		socg.setCourseGroup(optionalCourses);
-		assertEquals(22.5, semester.getTotalCreditsValue());
-		
-		socg.getCurrentlySelected().add(course4);
+		Course course4 = StudyplanFactory.eINSTANCE.createCourse();
+		course4.setCredits(7.5);
+		socg.getOptionalCourses().add(course4);
+
 		assertEquals(30.0, semester.getTotalCreditsValue());
 	}
 

@@ -7,20 +7,12 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 import studyplan.Program;
-import studyplan.ProgramTypeAndDuration;
-import studyplan.Specialization;
 import studyplan.StudyplanFactory;
 
 /**
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Program</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are tested:
- * <ul>
- *   <li>{@link studyplan.Program#getDurationPreSpecialization() <em>Duration Pre Specialization</em>}</li>
- * </ul>
- * </p>
  * @generated
  */
 public class ProgramTest extends TestCase {
@@ -92,28 +84,6 @@ public class ProgramTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
-	}
-
-	/**
-	 * Tests the '{@link studyplan.Program#getDurationPreSpecialization() <em>Duration Pre Specialization</em>}' feature getter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see studyplan.Program#getDurationPreSpecialization()
-	 * @generated NOT
-	 */
-	public void testGetDurationPreSpecialization() {
-		Program program = StudyplanFactory.eINSTANCE.createProgram();		
-		Specialization specialization = StudyplanFactory.eINSTANCE.createSpecialization();
-		specialization.setProgram(program);
-		specialization.setDurationInSemesters(3);
-		program.setType(ProgramTypeAndDuration.BACHELOR);
-		assertEquals(3, program.getDurationPreSpecialization());
-		
-		program.setType(ProgramTypeAndDuration.INTEGRATED_MASTER);
-		assertEquals(7, program.getDurationPreSpecialization());
-		
-		program.setType(ProgramTypeAndDuration.MASTER);
-		assertEquals(1, program.getDurationPreSpecialization());
 	}
 
 } //ProgramTest

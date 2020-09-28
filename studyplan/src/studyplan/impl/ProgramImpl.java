@@ -14,9 +14,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import studyplan.CourseGroup;
+import studyplan.Course;
 import studyplan.Program;
 import studyplan.ProgramTypeAndDuration;
 import studyplan.Semester;
@@ -34,9 +35,8 @@ import studyplan.StudyplanPackage;
  *   <li>{@link studyplan.impl.ProgramImpl#getName <em>Name</em>}</li>
  *   <li>{@link studyplan.impl.ProgramImpl#getType <em>Type</em>}</li>
  *   <li>{@link studyplan.impl.ProgramImpl#getSpecializations <em>Specializations</em>}</li>
- *   <li>{@link studyplan.impl.ProgramImpl#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  *   <li>{@link studyplan.impl.ProgramImpl#getSemesters <em>Semesters</em>}</li>
- *   <li>{@link studyplan.impl.ProgramImpl#getDurationPreSpecialization <em>Duration Pre Specialization</em>}</li>
+ *   <li>{@link studyplan.impl.ProgramImpl#getMandatoryCourses <em>Mandatory Courses</em>}</li>
  * </ul>
  *
  * @generated
@@ -93,16 +93,6 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	protected EList<Specialization> specializations;
 
 	/**
-	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMandatoryCourses()
-	 * @generated
-	 * @ordered
-	 */
-	protected CourseGroup mandatoryCourses;
-
-	/**
 	 * The cached value of the '{@link #getSemesters() <em>Semesters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,24 +103,14 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	protected EList<Semester> semesters;
 
 	/**
-	 * The default value of the '{@link #getDurationPreSpecialization() <em>Duration Pre Specialization</em>}' attribute.
+	 * The cached value of the '{@link #getMandatoryCourses() <em>Mandatory Courses</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDurationPreSpecialization()
+	 * @see #getMandatoryCourses()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int DURATION_PRE_SPECIALIZATION_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getDurationPreSpecialization() <em>Duration Pre Specialization</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDurationPreSpecialization()
-	 * @generated
-	 * @ordered
-	 */
-	protected int durationPreSpecialization = DURATION_PRE_SPECIALIZATION_EDEFAULT;
+	protected EList<Course> mandatoryCourses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -182,7 +162,7 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	@Override
 	public EList<Specialization> getSpecializations() {
 		if (specializations == null) {
-			specializations = new EObjectContainmentWithInverseEList<Specialization>(Specialization.class, this, StudyplanPackage.PROGRAM__SPECIALIZATIONS, StudyplanPackage.SPECIALIZATION__PROGRAM);
+			specializations = new EObjectContainmentEList<Specialization>(Specialization.class, this, StudyplanPackage.PROGRAM__SPECIALIZATIONS);
 		}
 		return specializations;
 	}
@@ -193,43 +173,11 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	 * @generated
 	 */
 	@Override
-	public CourseGroup getMandatoryCourses() {
+	public EList<Course> getMandatoryCourses() {
+		if (mandatoryCourses == null) {
+			mandatoryCourses = new EObjectResolvingEList<Course>(Course.class, this, StudyplanPackage.PROGRAM__MANDATORY_COURSES);
+		}
 		return mandatoryCourses;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetMandatoryCourses(CourseGroup newMandatoryCourses, NotificationChain msgs) {
-		CourseGroup oldMandatoryCourses = mandatoryCourses;
-		mandatoryCourses = newMandatoryCourses;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StudyplanPackage.PROGRAM__MANDATORY_COURSES, oldMandatoryCourses, newMandatoryCourses);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMandatoryCourses(CourseGroup newMandatoryCourses) {
-		if (newMandatoryCourses != mandatoryCourses) {
-			NotificationChain msgs = null;
-			if (mandatoryCourses != null)
-				msgs = ((InternalEObject)mandatoryCourses).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.PROGRAM__MANDATORY_COURSES, null, msgs);
-			if (newMandatoryCourses != null)
-				msgs = ((InternalEObject)newMandatoryCourses).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - StudyplanPackage.PROGRAM__MANDATORY_COURSES, null, msgs);
-			msgs = basicSetMandatoryCourses(newMandatoryCourses, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StudyplanPackage.PROGRAM__MANDATORY_COURSES, newMandatoryCourses, newMandatoryCourses));
 	}
 
 	/**
@@ -240,41 +188,9 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 	@Override
 	public EList<Semester> getSemesters() {
 		if (semesters == null) {
-			semesters = new EObjectContainmentWithInverseEList<Semester>(Semester.class, this, StudyplanPackage.PROGRAM__SEMESTERS, StudyplanPackage.SEMESTER__PROGRAM);
+			semesters = new EObjectContainmentEList<Semester>(Semester.class, this, StudyplanPackage.PROGRAM__SEMESTERS);
 		}
 		return semesters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public int getDurationPreSpecialization() {
-		int totalNrOfSemesters = this.type.getValue();
-		if(this.specializations.size() > 0) {
-			int nrOfSpecializedSemesters = this.specializations.get(0).getDurationInSemesters();
-			return totalNrOfSemesters - nrOfSpecializedSemesters;
-		}
-		return totalNrOfSemesters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case StudyplanPackage.PROGRAM__SPECIALIZATIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSpecializations()).basicAdd(otherEnd, msgs);
-			case StudyplanPackage.PROGRAM__SEMESTERS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSemesters()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -310,8 +226,6 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 		switch (featureID) {
 			case StudyplanPackage.PROGRAM__SPECIALIZATIONS:
 				return ((InternalEList<?>)getSpecializations()).basicRemove(otherEnd, msgs);
-			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
-				return basicSetMandatoryCourses(null, msgs);
 			case StudyplanPackage.PROGRAM__SEMESTERS:
 				return ((InternalEList<?>)getSemesters()).basicRemove(otherEnd, msgs);
 		}
@@ -332,12 +246,10 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 				return getType();
 			case StudyplanPackage.PROGRAM__SPECIALIZATIONS:
 				return getSpecializations();
-			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
-				return getMandatoryCourses();
 			case StudyplanPackage.PROGRAM__SEMESTERS:
 				return getSemesters();
-			case StudyplanPackage.PROGRAM__DURATION_PRE_SPECIALIZATION:
-				return getDurationPreSpecialization();
+			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
+				return getMandatoryCourses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -361,12 +273,13 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 				getSpecializations().clear();
 				getSpecializations().addAll((Collection<? extends Specialization>)newValue);
 				return;
-			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
-				setMandatoryCourses((CourseGroup)newValue);
-				return;
 			case StudyplanPackage.PROGRAM__SEMESTERS:
 				getSemesters().clear();
 				getSemesters().addAll((Collection<? extends Semester>)newValue);
+				return;
+			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
+				getMandatoryCourses().clear();
+				getMandatoryCourses().addAll((Collection<? extends Course>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -389,11 +302,11 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 			case StudyplanPackage.PROGRAM__SPECIALIZATIONS:
 				getSpecializations().clear();
 				return;
-			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
-				setMandatoryCourses((CourseGroup)null);
-				return;
 			case StudyplanPackage.PROGRAM__SEMESTERS:
 				getSemesters().clear();
+				return;
+			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
+				getMandatoryCourses().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -413,12 +326,10 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 				return type != TYPE_EDEFAULT;
 			case StudyplanPackage.PROGRAM__SPECIALIZATIONS:
 				return specializations != null && !specializations.isEmpty();
-			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
-				return mandatoryCourses != null;
 			case StudyplanPackage.PROGRAM__SEMESTERS:
 				return semesters != null && !semesters.isEmpty();
-			case StudyplanPackage.PROGRAM__DURATION_PRE_SPECIALIZATION:
-				return durationPreSpecialization != DURATION_PRE_SPECIALIZATION_EDEFAULT;
+			case StudyplanPackage.PROGRAM__MANDATORY_COURSES:
+				return mandatoryCourses != null && !mandatoryCourses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -437,8 +348,6 @@ public class ProgramImpl extends MinimalEObjectImpl.Container implements Program
 		result.append(name);
 		result.append(", type: ");
 		result.append(type);
-		result.append(", durationPreSpecialization: ");
-		result.append(durationPreSpecialization);
 		result.append(')');
 		return result.toString();
 	}

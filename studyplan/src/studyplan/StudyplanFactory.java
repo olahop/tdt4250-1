@@ -40,15 +40,6 @@ public interface StudyplanFactory extends EFactory {
 	Course createCourse();
 
 	/**
-	 * Returns a new object of class '<em>Course Group</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Course Group</em>'.
-	 * @generated
-	 */
-	CourseGroup createCourseGroup();
-
-	/**
 	 * Returns a new object of class '<em>Specialization</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
