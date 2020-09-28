@@ -58,39 +58,23 @@ public class StudyplanValidatorTest extends TestCase {
 
 	public void test_coursesTaughtCurrentSemester_valid() {
 		List<EObject> testSemesters = testInstance.getContents().get(0).eContents().get(0).eContents().stream()
-				.filter(elem -> elem instanceof studyplan.impl.SemesterImpl).collect(Collectors.toList());
-				
-		//EObject semester_valid = testInstance.getContents().get(0).eContents().get(0).eContents().get(0);
-		//System.out.println(testSemesters);
-		
+				.filter(elem -> elem instanceof studyplan.impl.SemesterImpl).collect(Collectors.toList());		
 		
 		diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(0));
-		System.out.print(diagnostics);
 		assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
 		
-		//diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(3));
-		//assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
-		
-		//semester_valid = testInstance.getContents().get(0).eContents().get(0).eContents().get(1);
-		//diagnostics = Diagnostician.INSTANCE.validate(semester_valid);
-		//System.out.print(diagnostics);
-		//assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
+		diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(1));
+		assertTrue(diagnostics.getSeverity() == Diagnostic.OK);
 	}
 	
 	public void test_coursesTaughtCurrentSemester_invalid() {
-		
 		List<EObject> testSemesters = testInstance.getContents().get(0).eContents().get(0).eContents().stream()
 				.filter(elem -> elem instanceof studyplan.impl.SemesterImpl).collect(Collectors.toList());
 		
-		
-		//EObject semester_invalid = testInstance.getContents().get(0).eContents().get(0).eContents().get(2);
-		//diagnostics = Diagnostician.INSTANCE.validate(semester_invalid);
-		diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(1));
-		assertTrue(diagnostics.getSeverity() == Diagnostic.ERROR);
-		
-		//semester_invalid = testInstance.getContents().get(0).eContents().get(0).eContents().get(3);
-		//diagnostics = Diagnostician.INSTANCE.validate(semester_invalid);
 		diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(2));
+		assertTrue(diagnostics.getSeverity() == Diagnostic.ERROR);
+
+		diagnostics = Diagnostician.INSTANCE.validate(testSemesters.get(3));
 		assertTrue(diagnostics.getSeverity() == Diagnostic.ERROR);
 	}
 	
