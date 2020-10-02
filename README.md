@@ -1,10 +1,10 @@
 # Assignment 2
 
-The repository is part of the delivery in the second assignment related to the course TDT4250 Advanced Software Design at the Norwegian University of Science and Technology (NTNU). The purpose of the assignment was to get experience with transformations. The assignment builds on the previous assignment, where the expected learning outcome was to learn modeling with the Eclipse Modeling Framework (EMF) and Ecore.
+This repository is part of the delivery in the second assignment related to the course TDT4250 Advanced Software Design at the Norwegian University of Science and Technology (NTNU). The purpose of the assignment was to get experience with transformations. The assignment builds on the previous assignment, where the expected learning outcome was to learn modeling with the Eclipse Modeling Framework (EMF) and Ecore.
 
 ## Content
 
-The repository contains two projects, the main model - **_studyplan_** - and related tests - **_studyplan.tests_** -.
+The repository contains two main folders/projects, the main model project - **_studyplan_** - and related tests - **_studyplan.tests_** -.
 
 ### Studyplan
 
@@ -24,7 +24,7 @@ The source folder contains the generated code based on the Ecore model. Along wi
 
 #### HTML Transformation
 
-The main learning outcome of assignment 2 has been to get experience with converting between data formats. I choose to look at how I could transform an xmi-instance to content in HTML-file. This is done in **_studyplan.impl.HtmlConversionStudyplan_**, and the transformation is stored in **_filename.html_** with the similar path. The HTML-file can be generated from scratch by running **_HtmlConversionStudyplan_**. To make the transformed file "prettier" I have created **_styles.css_**, which gives the HTML a bit more user-friendly look.
+The main learning outcome of assignment 2 has been to get experience with converting between data formats. I choose to look at how I could transform an xmi-instance to content in an HTML-file. This is done in **_studyplan.impl.HtmlConversionStudyplan_**, and the transformation is stored in **filename.html\_** at the root of the studyplan project. The HTML-file can be generated from scratch by running **_HtmlConversionStudyplan_**. To make the transformed file "prettier" I have created **_styles.css_**, which gives the HTML a bit more user-friendly look.
 
 ### Studyplan.tests
 
@@ -54,7 +54,7 @@ These are some of the assumptions made during the work on this assignment, which
 
 Below is a list of the most significant changes I made to the repository after the due date for delivering assignment 1.
 
-- Large changes to the ecore-model as a result of misunderstanding the perspective of the model. This leads to changes in many changes in eAttributes, eReferences, and constraints. And eventually a rather large change to get a more suitable xmi-instance. Some changes were also a result of getting more comfortable with the use of emf in general.
+- Large changes to the ecore-model as a result of misunderstanding the perspective of the model. This leads to changes in many changes in eAttributes, eReferences, and constraints. And eventually, a rather large change to get a more suitable xmi-instance. Some changes were also a result of getting more comfortable with the use of EMF in general.
 - Changed some manually written constraints to OCL to avoid an unnecessarily large number of manually written tests.
 - Removed the eClass CourseGroup because I did not manage to utilize it good enough after I refactored the ecore-model. It could probably still have served some purpose, but I decided to use lists of courses more frequently instead.
 - Removed the derived feature _durationPreSpecialization_ in eClass **Program** because I found it a bit trivial after I refactored the ecore-model.
@@ -62,4 +62,8 @@ Below is a list of the most significant changes I made to the repository after t
 
 ## Workflow
 
-By looking at the commit history, it is possible to get a view of how the workflow has been related to the assignment. Naturally, the work started by creating a proper Ecore model based on the case description. This model has changed dynamically through the work with the assignment since I have learned new features within the Ecore format while working on the model. Especially through the work on assignment 2, I felt there were a lot of changes to make with the model. After creating a model draft, I started working on defining constraints, first as OCL those that easily could be defined AQL, and afterward with manually written code. Some of the other manual code was written during the modeling, as needed, or after the model was iterated further. After writing the manual code, I generated the test-plugin and wrote manual tests related to the manually written code from the model-project.
+By looking at the commit history, it is possible to get a view of how the workflow has been related to the assignment. Naturally, the work started by creating a proper Ecore model based on the case description. This model has changed dynamically through the work with the assignment since I have learned new features within the Ecore format while working on the model.
+
+Especially through the work on assignment 2, I felt there were a lot of changes to make with the model. After creating a model draft, I started working on defining constraints, first as OCL those that easily could be defined AQL, and afterward with manually written code. Some of the other manual code was written during the modeling, as needed, or after the model was iterated further. After writing the manual code, I generated the test-plugin and wrote manual tests related to the manually written code from the model-project.
+
+I choose to transform the xmi-instance to HTML because this is a format I know well. It is possible I have chosen a too easy way out in this regard, since I cast to _Program_ early in the transformation code, and do not utilize the **StructuredFeatures** within the ecore-world. This might assume too much domain-knowledge, but I found it hard to define this line. However, I created **filename.html** by running **_HtmlConversionStudyplan_** and added styling by manually adding code to **styles.css**. Adding the style, making the code more generic, and divide the code into smaller functions would perhaps be enhancements to the transformation.
