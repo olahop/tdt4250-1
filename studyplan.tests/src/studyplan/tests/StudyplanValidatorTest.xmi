@@ -25,9 +25,9 @@
       <mandatoryCourses
           href="../../../../studyplan/model/Studyplan.xmi#//@courses.5"/>
       <mandatoryCourses
-          href="../../../../studyplan/model/Studyplan.xmi#//@courses.6"/>
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.14"/>
       <mandatoryCourses
-          href="../../../../studyplan/model/Studyplan.xmi#//@courses.7"/>
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.13"/>
     </semesters>
     <semesters
         programsSemesterOrderNr="2">
@@ -43,13 +43,13 @@
     <semesters
         programsSemesterOrderNr="3">
       <mandatoryCourses
-          href="../../../../studyplan/model/Studyplan.xmi#//@courses.12"/>
-      <mandatoryCourses
-          href="../../../../studyplan/model/Studyplan.xmi#//@courses.13"/>
-      <mandatoryCourses
-          href="../../../../studyplan/model/Studyplan.xmi#//@courses.14"/>
-      <mandatoryCourses
           href="#//@courses.3"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.10"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.9"/>
+      <mandatoryCourses
+          href="../../../../studyplan/model/Studyplan.xmi#//@courses.29"/>
     </semesters>
   </programs>
   <courses name="InvalidCredits1"
